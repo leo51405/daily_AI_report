@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}AI 日報 · 歷史日報{% endblock %}
+{% block head %}
+<style>
+  ul.days { list-style: none; padding: 0; margin: 0; }
+  ul.days li { border-bottom: 1px solid var(--line); }
+  ul.days a { display: block; padding: 14px 4px; text-decoration: none; }
+  ul.days a:hover .date { color: var(--accent); }
+  .date { font: 700 18px/1.4 "Noto Serif TC", serif; }
+  .count { color: var(--muted); font-size: 13px; margin-left: 8px; }
+  .headline { display: block; color: var(--muted); font-size: 14px; }
+</style>
+{% endblock %}
+{% block content %}
+<h1>歷史日報</h1>
+<div class="meta">共 {{ reports|length }} 天</div>
+<ul class="days">
+  {% for r in reports %}
+  <li><a href="{{ r.date }}.html">
+    <span class="date">{{ r.date }}</span><span class="count">{{ r["items"]|length }} 則</span>
+    {% if r["items"] %}<span class="headline">{{ r["items"][0].title }}</span>{% endif %}
+  </a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

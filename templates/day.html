@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}AI 日報 · {{ report.date }}{% endblock %}
+{% block head %}
+<style>
+  ol.news { list-style: none; padding: 0; margin: 0; counter-reset: n; }
+  ol.news li {
+    counter-increment: n; position: relative;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 20px 18px 64px; margin-bottom: 14px;
+  }
+  ol.news li::before {
+    content: counter(n, decimal-leading-zero); position: absolute; left: 18px; top: 18px;
+    font: 900 24px/1 "Noto Serif TC", serif; color: var(--accent);
+  }
+  ol.news h2 { font-size: 19px; line-height: 1.5; margin: 0 0 4px; }
+  ol.news h2 a { text-decoration: none; }
+  ol.news h2 a:hover { color: var(--accent); text-decoration: underline; }
+  .src { font-size: 13px; color: var(--muted); margin-bottom: 10px; overflow-wrap: anywhere; }
+  .src b { color: var(--text); font-weight: 500; }
+  .summary { margin: 0 0 10px; }
+  .why { margin: 0; font-size: 14px; background: var(--why-bg); border-radius: 8px; padding: 8px 12px; }
+  .why::before { content: "為何重要｜"; color: var(--accent); font-weight: 700; }
+  nav.pager { display: flex; justify-content: space-between; margin-top: 28px; font-size: 15px; }
+  nav.pager a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 480px) {
+    ol.news li { padding: 52px 16px 16px; }
+    ol.news li::before { top: 16px; left: 16px; }
+  }
+</style>
+{% endblock %}
+{% block content %}
+<h1>{{ report.date }}</h1>
+<div class="meta">從 {{ report.candidates }} 則新聞中精選 {{ report["items"]|length }} 則 · 更新於 {{ report.generated_at[11:16] }}</div>
+<ol class="news">
+  {% for item in report["items"] %}
+  <li>
+    <h2><a href="{{ item.link }}" target="_blank" rel="noopener">{{ item.title }}</a></h2>
+    <div class="src"><b>{{ item.source }}</b> · {{ item.original_title }}</div>
+    <p class="summary">{{ item.summary }}</p>
+    <p class="why">{{ item.why }}</p>
+  </li>
+  {% endfor %}
+</ol>
+<nav class="pager">
+  <span>{% if older %}<a href="{{ older }}.html">← {{ older }}</a>{% endif %}</span>
+  <span>{% if newer %}<a href="{{ newer }}.html">{{ newer }} →</a>{% endif %}</span>
+</nav>
+{% endblock %}
