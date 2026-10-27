@@ -4,9 +4,11 @@ import html
 import json
 import re
 import urllib.request
+import zlib
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urljoin
 
 import feedparser
 from jinja2 import Environment, FileSystemLoader
@@ -29,8 +31,16 @@ AI_PATTERN = re.compile(
     re.I,
 )
 
+USER_AGENT = "Mozilla/5.0 (daily-ai-report)"
+# 表情符號、網站 logo、頭像、追蹤像素等不適合當縮圖
+BAD_IMAGE = re.compile(r"emoji|logo|gravatar|avatar|pixel|1x1|feedburner", re.I)
+
 SYSTEM_PROMPT = """你是資深 AI 產業編輯，負責每天早上為台灣讀者編一份 AI 日報。
-從候選新聞中挑出最重要的 10–15 則，標準依序為：
+從候選新聞中挑出最重要的 12–20 則，並分成三級：
+- headline（頭條）：剛好 1 則，今天最重要的新聞
+- important（重要）：6–9 則
+- brief（快訊）：最多 10 則，值得知道但不需細讀的消息
+挑選標準依序為：
 1. 重大模型或產品發布（OpenAI、Anthropic、Google、Meta 等）
 2. 影響產業走向的事件（大型融資、併購、政策法規、重要合作）
 3. 有實質突破的研究成果
@@ -40,10 +50,11 @@ SYSTEM_PROMPT = """你是資深 AI 產業編輯，負責每天早上為台灣讀
 
 每則輸出：
 - index：候選清單中的編號
+- tier：headline / important / brief
 - title：繁體中文標題（精簡、資訊量高，不要聳動）
-- summary：2–3 句繁體中文摘要，講清楚發生什麼事與關鍵數字
-- why：一句話說明為什麼值得關注
-依重要性由高到低排序。全部使用台灣慣用的繁體中文用語。"""
+- summary：headline 與 important 寫 2–3 句繁體中文摘要，講清楚發生什麼事與關鍵數字；brief 只寫一句
+- why：一句話說明為什麼值得關注；brief 填空字串
+依 headline、important、brief 的順序輸出，同級內依重要性由高到低。全部使用台灣慣用的繁體中文用語。"""
 
 SCHEMA = {
     "type": "object",
@@ -54,11 +65,12 @@ SCHEMA = {
                 "type": "object",
                 "properties": {
                     "index": {"type": "integer"},
+                    "tier": {"type": "string", "enum": ["headline", "important", "brief"]},
                     "title": {"type": "string"},
                     "summary": {"type": "string"},
                     "why": {"type": "string"},
                 },
-                "required": ["index", "title", "summary", "why"],
+                "required": ["index", "tier", "title", "summary", "why"],
                 "additionalProperties": False,
             },
         }
@@ -74,10 +86,39 @@ def clean(text, limit):
     return text[:limit]
 
 
+def http_get(url, timeout, limit=None):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read(limit)
+
+
+def entry_image(e):
+    """從 RSS 項目找圖片：media 標籤 → enclosure → 內文 <img>。"""
+    urls = [m.get("url") for m in e.get("media_content", []) + e.get("media_thumbnail", [])
+            if "video" not in m.get("medium", "") + m.get("type", "")
+            and "audio" not in m.get("medium", "") + m.get("type", "")]
+    urls += [l.get("href") for l in e.get("links", [])
+             if l.get("rel") == "enclosure" and l.get("type", "").startswith("image")]
+    body = " ".join([e.get("summary", "")] + [c.get("value", "") for c in e.get("content", [])])
+    urls += [html.unescape(u) for u in re.findall(r"<img[^>]+src=[\"']([^\"']+)", body)]
+    return next((u for u in urls if u and not BAD_IMAGE.search(u)), "")
+
+
+def page_image(url):
+    """抓原文網頁的 og:image / twitter:image。"""
+    try:
+        page = http_get(url, timeout=10, limit=300_000).decode("utf-8", "ignore")
+    except Exception:
+        return ""
+    m = re.search(r"<meta[^>]+(?:property|name)=[\"'](?:og:image|twitter:image)[\"'][^>]*>", page, re.I)
+    src = m and re.search(r"content=[\"']([^\"']+)", m.group(0))
+    img = urljoin(url, html.unescape(src.group(1))) if src else ""
+    return "" if BAD_IMAGE.search(img) else img
+
+
 def fetch_source(src, since):
     try:
-        req = urllib.request.Request(src["url"], headers={"User-Agent": "Mozilla/5.0 (daily-ai-report)"})
-        feed = feedparser.parse(urllib.request.urlopen(req, timeout=30).read())
+        feed = feedparser.parse(http_get(src["url"], timeout=30))
     except Exception as e:
         print(f"[skip] {src['name']}: {e}")
         return []
@@ -94,8 +135,8 @@ def fetch_source(src, since):
         summary = clean(e.get("summary"), 300)
         if src.get("filter") and not AI_PATTERN.search(f"{title} {summary}"):
             continue
-        items.append({"source": src["name"], "title": title, "summary": summary,
-                      "link": e.link, "published": published.isoformat()})
+        items.append({"source": src["name"], "title": title, "summary": summary, "link": e.link,
+                      "image": entry_image(e), "published": published.isoformat()})
 
     items.sort(key=lambda x: x["published"], reverse=True)
     print(f"[ok]   {src['name']}: {len(items[:MAX_PER_SOURCE])}")
@@ -135,14 +176,35 @@ def pick_top(candidates):
     for p in json.loads(resp.output_text)["items"]:
         if 0 <= p["index"] < len(candidates):
             c = candidates[p["index"]]
-            picks.append({"title": p["title"], "summary": p["summary"], "why": p["why"],
-                          "source": c["source"], "original_title": c["title"], "link": c["link"]})
+            picks.append({"tier": p["tier"], "title": p["title"], "summary": p["summary"], "why": p["why"],
+                          "source": c["source"], "original_title": c["title"], "link": c["link"],
+                          "image": c["image"]})
+
+    # 確保剛好一則頭條，並依級別排序
+    headlines = [p for p in picks if p["tier"] == "headline"]
+    for p in headlines[1:]:
+        p["tier"] = "important"
+    if not headlines and picks:
+        picks[0]["tier"] = "headline"
+    order = {"headline": 0, "important": 1, "brief": 2}
+    picks.sort(key=lambda p: order[p["tier"]])
+
+    # RSS 沒附圖的頭條與重要新聞，改抓原文網頁的封面圖
+    missing = [p for p in picks if not p["image"] and p["tier"] != "brief"]
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for p, img in zip(missing, pool.map(lambda p: page_image(p["link"]), missing)):
+            p["image"] = img
     return picks
 
 
 def build_site():
     env = Environment(loader=FileSystemLoader(ROOT / "templates"), autoescape=True)
+    env.filters["hue"] = lambda s: zlib.crc32(s.encode()) % 360
+    env.filters["weekday"] = lambda d: "一二三四五六日"[date.fromisoformat(d).weekday()]
     reports = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(DATA_DIR.glob("*.json"), reverse=True)]
+    for r in reports:  # 改版前的日報沒有分級：第一則當頭條，其餘當重要
+        for i, item in enumerate(r["items"]):
+            item.setdefault("tier", "headline" if i == 0 else "important")
     SITE_DIR.mkdir(exist_ok=True)
 
     day_tpl = env.get_template("day.html")

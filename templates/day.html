@@ -1,46 +1,103 @@
 {% extends "base.html" %}
+{% from "macros.html" import thumb %}
+{% set items = report["items"] %}
+{% set headline = items|selectattr("tier", "equalto", "headline")|first %}
+{% set important = items|selectattr("tier", "equalto", "important")|list %}
+{% set briefs = items|selectattr("tier", "equalto", "brief")|list %}
 {% block title %}AI 日報 · {{ report.date }}{% endblock %}
 {% block head %}
 <style>
-  ol.news { list-style: none; padding: 0; margin: 0; counter-reset: n; }
-  ol.news li {
-    counter-increment: n; position: relative;
-    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 20px 20px 18px 64px; margin-bottom: 14px;
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  ol.news li::before {
-    content: counter(n, decimal-leading-zero); position: absolute; left: 18px; top: 18px;
-    font: 900 24px/1 "Noto Serif TC", serif; color: var(--accent);
-  }
-  ol.news h2 { font-size: 19px; line-height: 1.5; margin: 0 0 4px; }
-  ol.news h2 a { text-decoration: none; }
-  ol.news h2 a:hover { color: var(--accent); text-decoration: underline; }
-  .src { font-size: 13px; color: var(--muted); margin-bottom: 10px; overflow-wrap: anywhere; }
-  .src b { color: var(--text); font-weight: 500; }
-  .summary { margin: 0 0 10px; }
-  .why { margin: 0; font-size: 14px; background: var(--why-bg); border-radius: 8px; padding: 8px 12px; }
-  .why::before { content: "為何重要｜"; color: var(--accent); font-weight: 700; }
-  nav.pager { display: flex; justify-content: space-between; margin-top: 28px; font-size: 15px; }
-  nav.pager a { color: var(--accent); text-decoration: none; }
-  @media (max-width: 480px) {
-    ol.news li { padding: 52px 16px 16px; }
-    ol.news li::before { top: 16px; left: 16px; }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
   }
 </style>
 {% endblock %}
 {% block content %}
-<h1>{{ report.date }}</h1>
-<div class="meta">從 {{ report.candidates }} 則新聞中精選 {{ report["items"]|length }} 則 · 更新於 {{ report.generated_at[11:16] }}</div>
-<ol class="news">
-  {% for item in report["items"] %}
-  <li>
-    <h2><a href="{{ item.link }}" target="_blank" rel="noopener">{{ item.title }}</a></h2>
-    <div class="src"><b>{{ item.source }}</b> · {{ item.original_title }}</div>
+<div class="dateline">
+  <h1>{{ report.date }} 星期{{ report.date|weekday }}</h1>
+  <div class="meta">從 {{ report.candidates }} 則新聞中精選 {{ items|length }} 則 · 更新於 {{ report.generated_at[11:16] }}</div>
+</div>
+
+{% if headline %}
+<article class="hero">
+  <a href="{{ headline.link }}" target="_blank" rel="noopener">{{ thumb(headline) }}</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="{{ headline.link }}" target="_blank" rel="noopener"><h2>{{ headline.title }}</h2></a>
+    <p class="summary">{{ headline.summary }}</p>
+    <p class="why">{{ headline.why }}</p>
+    <p class="source">{{ headline.source }} · {{ headline.original_title }}</p>
+  </div>
+</article>
+{% endif %}
+
+{% if important %}
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  {% for item in important %}
+  <article class="card">
+    <a href="{{ item.link }}" target="_blank" rel="noopener">
+      {{ thumb(item) }}
+      <h3>{{ item.title }}</h3>
+    </a>
+    <div class="source">{{ item.source }}</div>
     <p class="summary">{{ item.summary }}</p>
-    <p class="why">{{ item.why }}</p>
-  </li>
+    {% if item.why %}<p class="why">{{ item.why }}</p>{% endif %}
+  </article>
   {% endfor %}
-</ol>
+</div>
+{% endif %}
+
+{% if briefs %}
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  {% for item in briefs %}
+  <li><a href="{{ item.link }}" target="_blank" rel="noopener">
+    <b>{{ item.title }}</b>
+    <span class="source">{{ item.source }}</span>
+    <span class="text">{{ item.summary }}</span>
+  </a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
 <nav class="pager">
   <span>{% if older %}<a href="{{ older }}.html">← {{ older }}</a>{% endif %}</span>
   <span>{% if newer %}<a href="{{ newer }}.html">{{ newer }} →</a>{% endif %}</span>

@@ -1,14 +1,18 @@
 {% extends "base.html" %}
+{% from "macros.html" import thumb %}
 {% block title %}AI 日報 · 歷史日報{% endblock %}
 {% block head %}
 <style>
+  h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 28px 0 4px; }
+  .meta { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
   ul.days { list-style: none; padding: 0; margin: 0; }
   ul.days li { border-bottom: 1px solid var(--line); }
-  ul.days a { display: block; padding: 14px 4px; text-decoration: none; }
+  ul.days a { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 18px; align-items: center; padding: 16px 0; }
   ul.days a:hover .date { color: var(--accent); }
-  .date { font: 700 18px/1.4 "Noto Serif TC", serif; }
+  .date { font: 700 20px/1.4 "Noto Serif TC", serif; }
   .count { color: var(--muted); font-size: 13px; margin-left: 8px; }
-  .headline { display: block; color: var(--muted); font-size: 14px; }
+  .headline { display: block; color: var(--muted); font-size: 15px; margin-top: 2px; }
+  @media (max-width: 560px) { ul.days a { grid-template-columns: 110px minmax(0, 1fr); gap: 12px; } }
 </style>
 {% endblock %}
 {% block content %}
@@ -16,9 +20,13 @@
 <div class="meta">共 {{ reports|length }} 天</div>
 <ul class="days">
   {% for r in reports %}
+  {% set top = r["items"][0] if r["items"] else none %}
   <li><a href="{{ r.date }}.html">
-    <span class="date">{{ r.date }}</span><span class="count">{{ r["items"]|length }} 則</span>
-    {% if r["items"] %}<span class="headline">{{ r["items"][0].title }}</span>{% endif %}
+    {% if top %}{{ thumb(top) }}{% else %}<div></div>{% endif %}
+    <div>
+      <span class="date">{{ r.date }} 星期{{ r.date|weekday }}</span><span class="count">{{ r["items"]|length }} 則</span>
+      {% if top %}<span class="headline">{{ top.title }}</span>{% endif %}
+    </div>
   </a></li>
   {% endfor %}
 </ul>
