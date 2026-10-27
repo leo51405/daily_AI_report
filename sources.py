@@ -21,8 +21,13 @@ SOURCES = [
     {"name": "NVIDIA", "url": "https://blogs.nvidia.com/feed/", "filter": True},
     {"name": "Hugging Face", "url": "https://huggingface.co/blog/feed.xml"},
     {"name": "AWS Machine Learning", "url": "https://aws.amazon.com/blogs/machine-learning/feed/"},
+    # 工程師導向的電子報
+    {"name": "Latent Space", "url": "https://www.latent.space/feed"},
+    {"name": "Interconnects", "url": "https://www.interconnects.ai/feed"},
+    {"name": "Ahead of AI", "url": "https://magazine.sebastianraschka.com/feed"},
     # 社群 / 論文
-    {"name": "Hacker News", "url": "https://hnrss.org/newest?q=AI+OR+LLM+OR+GPT+OR+Claude+OR+OpenAI+OR+Gemini&points=100"},
+    {"name": "r/LocalLLaMA", "url": "https://www.reddit.com/r/LocalLLaMA/top/.rss?t=day"},
+    {"name": "Hacker News","url": "https://hnrss.org/newest?q=AI+OR+LLM+OR+GPT+OR+Claude+OR+OpenAI+OR+Gemini&points=100"},
     {"name": "HF Daily Papers", "url": "https://papers.takara.ai/api/feed"},
     {"name": "arXiv cs.AI", "url": "https://rss.arxiv.org/rss/cs.AI"},
     {"name": "arXiv cs.CL", "url": "https://rss.arxiv.org/rss/cs.CL"},
