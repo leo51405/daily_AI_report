@@ -4,3 +4,24 @@
   {% if item.image %}<img src="{{ item.image }}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">{% endif %}
 </div>
 {% endmacro %}
+
+{# 摘要：有工程師解讀時，點摘要展開；舊日報沿用「為何重要」 #}
+{% macro insight(item) %}
+{% if item.verdict %}
+<details class="insight">
+  <summary><p class="summary">{{ item.summary }}</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v{{ ["值得知道", "值得試玩", "值得用進專案"].index(item.verdict) }}">{{ item.verdict }}</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>{{ item.novelty }}</dd>
+      <dt>能做什麼</dt><dd>{{ item.use_case }}</dd>
+      <dt>能否試用</dt><dd>{{ item.availability }}{% if item.try_url %} <a href="{{ item.try_url }}" target="_blank" rel="noopener">前往 ↗</a>{% endif %}</dd>
+      <dt>限制</dt><dd>{{ item.limits }}</dd>
+    </dl>
+  </div>
+</details>
+{% else %}
+<p class="summary">{{ item.summary }}</p>
+{% if item.why %}<p class="why">{{ item.why }}</p>{% endif %}
+{% endif %}
+{% endmacro %}
