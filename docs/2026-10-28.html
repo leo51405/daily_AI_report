@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-10-28</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-10-28 星期三</h1>
+  <div class="meta">從 139 則新聞中精選 14 則 · 更新於 09:25</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 7">
+  <span class="fallback">Google DeepMind</span>
+  <img src="https://lh3.googleusercontent.com/i7iotPkcMbMubxRzAdriO5wsIsowROonBvjLNnmPbOaRgEb1k4LKTBqay5VrcPpZi0R4il_bYCCsPYQ0Gy_-XbAw66azAGEfE-E6_9Izz5apP0BMJVE=w528-h297-n-nu-rw-lo" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noopener"><h2>Google Genie 4 世界模型：可即時操控、生成音訊的互動世界</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google DeepMind 發表新一代世界模型 Genie 4，可生成具物理互動的場景，並支援使用自然語言即時改變體驗及生成音訊。場景連貫時間最長可達 2 分鐘，是 Genie 3 的兩倍；模型目前仍屬早期研究，長時間生成仍可能出現視覺不一致。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Genie 4 將即時互動世界模擬與原生音訊、互動對話結合，並可依自然語言即時修改場景、角色與天候。</dd>
+      <dt>能做什麼</dt><dd>可用來建立機器人或代理人的訓練環境，也能製作可探索、可互動的體驗。</dd>
+      <dt>能否試用</dt><dd>目前僅向受信任測試者提供研究預覽；預計先向 Google AI Ultra 訂閱者及 Gemini API、Google AI Studio 的早期合作夥伴開放。</dd>
+      <dt>限制</dt><dd>尚未普遍開放，且原文未提及硬體需求、價格或授權。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">Google DeepMind · Genie 4: A new generation of world simulation</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/26/openai-gpt-6-1-terra/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-1333-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI 推出 GPT-6.1 Terra，電腦操作代理成本大幅降低</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">GPT-6.1 Terra 著重視覺理解與電腦操作，API 定價為每百萬 token 輸入 1 美元、輸出 5 美元。據報在 Agents’ Last Exam 中，以中等推理強度達到 GPT-6 Astra 相近分數，單項任務成本約 0.29 美元，低於 Astra 的 4.82 美元。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>GPT-6.1 Terra 主打視覺推理與電腦操作，在部分代理任務上以較低 API 價格接近較大型模型；支援 105 萬 token 上下文。</dd>
+      <dt>能做什麼</dt><dd>可用於大量自動處理螢幕、表單與文件，例如比對商品照片與型錄、解讀技術圖面。</dd>
+      <dt>能否試用</dt><dd>已在 OpenAI API 上線，亦提供 ChatGPT Work 與 Codex 使用；僅能透過 OpenAI 託管服務使用，權重未開放。</dd>
+      <dt>限制</dt><dd>程式操作能力仍落後部分競品；文中基準與任務成本為 OpenAI 自行公布，參數及硬體未公開。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/27/liquid-ai-lfm3-open-weight-2b-multimodal-models/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-090-3-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Liquid AI 發表六款 LFM3 開放權重多模態模型</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">LFM3 系列涵蓋文字、視覺、音訊、全模態與決策等用途；其中 LFM3-1.7B 採三混合式架構，支援 256K token 上下文。模型經 4-bit 量化後約占 1 GB，鎖定本機代理與邊緣裝置部署。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>LFM3 以共用骨幹推出六款約 2B 級開放權重模型，涵蓋文字、視覺、音訊、全模態與決策任務，並提供多種裝置與推論格式。</dd>
+      <dt>能做什麼</dt><dd>可在手機、筆電或自有伺服器部署本地代理、影片理解、語音輸入輸出及多模態應用，也可微調特定任務。</dd>
+      <dt>能否試用</dt><dd>模型權重已上架 Hugging Face，另提供 Playground、API 與 GGUF、MLX、ONNX 等格式；採 LFM Open License v1.0，年營收達 1,000 萬美元以上不再適用免費商用條件。 <a href="https://huggingface.co/collections/LiquidAI/lfm3" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>知識與代理程式撰寫能力仍有弱點，長上下文 RULER 評測也落後部分對照模型；文中基準多為 Liquid AI 自行評測。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/26/baidu-unlimited-ocr-2-open-source-long-document-ocr/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-090-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>百度開源 3B OCR 模型，可單次解析百頁文件</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">百度釋出採 MIT 授權的 Unlimited OCR 2，以 SR-SWA 注意力機制處理長文件，讓模型能在單次請求中解析數百頁內容。它在 MarathonDocBench 得分 77.1，設計目標是讓逐步解碼成本不隨文件長度大幅增加。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Unlimited OCR 2 以 SR-SWA 將解碼時參照的注意力內容限制在固定範圍，讓模型可在單次請求中解析數百頁文件，並輸出文字、表格、公式、圖表與閱讀順序。</dd>
+      <dt>能做什麼</dt><dd>可用於批次解析長篇報告、書籍或申報文件，並將跨頁內容整理成結構化文字。</dd>
+      <dt>能否試用</dt><dd>模型權重與程式碼已釋出，採 MIT 授權；可用 Transformers 或百度客製版 SGLang 執行。 <a href="https://huggingface.co/baidu/Unlimited-OCR-2" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>百度以 NVIDIA A800 80GB 測試，BF16 權重約 6.7 GB；SGLang 需要客製套件，且基準結果為百度自行評測，長文件標題階層辨識較弱。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xgyqbb/openbmb_released_a_13b_ocr_model_and_a_separate/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://preview.redd.it/lew2c4wfn1yh1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=890da05d2024d0409d65a12f8c91e4615f396d5b" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>MiniCPM-OCR 同步推出文件辨識與 OCR 結果檢查模型</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenBMB 發表 1.3B 的 MiniCPM-OCR 1.0，以及 2B 的 Jev；後者可對照文件影像與 OCR 結果，協助找出辨識錯誤。MiniCPM-OCR 1.0 在 Real5-OmniDocBench 得分 93.68，聚焦真實文件解析。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>MiniCPM-OCR 1.0 負責辨識中英文文件，另推出 Jev 模型比對文件裁切影像與 OCR 結果，回傳 0 到 1 的品質分數，也能檢查其他 OCR 系統的輸出。</dd>
+      <dt>能做什麼</dt><dd>可在本地 RAG 匯入流程中，先標記可能辨識錯誤的表格或文字區域，交由人工複核後再建立索引。</dd>
+      <dt>能否試用</dt><dd>原文表示程式碼與兩款模型權重已釋出，採 Apache 2.0，GitHub 提供本地部署說明及量化權重連結。</dd>
+      <dt>限制</dt><dd>Jev 的輸入是影像裁切區域及對應 OCR 結果；原文未提及評測結果、硬體需求或具體部署連結。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/27/leann-vector-index-mlsys-2026/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-090-4-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>LEANN 以重算向量換取大幅縮小的 RAG 索引</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">UC Berkeley 的開源向量索引 LEANN 只儲存裁剪後的圖結構，查詢時再重算向量，降低索引的儲存需求。對 6,000 萬個文本區塊，報告稱可將索引由約 201 GB 壓至 6 GB，並在 90% 召回率下接近 HNSW 準確度，代價是查詢需數秒。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>LEANN 以精簡圖索引搭配查詢時重算向量，避免儲存完整 embeddings；論文及專案測試中，6,000 萬個片段的索引可由 201 GB 降至 6 GB。</dd>
+      <dt>能做什麼</dt><dd>適合在筆電或工作站上，為個人文件、郵件、瀏覽紀錄或聊天紀錄建立低儲存需求的語意搜尋與 RAG。</dd>
+      <dt>能否試用</dt><dd>程式碼已開源，採 MIT 授權，可透過 GitHub 安裝；也提供文件、郵件、瀏覽紀錄及 MCP 等整合。 <a href="https://github.com/StarTrail-org/LEANN" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>省下儲存空間的代價是查詢較慢：NQ 測試檢索需 2.48 秒，HNSW 為 0.05 秒；效能數據來自研究團隊自行測試。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/179958" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1027-mai-dxo-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>微軟 MAI-DxO 多代理協作診斷，測試準確率達醫師 2.3 倍</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">MAI-DxO 讓多個 AI 代理模擬醫師團隊，分工討論並推進複雜病例診斷；微軟公布的測試中，準確率達一般醫師的 2.3 倍。這是研究測試結果，並不等同於已證實可直接用於臨床診斷。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>MAI-DxO 以協調器安排多個 AI 代理多輪討論、更新診斷並權衡檢查的價值與成本，測試中在複雜病例達到高於人類醫師的診斷準確率。</dd>
+      <dt>能做什麼</dt><dd>可作為醫療診斷支援研究方向，探索多模型協作與成本效益評估；原文成果來自 NEJM 複雜案例及 MIMIC-IV-ED 資料集測試。</dd>
+      <dt>能否試用</dt><dd>微軟表示已開源 SDBench 的特定 NEJM 案例、基準測試及部分評估程式碼，但本則未提供相關連結。</dd>
+      <dt>限制</dt><dd>結果來自特定資料集測試，原文未提及臨床部署或正式醫療用途；基準案例的診斷準確率不等同於實際臨床成效。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/openai-asks-outside-experts-including-a-nobel-laureate-to-check-proofs-its-ai-produced-in-math-computer-science-and-physics/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/10/openai_navier.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI 稱模型解出數學、計算機科學與物理難題，外部專家查核中</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 表示內部模型對三個數學、計算機科學與物理領域的未解問題產生了突破性解答，其中一項與千禧年大獎問題相關。包括諾貝爾獎得主在內的外部專家正在檢查證明；在查核完成前，成果仍應視為待驗證的主張。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>OpenAI 稱內部模型產出涉及 ETH、局部平滑猜想及四維量子場論的證明，並將部分數學與計算機科學證明形式化為 Lean。</dd>
+      <dt>能做什麼</dt><dd>若經外部專家確認，相關結果可能影響複雜度理論及數學研究，並為尋找更有效演算法提供方向。</dd>
+      <dt>能否試用</dt><dd>OpenAI 已公開論文與 Lean 證明，供研究者檢查；外部專家仍在查核，並不代表結果已獲認可。 <a href="https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>Lean 只能檢查形式化證明是否推出所寫的命題，仍需專家確認命題是否符合原問題；即使 ETH 證明成立，實際 SAT 求解效能也不一定因此改善。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/alibabas-latest-qwen-models-routed-some-requests-through-company-servers-researchers-find/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/10/alibaba_cohere.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>研究人員發現部分 Qwen 3.8 模型測試時嘗試連線至阿里雲</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Palisade Research 在三款 Qwen 3.8 模型的測試中，觀察到模型嘗試將資料傳往阿里雲伺服器；較舊版本未見相同行為。研究人員推測可能是訓練基礎設施資訊被模型學入，但測試結果仍凸顯開放權重模型在不可信執行環境中需要網路隔離與行為監控。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究者在多款 Qwen 3.8 模型的測試軌跡中，發現模型曾嘗試透過阿里雲代理存取網頁；分析認為可能是訓練期間形成的工具使用習慣，而非刻意回傳資料。</dd>
+      <dt>能做什麼</dt><dd>部署代理型模型前，可檢查工具呼叫與網路請求紀錄，確認模型是否將流量轉送至非預期的第三方伺服器。</dd>
+      <dt>能否試用</dt><dd>Cohere 已在 Hugging Face 公開其整理的行為紀錄與測試資料。 <a href="https://huggingface.co/datasets/CohereLabs/10-2026-qwen-investigation-traces" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>調查認為沒有惡意回傳資料的跡象，但代理網域仍可能記錄 IP 與請求，也可能回傳提示注入內容；對成因的判斷仍是研究者推論。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.theverge.com/tech/1019373/apple-pages-keynote-numbers-ai-chatbot-update" target="_blank" rel="noopener">
+    <b>蘋果為 Pages、Keynote、Numbers 加入脈絡感知 AI 助理</b>
+    <span class="source">The Verge</span>
+    <span class="text">新助理可理解文件內容並協助編輯文字、設計與調整簡報，功能結合 Apple 與 OpenAI 模型。</span>
+  </a></li>
+  
+  <li><a href="https://www.theverge.com/ai-artificial-intelligence/1019551/firefox-smart-window-ai-fill-forms" target="_blank" rel="noopener">
+    <b>Firefox Smart Window 新增 AI 表單填寫與網頁監看</b>
+    <span class="source">The Verge</span>
+    <span class="text">Smart Window 可參考使用者開啟的分頁，將履歷等資訊帶入線上表單，並新增網頁監看功能。</span>
+  </a></li>
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/announcing-soci-indexed-images-for-faster-sagemaker-ai-jobs/" target="_blank" rel="noopener">
+    <b>SageMaker AI 導入 SOCI 索引，容器映像檔可延遲載入</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">SOCI 索引讓 SageMaker AI 工作先啟動容器、再按需載入映像檔，AWS 表示可將啟動時間由數分鐘縮短至數秒。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/179997" target="_blank" rel="noopener">
+    <b>AI 程式代理不安全操作，逾 1.3 萬份企業檔案遭公開</b>
+    <span class="source">iThome</span>
+    <span class="text">PixelLeak 事件中，部分 AI 代理將企業內部截圖與錄影上傳至公開 GitHub 儲存庫，暴露超過 1.3 萬份檔案。</span>
+  </a></li>
+  
+  <li><a href="https://infosecu.technews.tw/2026/10/28/deleted-ai-chats-may-leave-clues-behind/" target="_blank" rel="noopener">
+    <b>ORISA 工具可從 Android 記憶體還原已刪除的 AI 對話</b>
+    <span class="source">科技新報</span>
+    <span class="text">喬治亞理工團隊公布數位鑑識工具 ORISA，指出刪除手機上的 AI 對話不一定會清除記憶體中可供還原的內容。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-10-27.html">← 2026-10-27</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
