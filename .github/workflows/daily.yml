@@ -2,7 +2,9 @@ name: Daily AI Report
 
 on:
   schedule:
-    - cron: "30 22 * * *"  # UTC 22:30 = 台灣 06:30（GitHub 排程常延遲數十分鐘）
+    # GitHub 排程在整點/半點易延遲或漏跑，故錯開分鐘並加備援
+    - cron: "17 22 * * *"  # 台灣 06:17 主排程
+    - cron: "47 23 * * *"  # 台灣 07:47 備援（當日已有報告則跳過）
   workflow_dispatch:
 
 permissions:
@@ -18,7 +20,11 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python main.py
+      - run: |
+          if [ "${{ github.event_name }}" = schedule ] && [ -f "data/$(TZ=Asia/Taipei date +%F).json" ]; then
+            echo "今日報告已存在，跳過"; exit 0
+          fi
+          python main.py
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       - name: Commit report
