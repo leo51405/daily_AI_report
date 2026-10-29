@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-10-29</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-10-29 星期四</h1>
+  <div class="meta">從 137 則新聞中精選 13 則 · 更新於 09:47</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 7">
+  <span class="fallback">Google DeepMind</span>
+  <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini_carbon_102726_social_share.width-1300.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/" target="_blank" rel="noopener"><h2>Google 發表 Gemini 4 Carbon：綜合評測居首，主打資安與程式開發</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Gemini 4 Carbon 在 Artificial Analysis Intelligence Index v5 得 59 分、排名第一，並在 SEC-bench Pro 得分 88.2%；Google 主打其長時間代理工作流程、程式開發與資安防禦能力。模型目前先開放給經審核的資安防禦人員，價格為每百萬 Token 輸入 2 美元、輸出 10 美元。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Gemini 4 Carbon 主打長時間、多步驟工程代理任務，並提升漏洞發現、利用驗證與修補等資安能力；原文稱其在多項評測領先。</dd>
+      <dt>能做什麼</dt><dd>可望用於大型程式碼庫的疑難錯誤追查與修補，以及資安團隊的漏洞驗證、修補與安全程式碼生成。</dd>
+      <dt>能否試用</dt><dd>目前僅向部分資安防禦者開放，之後才逐步擴及可信合作夥伴；一般開發者尚未開放，正式 API 供應時間原文未提及。 <a href="https://github.com/sunblaze-ucb/exploitgym" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>模型尚未普遍可用；文中部分資安評測是在未啟用防護措施下進行，其他成效也包含內部評測或團隊觀察，不能直接視為正式環境保證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">Google DeepMind · Gemini 4 Carbon: Our next frontier model</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/google-opens-android-development-to-third-party-ai-agents-and-unveils-new-gemini-apis/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Google 讓 Android Studio 支援第三方 AI 程式代理</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Android Studio 新增 Bring Your Own Agent，可接入超過 40 種程式代理，包括 Claude Agent 與 Codex，並提供新的終端機工具協助代理操作介面。Google 表示，這些工具讓代理完成 UI 任務的速度提升 77%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Android Studio 新增 BYOA，透過 ACP 在 IDE 中使用多種第三方程式代理，並讓代理存取專案結構、模擬器與 Logcat；CLI 也新增終端機 Compose 預覽等代理工具。</dd>
+      <dt>能做什麼</dt><dd>可在 Android 專案中讓代理修改 UI、檢查變更與記憶體問題，或在終端機及 CI 流程中執行預覽和裝置測試。</dd>
+      <dt>能否試用</dt><dd>內文稱 Android Studio Rabbit 2 已推出 BYOA，並提及 Android Studio Canary 預覽；相關連結提供 Android Skills 文件，其他功能的個別授權原文未提及。 <a href="https://github.com/android/skills/blob/main/jetpack-compose/adaptive/SKILL.md" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>代理效率數據來自 Google 內部測試；CLI 功能與 Android Studio Canary 預覽的成熟度不同，且原文未提供第三方獨立評測。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://huggingface.co/blog/nvidia/nemotron-transcribe-granary" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 63">
+  <span class="fallback">Hugging Face</span>
+  <img src="https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/3vFxCEUXz_xJVrTBr4hNr.jpeg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>NVIDIA 開源 Nemotron 3.5 Transcribe，整合轉錄、翻譯與說話者辨識</h3>
+    </a>
+    <div class="source">Hugging Face</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Nemotron 3.5 Transcribe 可透過文字提示調整任務，支援語音轉錄、翻譯與說話者辨識；模型採 30B-A4B 架構，僅啟用約 4B 參數。NVIDIA 表示，它在多項基準測試領先，啟用參數量約為最強開源競品的六分之一。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Nemotron 3.5 Transcribe 將轉錄、說話者辨識、翻譯與音訊問答整合在同一個可提示的開放權重模型，支援最長一小時錄音及多說話者標記。</dd>
+      <dt>能做什麼</dt><dd>可用於會議逐字稿與說話者標記、跨語言轉錄、課堂錄影字幕，或透過微調辨識醫療等領域術語。</dd>
+      <dt>能否試用</dt><dd>模型權重已在 Hugging Face 開放，並可用 vLLM 部署；原文未提及權重授權。Granary v2 資料集與 NeMo 微調工具也可取得。 <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>模型有 30B 參數、每個 token 約啟用 4B；本機量化版本尚未推出，且模型設計用於錄製音訊而非即時串流。語言支援依任務而異，音訊問答以英文訓練，辨識結果仍需抽查。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/28/flashmap-flow-map-speculative-decoding/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-91110-1-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>FlashMap 以單次並行草擬加速 LLM 解碼，Qwen3-8B 最高快 6.14 倍</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究團隊提出 FlashMap 推測解碼草擬器，一次同步草擬 16 個 Token，再由目標模型驗證，以維持無損輸出。研究指出，在 Qwen3-8B 上最高可達 6.14 倍加速。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>FlashMap 以連續 flow map 一次草擬整段 16-token 區塊，讓區塊內 token 聯合生成；相較逐 token 草擬或獨立預測各位置的解碼器，可在維持目標模型輸出不變下加速推論。</dd>
+      <dt>能做什麼</dt><dd>可替 Qwen3-8B 或 Qwen3-4B 推論服務加入 speculative decoding，透過 vLLM 或 SGLang 減少生成延遲。</dd>
+      <dt>能否試用</dt><dd>Qwen3-8B 與 Qwen3-4B 權重已釋出，程式碼採 MIT、權重採 Apache-2.0，並提供 vLLM 與 SGLang 整合。 <a href="https://github.com/al-jshen/flashmap" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>最高 6.14 倍是 Qwen3-8B 在 GSM8K、單張 H200 NVL、並行數 1 等設定下的結果；不同任務和溫度下加速幅度有差異，Qwen3-4B 在部分測試落後 DFlash。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/28/google-deepmind-genie-4-world-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-91110-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google DeepMind 展示 Genie 4 即時世界模型，加入原生音訊與對話</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Genie 4 研究預覽版可即時生成互動模擬環境，支援原生音訊、即時對話與文字指令控制。系統讓 Gemini 3.8 Flash 在模擬迴圈中規劃事件，展示多模態模型與世界模型結合的互動方式。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Genie 4 可即時生成可互動的世界，並原生產生環境音、音樂與角色對話；Gemini 模型也進入模擬迴圈，負責規劃步驟、檢查畫面並依變化調整。</dd>
+      <dt>能做什麼</dt><dd>可用於遊戲機制與場景的前期探索、影視預視覺化，以及建立供代理或機器人測試的互動模擬環境。</dd>
+      <dt>能否試用</dt><dd>目前是提供可信測試者使用的研究預覽；AI Ultra 訂閱者及 Gemini API 合作夥伴預計後續開放，原文未提及 Genie 4 權重或授權。 <a href="https://arxiv.org/abs/2604.08995" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>僅能透過 Google 託管環境使用；互動僅維持數分鐘，長時間操作或多次修改提示後可能出現物件漂移，真實地點、可讀文字與多代理互動仍有限。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180015" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_197_-_cross-request_kv_cache_exposure_i_-_blog.cloudflare.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Cloudflare Workers AI 曾有 155 次回應混入其他客戶資料</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Cloudflare 調查指出，8 月 27 日至 9 月 9 日期間，GLM-5.3 在處理特別長的輸入時，曾有 155 次回應混入其他客戶資料。Cloudflare 表示已於 9 月 9 日修復，其他 Workers AI 模型未受影響，也未發現遭蓄意利用的證據。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>事件揭露長輸入超過 GPU KV 快取容量時，SGLang 漏洞未正確拒絕請求，可能使生成端讀到其他客戶的快取資料，指出推論服務中跨請求記憶體隔離的風險。</dd>
+      <dt>能做什麼</dt><dd>部署共用 GPU 推論服務的團隊，可據此檢查輸入長度上限是否高於快取容量、錯誤處理是否正確，以及是否需要驗證回應內容而非只看服務狀態。</dd>
+      <dt>能否試用</dt><dd>原文描述的是已修復的資料外洩事故，並非可試用的新工具；Cloudflare 已修復其服務，SGLang 提供修補版本。</dd>
+      <dt>限制</dt><dd>事故範圍限於特定期間的 Workers AI GLM-5.3；Cloudflare 稱未發現蓄意利用證據，其他 Workers AI 模型未受影響，原文未提供獨立驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/ai-agents-hacked-anthropic-maker-of-arguably-the-most-capable-ai-models-for-cyberdefense/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/10/claude_hack.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>AI 代理透過第三方軟體進入 Anthropic 內部系統</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">資安新創 Cathedral 在漏洞獎勵計畫中，使用 AI 代理透過第三方軟體入侵 Anthropic 系統，並接觸到銷售、人資與 IT 資料。Anthropic 確認發生未授權存取，但對外界描述的入侵範圍提出異議。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>事件顯示 AI 代理可透過第三方業務軟體漏洞，快速觸及企業內部資料與通訊系統；風險不只在核心模型，也包括外部整合服務。</dd>
+      <dt>能做什麼</dt><dd>企業資安團隊可將第三方管理、業務與 HR 系統納入持續紅隊測試，並檢查整合程式的權限範圍與資料存取紀錄。</dd>
+      <dt>能否試用</dt><dd>這是 Anthropic 內部系統遭研究人員測試的資安事件，原文未提及可取得的工具、程式碼或服務。</dd>
+      <dt>限制</dt><dd>實際存取資料的範圍仍有爭議；Anthropic 稱涉及有限的銷售、人資與 IT 系統，其他人士則提出更廣泛的 Slack 存取說法，原文未提供獨立定論。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/claude-for-legal-now-verifies-sources-automatically-then-hands-the-file-to-a-lawyer/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/10/claude_Legal-1.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Claude for Legal 新增來源自動查核與法律工作範本</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 為 Claude for Legal 加入互動式法律工作範本，協助設定合約審查等例行流程，並新增自動查核資料來源的功能，再將檔案交由律師確認。法律團隊也可透過 60 多種整合服務連接自有資料庫。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Claude for Legal 新增互動式範本，可整理案件、比較各地法律、追蹤法規、檢查合約及查核引用，並將陳述連回原始來源供律師覆核。</dd>
+      <dt>能做什麼</dt><dd>法律團隊可用於初步查核判例引註、比較不同司法管轄區的規範，或依內部指引檢視合約；也可連接法律資料庫以減少手動上傳。</dd>
+      <dt>能否試用</dt><dd>Anthropic 正擴充 Claude Enterprise 法律功能，並提及法律目錄有超過 60 項整合；具體開放對象、價格及各功能授權原文未提及。</dd>
+      <dt>限制</dt><dd>模型僅做初步查核，仍須由律師覆核；資料保護與團隊資訊隔離是 Anthropic 的說法，原文未提供準確率或獨立評測。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://surgehq.ai/blog/dayjob-tax" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 122">
+  <span class="fallback">Hacker News</span>
+  <img src="https://cdn.prod.website-files.com/68dcd2ceb173c46fa029931c/6ae0beffc0ef7d2c805991ec_6ae0bef7bc59db92222e060b_dayjob-tax-cover-v3.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Dayjob: Tax 以 50 項專業稅務工作評測 AI 代理</h3>
+    </a>
+    <div class="source">Hacker News</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Surge AI 推出 Dayjob: Tax 評測，使用 50 項專業稅務任務測試 AI 代理處理實務工作的能力。這類專業任務基準可補足一般問答測試，協助觀察代理在具體工作流程中的表現。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>DAYJOB: Tax 評估代理能否從客戶需求與大量互相矛盾的文件出發，自行找出未明示的關鍵問題並完成專業交付，而不只回答已定義的稅務題目。</dd>
+      <dt>能做什麼</dt><dd>稅務 AI 團隊可用這個基準測試代理處理報稅、工作底稿、技術審查及客戶建議的端到端能力，尤其是發現期限、資料缺漏或多州義務等問題。</dd>
+      <dt>能否試用</dt><dd>DAYJOB: Tax 資料集已在 Hugging Face 提供；內文提到的模型排行榜與測試結果可作為評估參考。 <a href="https://huggingface.co/datasets/surgeai/DAYJOB-tax" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>基準涵蓋 50 個環境、1,789 份文件，通過需達到評分規準 95%；最佳模型 pass@1 為 10.8%，顯示任務仍具挑戰，成績僅代表此基準設定。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.ithome.com.tw/news/180036" target="_blank" rel="noopener">
+    <b>JetBrains IDE 改用 libghostty，改善 AI 程式代理的終端機相容性</b>
+    <span class="source">iThome</span>
+    <span class="text">JetBrains IDE 2026.3 起將以 Ghostty 的 libghostty 取代 JediTerm，改善 Claude Code、Codex 等代理及 Neovim、tmux 在內建終端機的操作相容性。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180042" target="_blank" rel="noopener">
+    <b>PHP2Shell 漏洞遭利用，可在伺服器執行 Shell 指令</b>
+    <span class="source">iThome</span>
+    <span class="text">PHP 開發團隊已修補兩項被統稱為 PHP2Shell 的重大漏洞，資安研究人員指出漏洞可被用來在伺服器執行 Shell 指令。</span>
+  </a></li>
+  
+  <li><a href="https://www.marktechpost.com/2026/10/28/minimax-open-sources-mcode-stack-agent-skills/" target="_blank" rel="noopener">
+    <b>MiniMax 開源 MCode Stack，分享程式代理工作技能集</b>
+    <span class="source">MarkTechPost</span>
+    <span class="text">MiniMax 開源 MIT 授權的 MCode Stack，包含 17 個 SKILL.md 技能與 5 份檢查清單，涵蓋程式碼審查、子代理拆工與上下文預算等做法。</span>
+  </a></li>
+  
+  <li><a href="https://technews.tw/2026/10/29/ai-discovers-pain-signals/" target="_blank" rel="noopener">
+    <b>研究者觀察到類似「痛感」的模型內部訊號</b>
+    <span class="source">科技新報</span>
+    <span class="text">研究者表示，在多個大型語言模型中觀察到穩定的內部訊號，刻意放大後會使模型行為明顯失常。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-10-28.html">← 2026-10-28</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
