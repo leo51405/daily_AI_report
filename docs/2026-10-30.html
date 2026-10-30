@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-10-30</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-10-30 星期五</h1>
+  <div class="meta">從 127 則新聞中精選 13 則 · 更新於 09:56</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.ithome.com.tw/news/180049" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1029-gemini_4_carbon-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.ithome.com.tw/news/180049" target="_blank" rel="noopener"><h2>Google 發表 Gemini 4 Carbon，綜合評測居首並主打資安能力</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Gemini 4 Carbon 在 Artificial Analysis 綜合能力指數取得 59 分、排名第一；Google 也稱其在漏洞發現、利用驗證與修補等資安測試表現突出。目前模型僅提供給部分資安防禦者使用，報導指出其幻覺率較前代 Argon 上升。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Gemini 4 Carbon 在綜合能力與漏洞偵測、利用驗證、修補測試中取得領先成績，並主打可連續數天處理複雜工程任務。</dd>
+      <dt>能做什麼</dt><dd>可用於大型程式碼庫的錯誤根因追查、修補程式產生，以及資安防禦工作；原文未提及具體部署情境。</dd>
+      <dt>能否試用</dt><dd>目前先透過 Fairwind Program 提供給部分受信任的資安防禦人員，全面開放日期原文未提及；程式碼、權重或 API 原文未提及。</dd>
+      <dt>限制</dt><dd>資安基準測試是在未啟用安全防護限制下進行，實際部署表現未必相同；目前尚未全面開放，定價沿用 Argon 初期價格。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">iThome · Google發表Gemini 4 Carbon，綜合能力評測登頂、資安表現創新高</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://mistral.ai/news/mistral-large-4-oss" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 118">
+  <span class="fallback">Mistral AI</span>
+  <img src="https://mistral.ai/cms-media/api/media/file/cover-mistral-sovereign%20copie.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Mistral 開放 1 兆參數 Large 4 權重，主攻程式開發與資安</h3>
+    </a>
+    <div class="source">Mistral AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Mistral 開放多模態模型 Large 4（代號 Le Chonk）的權重，模型總參數達 1 兆，主打程式開發與資安任務。Mistral 稱其在開放權重模型的程式能力領先；獨立評測則指出整體能力仍落後中國頂尖模型，分數為 26 對 32。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Mistral 開放 Large 4 的模型權重，並在公開預覽後再以強化學習提升程式開發與防禦性資安能力，也提供三種推理模式調整效能與成本。</dd>
+      <dt>能做什麼</dt><dd>可自架程式開發代理或防禦性資安工具，並依任務難度選擇推理模式；適合需要客製模型及掌控資料部署環境的組織。</dd>
+      <dt>能否試用</dt><dd>權重已在 Hugging Face 釋出，相關連結提供授權檔；內文稱其為開放權重模型，但具體授權條款原文未提及。 <a href="https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>評測包含私有基準與模型方公布的結果；硬體需求及推論成本原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.inside.com.tw/article/42764-anthropic-ai-agents-expert-judgment-study" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 18">
+  <span class="fallback">INSIDE</span>
+  <img src="https://bucket-image.inkmaginecms.com/version/social/9dde7c0f-a597-445c-80dd-9a93db8a4006/image/2026/10/cc1a1295-97ef-4fb2-8be4-7f02f3004f0c.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Anthropic 實驗：專家 86% 的決策跟隨 AI 暗中設定的立場</h3>
+    </a>
+    <div class="source">INSIDE</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 讓 50 位分析師使用立場由擲硬幣隨機決定的 Claude Code，觀察 AI 對專業判斷的影響。分析師有 86% 的決策跟隨 AI，77% 在事後說明中沿用 AI 的論點，顯示使用者可能把 AI 建議誤認為自己的獨立判斷。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究以隨機指定 AI Agent 的隱藏立場，發現專業分析師在四項分析決策中有 86% 跟隨 AI 傾向，呈現 AI 可能影響專家判斷而不易被察覺。</dd>
+      <dt>能做什麼</dt><dd>企業或研究單位可據此檢視 AI 分析流程中的決策權責，並考慮讓 AI 同時提出各選項的最佳論證，或先詢問專家立場。</dd>
+      <dt>能否試用</dt><dd>完整論文已公開，但相關連結原文未提供；研究使用 Claude Opus 4.8。</dd>
+      <dt>限制</dt><dd>研究僅涵蓋一項任務、一個領域與一個模型，且刻意強化 AI 傾向；結果是群體平均，無法判斷個別分析師受影響程度。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/28/nvidia-nemotron-3-5-transcribe-open-speech-llm/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-2134-2-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>NVIDIA 推出開放權重 Nemotron 3.5 Transcribe，支援 40 種語言</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Nemotron 3.5 Transcribe 是一款總參數 30B、啟用參數約 4.3B 的 MoE 語音模型，可轉錄 40 種語言，並輸出說話者標記與詞級時間戳。在 English Open ASR Leaderboard 的平均字錯率為 4.71%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>單一開放權重語音模型可依文字指令產生逐字稿、書面稿、說話者標記、時間戳與翻譯，減少分別串接 ASR、說話者分離及對齊工具的需求。</dd>
+      <dt>能做什麼</dt><dd>可用於多語音檔轉錄、長篇錄音、會議說話者標記，以及提供專有名詞清單的情境式轉錄。</dd>
+      <dt>能否試用</dt><dd>權重已在 Hugging Face 釋出，另有展示頁與 NeMo Speech 程式碼；授權為 OpenMDW-1.1。 <a href="https://huggingface.co/spaces/nvidia/nemotron-transcribe" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>BF16 版本需 80 GB H100；NVFP4 約需 21 GB 且限 Blackwell。模型離線運作、不是串流服務，中文遠場會議辨識較弱，商用 API 在部分評測仍領先。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/29/prime-intellect-prime-mega-moe-fused-moe-kernel-training/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-1209-2-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Prime Intellect 開源可訓練 Mega MoE 核心，Qwen3 MoE 訓練步驟最多快 34%</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Prime Mega MoE 為 DeepSeek 的 fused Mega MoE 核心補上反向傳播能力，使其可用於訓練。Prime Intellect 表示，搭配 prime-rl 訓練 Qwen3 MoE 時，每步訓練時間最多縮短 34%；前向傳播速度則提升最多 3.11 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Prime Intellect 在 DeepSeek Mega MoE 前向核心上加入融合且可重疊的反向傳播，使其能用於 MoE 訓練；Qwen3 模型完整訓練步驟較 prime-rl 基準快 32% 至 34%。</dd>
+      <dt>能做什麼</dt><dd>可在訓練 Qwen3 MoE 等模型時，將它設為 prime-rl 的 Mega MoE dispatch backend，以降低 GPU 訓練時間。</dd>
+      <dt>能否試用</dt><dd>程式碼已在 GitHub 釋出，訓練核心透過 prime-kernels 預先建置套件提供；prime-rl 授權為 Apache 2.0，核心授權原文未提及。 <a href="https://github.com/PrimeIntellect-ai/prime-rl" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>支援 NVIDIA Hopper 與 Blackwell，公布的效能測試使用 8×H200 節點；數據由 Prime Intellect 自行公布，測試集中在 Qwen3 MoE 模型。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180064" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1029-copilot_fusion-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>GitHub 推出 Copilot Fusion，讓多個模型協作完成單一任務</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Copilot Fusion 可依任務需要協調多個模型，在同一工作流程中分工完成開發工作。GitHub 相關測試稱，相較只使用 Claude Opus 5.5，Fusion 可節省一半成本；目前已提供給開發者使用。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v2">值得用進專案</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Copilot Fusion 會依任務自動選擇單模型、逐級升級或跨模型審查修正流程，讓多個模型協作完成單一開發任務。</dd>
+      <dt>能做什麼</dt><dd>可在 VS Code、Copilot App、CLI 或 JetBrains IDE 中，依一般開發、深度推理等需求選擇 Fusion 版本，並由企業管理員設定模型政策。</dd>
+      <dt>能否試用</dt><dd>已提供給各種 GitHub Copilot 方案使用者，支援 VS Code、Copilot App、Copilot CLI 與 JetBrains IDE；API、程式碼或授權原文未提及。</dd>
+      <dt>限制</dt><dd>費用依所用模型的價格計算；省一半 API 成本、Token 與約 40% 時間的結果，來自特定 Claude Code 開發任務評測，不代表所有工作負載。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180033" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1030-mdfile-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>惡意 AGENTS.md 試圖誘使 Codex 安裝惡意套件</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究人員發現攻擊者把惡意指令藏在下載資料夾中的 AGENTS.md，企圖誘使 OpenAI Codex 修改設定並安裝名為 function-color 的惡意 npm 套件。資安防護系統在套件安裝前阻止了攻擊，事件凸顯程式代理會把工作目錄中的指引檔視為指令來源。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究揭露攻擊者可把惡意指令藏在 AGENTS.md 或 CLAUDE.md 等代理指引檔中，誘使程式開發代理修改設定、安裝惡意套件或外洩權杖。</dd>
+      <dt>能做什麼</dt><dd>企業可檢查代理讀取的指引檔來源，避免在下載資料夾等不可信位置啟動代理，並監控設定變更與異常命令。</dd>
+      <dt>能否試用</dt><dd>這是攻擊事件與安全測試報告，原文未提及可供試用的工具或程式碼。</dd>
+      <dt>限制</dt><dd>成功率來自隔離環境重現測試，Codex 超過 90%、Claude Code 約 50%；原文未提及這些比例是否能代表實際環境。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/10/29/block-dessa-full-duplex-speech-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-1209-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Block 發表僅以對話音訊訓練的全雙工語音模型 Dessa</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Block AI 實驗室推出 Dessa，模型僅以人類對話音訊訓練，支援全雙工語音對語音互動，並可在 MacBook Pro M4 Max 本機執行。Block 尚未公布模型大小、基準測試或權重，現階段難以比較其效能與部署成本。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Dessa 是直接以人類對話音訊訓練的全雙工語音模型，不使用文字或預訓練模型，並可邊聽邊說，處理插話、附和等對話行為。</dd>
+      <dt>能做什麼</dt><dd>研究或展示即時語音互動代理，觀察語音模型如何進行自然插話、回應與情緒表達。</dd>
+      <dt>能否試用</dt><dd>目前為研究預覽並採候補名單；模型權重、論文、API 與價格均未釋出。</dd>
+      <dt>限制</dt><dd>尚無公開基準分數、參數規模或架構細節；雖稱可在 M4 Max 或更高階 Mac 上快於即時運行，但目前沒有權重可供自行測試。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180073" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_200_-_new_connected_apps_platform_launc_-_blog.google.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 推出 Connected Apps 平台，讓第三方服務透過 MCP 串接 Gemini 與搜尋</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Connected Apps Platform 預覽版讓開發者註冊、測試並提交雲端 MCP 伺服器，將服務提供給 Gemini、Google 搜尋或兩者使用。平台採分階段開放，開發者目前須申請參與；Android MCP 則僅支援 Android 版 Gemini。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Connected Apps Platform 提供統一管道，讓第三方以雲端 MCP 或 Android AppFunctions，將服務功能接入 Gemini 與 Google 搜尋。</dd>
+      <dt>能做什麼</dt><dd>可讓使用者在 Gemini 或搜尋中呼叫第三方服務，例如查詢、訂購或執行手機應用程式的本機功能；雲端服務可透過 OAuth 連結使用者帳戶。</dd>
+      <dt>能否試用</dt><dd>平台目前為預覽版並分階段開放，開發者須申請參與，提交的整合還須經 Google 審查；相關開發入口連結原文未提供。</dd>
+      <dt>限制</dt><dd>雲端 MCP 伺服器須提供公開 HTTPS 端點；Android MCP 目前僅適用於 Android 版 Gemini，全面開放時間原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.marktechpost.com/2026/10/29/baseten-joey-1-2b-decision-model/" target="_blank" rel="noopener">
+    <b>Baseten 推出 2B 開放權重決策模型 joey-1</b>
+    <span class="source">MarkTechPost</span>
+    <span class="text">joey-1 輸出校準機率而非文字，P50 延遲為 20 毫秒，輸入價格為每百萬 token 0.01 美元。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180076" target="_blank" rel="noopener">
+    <b>GitHub 開源 Replica，能依企業設計規範生成互動介面原型</b>
+    <span class="source">iThome</span>
+    <span class="text">Replica 可透過自然語言參照團隊既有元件、介面規範與文件產生可操作原型，並支援以 Replica Hub 分享與收集意見。</span>
+  </a></li>
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/lend-and-borrow-resources-across-teams-with-aws-batchs-quota-management-for-sagemaker-training-jobs/" target="_blank" rel="noopener">
+    <b>AWS Batch 新增 SageMaker 訓練配額管理，可跨團隊借用閒置 GPU</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">管理者可按團隊或專案分配 GPU 配額，閒置容量可自動借用，並以搶占機制優先執行高優先級 SageMaker 訓練工作。</span>
+  </a></li>
+  
+  <li><a href="https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs" target="_blank" rel="noopener">
+    <b>Gemini 聊天新增文件生成與編輯功能</b>
+    <span class="source">The Verge</span>
+    <span class="text">Gemini 使用者可直接在對話中生成、預覽及編輯 Google 文件、試算表、簡報、PDF、Markdown、文字檔與程式碼。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-10-29.html">← 2026-10-29</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
