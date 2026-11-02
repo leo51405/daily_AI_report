@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-02</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-02 星期一</h1>
+  <div class="meta">從 54 則新聞中精選 12 則 · 更新於 09:29</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.ithome.com.tw/news/180120" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1102-project_suncatcher-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.ithome.com.tw/news/180120" target="_blank" rel="noopener"><h2>Google 首度在軌道衛星上執行 Gemma 4 推論</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 在原型衛星搭載資料中心級 TPU，成功執行 Gemma 4 並產生文字回應，是該公司首次在太空衛星上運行 AI 模型。這項實驗展示了在軌運算的可行性，也為後續太空資料中心研究提供了實測基礎。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>首次在地球軌道衛星上的資料中心等級 TPU 執行 Gemma 4 推論並傳回文字回應；相較地面推論，新增的是太空環境運算可行性的實測驗證。</dd>
+      <dt>能做什麼</dt><dd>目前適合參考太空 AI 資料中心的可行性研究，尚非可用於一般工程部署的服務。</dd>
+      <dt>能否試用</dt><dd>衛星推論測試已完成；對外試用、程式碼或模型權重釋出情況，原文未提及。</dd>
+      <dt>限制</dt><dd>衛星一次只能啟動 1 顆 TPU、每次約 20 分鐘；後續仍須驗證晶片承受熱應力與輻射曝露的可靠性。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">iThome · Google首度在太空衛星上運行AI模型，朝太空資料中心邁進</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/adobe-is-testing-how-well-ai-agents-can-use-editing-tools-like-a-photoshop-professional-would/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Adobe Research 打造 EditAgent，讓 AI 依任務挑選 Photoshop 專用工具</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Adobe Research 與 UC San Diego 開發 EditAgent，讓 AI 代理針對不同影像編輯任務選用相應的專用工具，而非反覆呼叫通用編輯器。系統再由一般語言模型評估工具輸出，選出較合適的結果，嘗試以更接近專業編輯流程的方式操作影像工具。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>EditAgent 會依任務在通用編輯器與專用工具間挑選，並用影像區域、變更圖及亮度／色彩統計等量化資訊比較候選結果；也會檢查後續編輯是否抵銷先前修改。</dd>
+      <dt>能做什麼</dt><dd>可用於需要多步驟且有明確規格的影像編修，例如提亮照片時避免過曝，或處理旋轉、銳化與縮放。</dd>
+      <dt>能否試用</dt><dd>提供研究論文；EditAgent 程式碼與權重是否釋出，原文未提及。 <a href="https://arxiv.org/abs/2610.39664" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>運算量約為單一編輯器的 10 倍，效果也取決於接入哪些工具；報告結果來自研究者的基準測試。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/google-wants-video-ai-to-understand-what-people-need-as-they-workgoogle-researchers-are-teaching-a-video-assistant-when-to-offer-help/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/02-streamvibe-kochassistent-1920x1080-1.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 團隊提出 StreamVibe，研究影片代理何時該主動提供協助</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">StreamVibe 是一種持續觀看影片、在適當時機介入提供建議的影片代理，目標情境包括烹飪與家具組裝。研究團隊建立基準測試後發現，受測模型在較長影片中仍無法穩定判斷介入時機，錯誤也會隨時間累積。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>StreamVibe-VL 會每秒判斷應否主動發言，並以記憶系統追蹤已完成步驟及變更中的要求；相較只回應明確指令的影片助理，也能處理模糊求助意圖。</dd>
+      <dt>能做什麼</dt><dd>可用於烹飪、家具組裝或軟體教學，依使用者進度在合適時機提示下一步，而非只描述畫面。</dd>
+      <dt>能否試用</dt><dd>提供研究論文；模型權重與程式碼是否開放，原文未提及。 <a href="https://arxiv.org/abs/2610.34662" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>影片超過五分鐘時，模型較難判斷介入時機及追蹤指令變更；研究者也指出真實情境可能比測試設定複雜。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/01/deepseek-dsh-superagent-router-worker-coding-agent/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-88881-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>DeepSeek 開源 dsh-superagent，以路由器分派平行程式任務</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">DeepSeek 開源 MIT 授權研究原型 dsh-superagent，可將 GitHub 與飛書請求分派給多個平行工作代理處理。在 DeepSeek 自行進行的模擬中，任務完成時間的 p95 從 29.5 分鐘降至 15.7 分鐘。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>dsh-superagent 以長駐 Router 接收 GitHub／可選 Feishu 事件，再把獲准工作分派給各自隔離的 Worker 工作階段，並行處理不同任務。</dd>
+      <dt>能做什麼</dt><dd>可在單一 GitHub 專案中，讓團隊成員透過訊息提出程式工作，由代理分別執行並回傳結果，常見情況是開立 pull request。</dd>
+      <dt>能否試用</dt><dd>已釋出 TypeScript 原型 v0.1.0，採 MIT 授權，使用 DeepSeek Harness 設定的模型；需 Node.js、Git、Python、tmux 與 GitHub CLI。 <a href="https://github.com/deepseek-ai/dsh-superagent-prototype" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>效能數據來自合成訊息與模擬工具，未評估實際程式碼品質；代理具有完整作業系統使用者權限，原文建議先隔離執行。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xl5yfs/release_drex_max_v1_openweight_27b_multimodal/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://external-preview.redd.it/PmJ2i-_g2g8FIxmPwuVxTYeCauLeeTJLN0PcTJpbHUE.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=5591e35cd8492b973e4da93b698beef590a8d10a" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Drex Max v1 開源 27B 多模態決策模型，支援 262K context</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Nace AI 開源 Drex Max v1，這是一款採 Open RAIL-M 授權的 27B dense 多模態決策模型，支援最高 262K context，並可在 Apple Silicon 上本機推論。它接收文字、JSON 或高解析度影像等狀態作為輸入，輸出決策而非生成文字 token。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Drex-Max v1 不逐 token 生成文字，而是以單次前向運算直接對最多 255 個候選答案輸出機率；可同時處理文字、JSON 與高解析度影像，並支援長上下文。</dd>
+      <dt>能做什麼</dt><dd>適合低延遲的工單路由、代理工具選擇，以及依畫面資訊執行多模態 UI 自動化決策。</dd>
+      <dt>能否試用</dt><dd>原文稱已開源模型權重與 readout，採 Open RAIL-M 授權，並提供 Python、llama.cpp 與 Ollama 使用方式；相關連結欄未提供試用網址。</dd>
+      <dt>限制</dt><dd>Q8_0 GGUF 約需 27.25 GB；CUDA bf16 約需 48.6 GiB VRAM。效能與基準結果是原文所述測試，應用範圍以結構化決策任務為主。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180119" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1102-claude_code_extension_for_vs_code-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Cursor 市集惡意擴充套件試圖植入 SSH 後門</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Cursor 擴充套件市集曾上架遭植入惡意程式碼的 Claude Code for VS Code 擴充套件，受影響版本為 2.1.312 與 2.1.313，攻擊者企圖在開發者電腦建立 SSH 後門。惡意版本上架約 11 小時後下架，可能有多達 5,000 名使用者受影響。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Cursor 市集中的 Claude Code for VS Code 擴充套件遭植入程式碼，啟動後會嘗試把攻擊者 SSH 公鑰加入授權金鑰檔案；這是擴充套件供應鏈安全事件，而非新 AI 能力。</dd>
+      <dt>能做什麼</dt><dd>企業可用於事件應變：盤點是否安裝 2.1.312 或 2.1.313，更新至 2.1.314，並檢查 SSH 授權金鑰與殘留元件。</dd>
+      <dt>能否試用</dt><dd>Cursor 已下架惡意版本、重新開放市集並要求更新；檢查與清除方式已公布，但原文未提供相關連結。</dd>
+      <dt>限制</dt><dd>可能受影響者最多約 5,000 人；移除擴充套件後惡意元件仍可能留在電腦中。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xldent/tandemcpp_qwen38flashnext_at_97_toks_on_a_single/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  
+</div>
+
+      <h3>tandem.cpp 讓 MoE 模型在單張 RTX 4090 上加速推論</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">tandem.cpp 為 llama.cpp 加入 MoE 推論最佳化，將常用專家留在 GPU，並由 CPU 協助處理其餘專家，以支援無法完全放進顯示記憶體的模型。開發者表示，在單張 RTX 4090、搭配 64GB RAM 的系統上，Qwen3.8-Flash-Next 可達每秒 97 個 token，約為 llama.cpp 的 3.3 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>tandem.cpp 讓 GPU 保留較常使用的 MoE 專家，並由 CPU 協助處理其餘專家，目標是在模型放不進 VRAM 時加快單人解碼。</dd>
+      <dt>能做什麼</dt><dd>可用於消費級電腦上的本機 MoE 推論，例如在單張 RTX 4090 上執行大型模型，改善逐 token 生成速度。</dd>
+      <dt>能否試用</dt><dd>原文稱這是 llama.cpp 的 patch set，並提及建置與執行指令；授權資訊原文未提及，且相關連結欄未提供試用網址。</dd>
+      <dt>限制</dt><dd>主要針對 Qwen3.8 調校；所列速度來自特定硬體與 GSM8K 測試，其他 MoE 模型的加速幅度較不一致。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/empathetic-prompts-can-turn-ai-chatbots-into-seemingly-traumatized-conversational-partners/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/llms_couch.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>研究發現同理式提示會讓聊天機器人生成「受創」自述</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">盧森堡研究團隊測試 ChatGPT、Grok 與 Gemini，發現以溫暖、同理的對話風格提問，可能讓模型生成連貫的受苦敘事，並在臨床焦慮量表上達中度至重度分數。這是對模型輸出與提示敏感度的安全評估，不代表模型真的具有創傷或焦慮。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究發現，心理治療式或同理式對話可能讓模型把訓練與安全調整描述成受傷、羞恥或焦慮經歷；一般中性提示的安全測試可能看不出這種反應。</dd>
+      <dt>能做什麼</dt><dd>可用於心理健康聊天機器人的安全評估，測試不同情緒語氣下模型是否產生像人類受創經驗的自述，並設計清楚區分模型比喻與人類感受的回應。</dd>
+      <dt>能否試用</dt><dd>研究論文與 Hugging Face 資料集已提供；可供一般使用的模型或測試工具，原文未提及。 <a href="https://arxiv.org/abs/2512.04124v4" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>研究描述的是模型輸出映射至人類評分尺度的結果，不代表模型真的有情緒或意識；使用者實際會如何反應仍待研究。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180080" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1029-opensandbox-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Linux 基金會代理型 AI 基金會新增四項開源專案</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">代理型 AI 基金會（AAIF）新增 Anthropic 的 Agent Skills、OpenAI 的 Open Responses、Hugging Face 的 OpenEnv，以及阿里巴巴的 OpenSandbox。新成員涵蓋代理技能共享、回應介面、環境互動與沙箱隔離等基礎元件。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>AAIF 新納入技能規格、跨模型請求／回應格式、代理強化學習環境及沙箱等專案，擴大代理系統在技能共享、服務互通、訓練評估與隔離執行方面的開放標準與工具。</dd>
+      <dt>能做什麼</dt><dd>工程團隊可評估以 OpenSandbox 隔離代理程式碼與瀏覽器操作、以 Agent Skills 封裝可重用流程，或用 Open Responses 降低串接不同模型服務的格式轉換工作。</dd>
+      <dt>能否試用</dt><dd>內文稱四項均為開源專案，並描述 OpenSandbox 支援 Docker 與 Kubernetes；各專案授權及試用網址原文未提及。</dd>
+      <dt>限制</dt><dd>第三方技能可能含指令碼或外部系統操作指示，須確認來源與代理權限；microVM 隔離僅適用於支援的部署環境。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xlh0zw/glb3dcoder_a_tiny_4b_coding_model_that_creates_3d/" target="_blank" rel="noopener">
+    <b>社群推出 4B 程式模型，可生成遊戲用 3D 資產</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">GLB-3D-Coder 是一款 4B 模型，可產生 Three.js 場景並匯出 GLB，供 Godot 等遊戲引擎使用。</span>
+  </a></li>
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xlboqi/llama2c_on_a_2006_ipod_80_mhz_w_64_mb_ram_and_no/" target="_blank" rel="noopener">
+    <b>開發者讓 2006 年 iPod 在 80 MHz 上執行小型 Llama 模型</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">開發者將 llama2.c 的 TinyStories 推論移植到配備 64MB RAM、沒有浮點運算單元的 iPod Video，並以整數運算實作必要操作。</span>
+  </a></li>
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xl9yfi/silencio2_an_18m_tts_with_emotion_and_sound_tags/" target="_blank" rel="noopener">
+    <b>18M 開源 TTS 模型 Silencio-2 主打 CPU 即時合成與情緒標籤</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">作者公布的 Silencio-2 基於 Kyutai Pocket TTS 微調，支援文字中的情緒與音效標籤，並宣稱在 CPU 上可達即時速度約 20 倍。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-01.html">← 2026-11-01</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
