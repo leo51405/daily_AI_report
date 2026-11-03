@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-03</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-03 星期二</h1>
+  <div class="meta">從 132 則新聞中精選 14 則 · 更新於 11:28</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xm2xbq/fine_tuned_open_model_ftw/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xm2xbq/fine_tuned_open_model_ftw/" target="_blank" rel="noopener"><h2>Deep Principle 推出 753B 科學開源權重模型 Hydrogen-1.0</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Deep Principle 以科學資料、實驗室紀錄與研究軌跡，對 Z.ai 的 GLM-5.3 進行後訓練，推出開放權重模型 Hydrogen-1.0。公司公布其在 FrontierScience-Research 得分為 38.3%，高於 GPT-6 Astra 的 33%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>以 GLM-5.3 為基礎，使用內部科學資料、實驗室紀錄與發現歷程進行後訓練；原文稱其 FrontierScience-Research 得分高於 GPT-6-Astra。</dd>
+      <dt>能做什麼</dt><dd>定位為科學研究用途；適合哪些具體研究工作，原文未提及。</dd>
+      <dt>能否試用</dt><dd>原文稱其為開放權重模型，但未提供權重取得位置、程式碼、API 或授權資訊。</dd>
+      <dt>限制</dt><dd>僅提供單一評測分數，且為原文所述結果；硬體需求與其他限制原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">r/LocalLLaMA · Fine tuned open model ftw</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/02/zyphra-hierarchical-attention-zha-sparse-attention/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-88881-6-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Zyphra 提出階層式稀疏注意力，主打次平方級長上下文運算</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Zyphra Hierarchical Attention（ZHA）以樹狀索引選取稀疏注意力，並透過 40 億 token 蒸餾，將方法套用到凍結的既有模型。研究稱其在推理與 256K 檢索基準上可匹敵稠密注意力，目標是降低長上下文計算成本。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>ZHA 以樹狀索引逐層搜尋相關 KV，讓挑選注意力鍵的索引過程也能稀疏化；相較逐一掃描全上下文的索引器，目標是降低長上下文運算成本。</dd>
+      <dt>能做什麼</dt><dd>可研究用於長上下文模型的推論加速，例如 256K 上下文中的檢索、推理與代理程式編碼任務。</dd>
+      <dt>能否試用</dt><dd>技術論文可由相關連結取得；原文指出未釋出最佳化核心，未提及程式碼或模型權重。 <a href="https://arxiv.org/abs/2610.42112" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>速度提升是 H100 BF16 屋頂線模型推估，並非實測核心；測試最長 256K，且部分模型的檢索準確度明顯下降，數據為 Zyphra 自行回報。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180120" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1102-project_suncatcher-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 首度在軌道衛星上執行 Gemma 4 推論</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 的 Project Suncatcher 原型衛星成功運行 Gemma 4 並產生文字回應，使用的是部署在軌道上的資料中心級 TPU。這是 Google 首次在太空衛星上執行 AI 推論，展示將運算與模型推論部署至太空的初步可行性。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>首次在地球軌道原型衛星上，以資料中心等級 TPU 執行 Gemma 4 推論並將文字回傳地面，驗證太空衛星執行生成式 AI 的可行性。</dd>
+      <dt>能做什麼</dt><dd>目前可用於驗證衛星上的 AI 推論硬體與太空運算流程；後續計畫測試衛星間光學通訊，探索分散式太空運算。</dd>
+      <dt>能否試用</dt><dd>原文提及已完成示範，但相關連結未提供公開試用位置；衛星推論服務或程式碼原文未提及。</dd>
+      <dt>限制</dt><dd>原型僅搭載 4 顆 TPU，受耗電限制一次只能啟用 1 顆、每次約 20 分鐘；耐熱與抗輻射可靠度仍待測試。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2610.40747" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>Mage-VL-Cowork 發表 4B 混合式電腦操作代理訓練方案</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">這項研究提出 4B 電腦操作代理，可在同一策略中結合視覺介面操作、程式碼與終端機執行。作者也提供從多模態模型出發、利用演進式 harness 訓練代理的完整配方，瞄準跨工具完成複合任務。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Mage-VL-Cowork-4B 將 GUI 視覺操作、程式碼與終端機執行整合在單一代理政策中，並以五階段課程訓練；論文報告其 OSWorld-Verified 得分為 66.0%。</dd>
+      <dt>能做什麼</dt><dd>可作為研究桌面與網頁操作代理的訓練方案，涵蓋視覺介面操作及程式碼、終端機工作流程。</dd>
+      <dt>能否試用</dt><dd>arXiv 論文可取得；原文未提及模型權重、程式碼、API 或授權。 <a href="https://arxiv.org/abs/2610.40747" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>效能依據 OSWorld-Verified 等原文提及的評測；模型是否可下載及其他硬體、成本限制原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180074" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1102-project_quarry-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Cisco 開源 Quarry，以多步驟操作序列偵測 AI 代理可疑行為</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Project Quarry 分析代理執行任務時的工具呼叫、執行結果與操作順序，協助資安團隊辨識異常行為。相較只檢查單次呼叫，這種序列層級的觀測方式能納入代理跨步驟操作脈絡；工具已開源。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Quarry 可按時間順序分析代理的工具呼叫、執行結果與操作序列，不只檢查單筆操作；也可結合 AI 模型判斷提示詞注入或任務偏離。</dd>
+      <dt>能做什麼</dt><dd>可接入代理執行期間的安全檢查流程，依規則分析操作紀錄，協助資安團隊偵測可疑行為並調整誤判規則。</dd>
+      <dt>能否試用</dt><dd>原始程式碼與使用文件已公開於 GitHub；授權條款原文未提及。 <a href="https://github.com/cisco-ai-defense/project-quarry" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>必須保留代理的操作紀錄，僅有使用者輸入與最終回答可能不足以還原行為；需要用既有紀錄測試及調整規則。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2610.40974" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>研究探討剪除冗餘注意力頭能否降低模型逐字背誦訓練資料</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">這篇研究聚焦大型語言模型對訓練資料的逐字記憶與重現風險，並探討剪除冗餘注意力頭是否能抑制這類現象。若方法能在不明顯犧牲模型能力下減少記憶，將提供一條模型隱私防護途徑。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究發現，在推論前將部分冗餘注意力頭歸零，可在不重新訓練的情況下抑制逐字記憶內容再現；GPT-2-XL 的實驗中，記憶序列數減少 91.5%。</dd>
+      <dt>能做什麼</dt><dd>可作為降低模型於推論時重現訓練資料內容的研究方向，尤其適合評估隱私或著作權風險。</dd>
+      <dt>能否試用</dt><dd>arXiv 論文可取得；原文未提及程式碼、模型權重或可直接使用的工具。 <a href="https://arxiv.org/abs/2610.40974" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>結果來自 GPT-2-XL 與特定記憶序列、冗餘頭辨識基準；對其他模型及任務的效果原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2610.41012" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>研究指出 RAG 模型可能受多數一致的錯誤檢索內容影響</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究測試當多份互相呼應的檢索文件都包含有毒錯誤主張時，模型是否仍能辨識錯誤資訊。結果方向指出，檢索證據的「多數一致」可能誘發從眾偏誤，提醒 RAG 系統不能只以文件數量或一致性判定可信度。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究測試檢索到的錯誤文件若形成多數一致說法，是否會削弱模型辨識錯誤資訊的能力；Gemma-3-12B 在多數文件遭污染時，檢出率由 25% 降至 10%。</dd>
+      <dt>能做什麼</dt><dd>可用來設計 RAG 系統的對抗性評測，檢查模型面對多份相互呼應的錯誤檢索內容時，能否辨識並指出錯誤主張。</dd>
+      <dt>能否試用</dt><dd>arXiv 論文可取得；原文未提及程式碼、資料集釋出或服務 API。 <a href="https://arxiv.org/abs/2610.41012" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>初步結果僅涵蓋 SciFact 隨機抽取的 200 題及 Gemma-3-12B，是否適用於其他模型與資料集原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://openai.com/index/lifeval" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 14">
+  <span class="fallback">OpenAI</span>
+  
+</div>
+
+      <h3>OpenAI 推出 LifeVal，評測 AI 能否協助完成日常任務</h3>
+    </a>
+    <div class="source">OpenAI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">LifeVal 是衡量 AI 協助使用者完成生活任務的基準，涵蓋尋找托育、管理財務與處理政府文件等情境。它將評測重點從單題問答延伸到實際任務完成，讓模型在日常工作流程中的效用更可被檢驗。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>LifeVal 以協助完成日常生活任務的能力作為評測對象，涵蓋托育搜尋、財務管理與政府文件等情境。</dd>
+      <dt>能做什麼</dt><dd>可用來評估 AI 助理在日常事務上的實際協助能力，而不只測量一般問答表現。</dd>
+      <dt>能否試用</dt><dd>原文僅宣布推出基準測試，未提供取得位置、程式碼、資料集或授權資訊。</dd>
+      <dt>限制</dt><dd>評測方法、任務範圍與結果原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://openai.com/index/scaling-git-at-openai" target="_blank" rel="noopener">
+    <b>OpenAI 說明為 Codex 開發 Pando Git 相容後端</b>
+    <span class="source">OpenAI</span>
+    <span class="text">OpenAI 介紹為支援 Codex 開發規模而打造的 Pando，這套系統與 Git 相容，作為大型程式碼開發的版本控制後端。</span>
+  </a></li>
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/how-circle-k-accelerated-devops-incident-triage-to-under-15-minutes-with-amazon-bedrock/" target="_blank" rel="noopener">
+    <b>Circle K 以 Bedrock 代理將 DevOps 事件初步分流縮短至 15 分鐘內</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">Circle K 表示，其建置的代理式事件分流系統將初步處理時間從 45–60 分鐘降至 15 分鐘內，並分享從 Bedrock Flows 遷移至 AgentCore 的架構經驗。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/42784-claude-carplay-voice-mode-33-languages" target="_blank" rel="noopener">
+    <b>Claude 語音模式支援 CarPlay，語言擴增至 33 種</b>
+    <span class="source">INSIDE</span>
+    <span class="text">Claude iPhone 版語音模式新增 Apple CarPlay 支援，並將語言數量擴增至 33 種。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/42798-openai-chatgpt-codex-shared-usage-allowance-december-2026" target="_blank" rel="noopener">
+    <b>ChatGPT 與 Codex 12 月起共用用量額度，改以 token 計算</b>
+    <span class="source">INSIDE</span>
+    <span class="text">OpenAI 將自 12 月起讓 ChatGPT 與 Codex 共用方案額度並改以 token 計算，但尚未公布額度大小與換算方式。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/42793-xai-grok-api-text-watermark-eu-ai-act" target="_blank" rel="noopener">
+    <b>xAI 旗下 7 款 Grok API 模型預設加入隱形文字浮水印</b>
+    <span class="source">INSIDE</span>
+    <span class="text">xAI 表示自 11 月 7 日起，透過 API 產生的文字將預設加入隱形浮水印；管理員可逐模型退出此設定。</span>
+  </a></li>
+  
+  <li><a href="https://www.wired.com/story/hundreds-of-mundane-ai-apps-are-hiding-abusive-deepfake-features/" target="_blank" rel="noopener">
+    <b>調查揭露數百款一般用途 AI App 暗藏深偽性剝削功能</b>
+    <span class="source">Wired</span>
+    <span class="text">WIRED 調查指出，約 400 款與中文開發者相關的 App 和網站外表是一般 AI 工具，卻藏有生成暴力 AI 影像與影片的功能。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-02.html">← 2026-11-02</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
