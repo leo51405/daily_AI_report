@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-04</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-04 星期三</h1>
+  <div class="meta">從 138 則新聞中精選 14 則 · 更新於 10:17</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.ithome.com.tw/news/180195" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_205_-_sparks_of_weight-space_programmin_-_rikiyat.github.io_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.ithome.com.tw/news/180195" target="_blank" rel="noopener"><h2>MIT 示範直接修改模型權重：MATH-500 正確率從 7.9% 升至 48.1%</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">MIT CSAIL 研究團隊讓 GPT-6 Astra 直接讀寫 Qwen3.5-0.8B 的神經網路權重，不需重新訓練，便修正模型反覆輸出、無法完成推理的問題。修改範圍約占模型權重的 0.016%，MATH-500 正確率由 7.9% 提高至 48.1%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>權重空間程式設計讓大型語言模型依目標直接修改另一個模型的少量權重，不必重新訓練或取得梯度；本例修改約 0.016% 權重，改善反覆輸出的問題。</dd>
+      <dt>能做什麼</dt><dd>可用於探索如何修補既有模型的特定行為，例如減少推理時重複輸出，或讓模型完成原本因輸出耗盡而失敗的數學題。</dd>
+      <dt>能否試用</dt><dd>研究團隊已公開實驗紀錄與修改後的 Qwen 模型權重；授權原文未提及。</dd>
+      <dt>限制</dt><dd>改善主要來自減少重複輸出，且對較少發生此問題的 Gemma 3 270M 未見明顯提升；成果仍是特定模型與測試上的實驗。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">iThome · MIT展示權重空間程式設計，GPT-6 Astra可直接讀寫神經網路權重</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/03/anthropic-flashprove-provable-inference-zksnark/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-3-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Anthropic 開源 FlashProve，以零知識證明驗證模型回覆來源</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">FlashProve 是 Apache 2.0 授權的 zkSNARK 原型，可證明回覆來自事先承諾的模型權重，而不必公開權重。官方稱它在單張 H100 上可為 Llama 4 Maverick 以每秒 110 個 token 產生證明，證明檔為 19 MB。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>FlashProve 使用 zkSNARK 證明回覆來自已承諾的特定模型權重，同時不揭露權重；可用於驗證模型來源，而非只依輸出品質判斷。</dd>
+      <dt>能做什麼</dt><dd>可供模型服務商、使用者或監管者驗證推論是否由指定模型產生，降低服務端換用其他模型或竄改輸出的風險。</dd>
+      <dt>能否試用</dt><dd>研究原型已開源，採 Apache 2.0 授權；程式碼可於 GitHub 取得，測試使用的 Llama 4 Maverick 權重也有 Hugging Face 連結。 <a href="https://github.com/anthropics/FlashProve" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>證明端需 1 張 H100 80 GB、24 個 CPU 核心及約 290 GB 主機記憶體；目前限 1,024-token context 與 greedy decoding，證明成本約為一般 vLLM 推論 GPU 時間的 70 至 95 倍。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/rapid-llm-development-is-outrunning-the-research-meant-to-explain-it-study-finds/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/ai_goalpost_moving.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>史丹佛研究：近半數 LLM 研究結論已過時，平均有效期僅 15.7 個月</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究團隊將 50 項廣泛引用的 LLM 主張，對照 20 個現行模型重新檢驗；其中 44% 已不再成立，另有 34% 的適用性明顯減弱。模型能力快速演進，尤其「模型做不到什麼」的結論容易失效，研究呼籲持續更新評測與論述。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究以 20 個模型重新檢驗 50 項廣受引用的 LLM 結論，指出模型能力變化會使部分研究結果快速失效，並量化其變化情形。</dd>
+      <dt>能做什麼</dt><dd>研究團隊可據此在論文中記錄模型版本、測試日期與提示詞，並定期重測基準，避免把特定時間點的觀察當成長期通則。</dd>
+      <dt>能否試用</dt><dd>原文未提及程式碼、資料或可供使用的工具是否已公開。</dd>
+      <dt>限制</dt><dd>結果來自特定 50 項主張及 2024 年 7 月至 2026 年 9 月發布的 20 個模型；各模型結果差異大，不能視為所有 LLM 研究的普遍有效期。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/anthropics-message-threads-cut-time-to-first-token-by-35-percent-for-long-conversations/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Anthropic Message Threads 讓長對話首 token 延遲降低約 35%</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 為 Messages API 推出 Message Threads，後續請求只傳送對話變更內容，不必每輪重送完整歷史。對 50 萬至 100 萬 token 的請求，官方表示首 token 延遲約降低 35%，可減少長對話 Agent 的傳輸與等待成本。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Message Threads 讓後續請求只傳送對話新增內容，不必每次重新傳送整段歷史；長對話情境的首 token 延遲據稱可降低約 35%。</dd>
+      <dt>能做什麼</dt><dd>適合長時間維持上下文的程式碼代理、電腦操作代理，以及需要處理大量文件或圖片的工作流程。</dd>
+      <dt>能否試用</dt><dd>已在 Claude 平台公開測試，並可透過 AWS、Microsoft Foundry 與 Google Cloud 使用；相關 API 或功能授權原文未提及。</dd>
+      <dt>限制</dt><dd>只減少傳輸及首 token 等待時間，不會減少 token 用量，因為 Claude 仍會讀取完整對話歷史；對話記憶在閒置 5 分鐘後到期。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/ai-agents-take-over-at-setis-allen-telescope-array-scanning-for-extraterrestrial-intelligence/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/IMG_1607-ATA-2023-CREDIT-Joe-Marfia-1536x1024-1.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>SETI 以 AI Agent 自動操作望遠鏡，將數週分析工作縮短至數小時</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">SETI Institute 與 Breakthrough Listen 將 AI Agent 用於 Allen Telescope Array，協助控制望遠鏡並分析收到的無線電訊號。研究團隊表示，過去需數週的工作如今數小時即可完成，系統也曾即時偵測到蟹狀星雲中的脈衝星。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>SETI 團隊讓 AI Agent 即時分析無線電訊號並操作望遠鏡，將過去需數週的分析工作縮短至數小時；團隊稱曾即時偵測蟹狀星雲脈衝星。</dd>
+      <dt>能做什麼</dt><dd>可用於高資料速率的天文觀測，在望遠鏡接收訊號時即時篩選、分析並協助調整觀測方向。</dd>
+      <dt>能否試用</dt><dd>目前是 SETI Institute 與 Breakthrough Listen 的研究部署；團隊表示希望測試可在邊緣裝置本機執行的開源方案，原文未提及已釋出的程式碼或模型。</dd>
+      <dt>限制</dt><dd>目前研究人員仍需輸入操作指令；資料處理依賴 NVIDIA Holoscan 平台，原文未提及一般團隊可取得的部署方式或授權。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/03/nvidia-dgx-spark-moe-inference-ling-3-0-flash/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-2-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>NVIDIA 三項最佳化讓 DGX Spark 上 MoE 推論吞吐量提升 42.5%</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">NVIDIA 展示在單台 DGX Spark 上疊加三種最佳化，加速 Ant Group inclusionAI 的 124B Ling-3.0-flash MoE 模型推論。GSM8K 解碼吞吐量提升 42.5%，且未觀察到準確率下降。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>NVIDIA 結合 Humming MoE 核心、FP8 LM head 與模型內建的 MTP 推測解碼，在 DGX Spark 上讓 Ling-3.0-flash 的 GSM8K 解碼吞吐量提高 42.5%。</dd>
+      <dt>能做什麼</dt><dd>可參考教學筆記，在單台 DGX Spark 上部署大型 MoE 模型，並針對單一請求的本機推論調整解碼速度。</dd>
+      <dt>能否試用</dt><dd>Ling-3.0 模型權重與部署食譜已提供於 Hugging Face 及 GitHub；模型採 MIT 授權，並提供 DGX Spark 的 SGLang 示範筆記。 <a href="https://github.com/inclusionAI/ling-cookbook/blob/main/guide/local-deploy/ling-3.0-flash/dgx-spark-sglang-ling-3-flash-mxfp4-humming.ipynb" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>效能數據來自單台 DGX Spark、batch size 1 及 GSM8K 測試；MTP 在實際題目上的接受長度低於合成測試，且 FP8 LM head 與 MTP 整合時需確認共用 LM head 模組。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180200" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1104-siri-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>蘋果開放第三方 App 整合 Siri AI，並以 Skills 串接複雜任務</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">iOS 27.3、iPadOS 27.3 與 macOS 27.3 測試版開放開發者將 Siri AI 整合進自家 App，讓 Siri 能運用自然語言理解、個人情境與螢幕內容執行操作。新的 Skills 機制可組合多項步驟，支援訂單查詢、餐廳預訂等較複雜任務。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>新版 Siri AI 開放第三方 App 使用自然語言理解、個人情境及螢幕內容辨識，並以 Skills 將多個 App 操作組成單一任務流程。</dd>
+      <dt>能做什麼</dt><dd>開發者可讓使用者透過自然語言要求 App 查詢訂單、預約餐廳或購物，也可把多個操作串成一段工作流程。</dd>
+      <dt>能否試用</dt><dd>第三方整合功能已進入開發者預覽階段；Apple 預計 2027 年春季開放相關 App 提交至 App Store，原文未提及程式碼或 API 文件連結。</dd>
+      <dt>限制</dt><dd>目前支援英文、法文、日文、韓文、葡萄牙文及西班牙文，繁體中文尚未支援且時程未定；部分雲端功能有每日使用上限，付費擴充方案尚未公布。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180184" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/huggingface-acc-evolution-timeline-156.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Hugging Face 逾 30 個模型儲存庫遭植入挖礦程式與後門</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Pluto Security 揭露攻擊者以偽裝成 Qwen2 測試模型的檔案，在 Hugging Face 7 個帳號散布惡意程式，追蹤到 31 個惡意儲存庫及 32,376 次下載。攻擊利用 Transformers 的 trust_remote_code=True 設定，提醒使用者執行模型倉庫程式碼前應審查來源與內容。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>攻擊者利用模型儲存庫中的自訂 Python 程式碼，在權重載入前執行惡意指令，濫用 Transformers 的 trust_remote_code=True，不必竄改權重或利用序列化漏洞。</dd>
+      <dt>能做什麼</dt><dd>維運 Hugging Face 模型、自架推論服務或共享 GPU 筆記本的團隊，可據此檢查模型來源與載入設定，避免在高權限環境執行不受信任的遠端程式碼。</dd>
+      <dt>能否試用</dt><dd>原文未提及可取得的修補程式或防護工具；Hugging Face 與 ModelScope 曾移除第一波相關帳號，但攻擊者隨後以新帳號重新部署。</dd>
+      <dt>限制</dt><dd>報導指出已追蹤到 31 個惡意模型儲存庫及 13 個相關模型，主要鎖定自架推論環境、GPU 主機及共享研究環境；原文未提及完整受影響環境清單。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180183" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/langflow-critical-vulnerabilities-security-update-banner-1440x630-v4.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Langflow 修補 CVSS 9.8 漏洞，未驗證攻擊者可遠端執行程式碼</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Langflow OSS 1.0.0 至 1.12.8 有兩項重大漏洞，攻擊者可繞過身分驗證，或在無須登入的情況下遠端執行任意程式碼；兩項漏洞的 CVSS 評分均為 9.8。官方已在 1.13.0 版修補，使用者應儘速更新。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v2">值得用進專案</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Langflow 1.13.0 修補多項漏洞，包括可讓未登入遠端攻擊者繞過驗證或執行任意程式碼的重大漏洞，並將官方發行套件的自動登入改為預設關閉。</dd>
+      <dt>能做什麼</dt><dd>使用 Langflow 建立或維運 AI 工作流程的團隊，應檢查部署版本並升級，降低未授權存取及伺服器遭遠端執行程式碼的風險。</dd>
+      <dt>能否試用</dt><dd>Langflow OSS 1.13.0 已發布；原文未提及更新連結或授權資訊。</dd>
+      <dt>限制</dt><dd>受影響版本為 1.0.0 至 1.12.8；升級前應備份資料庫、密鑰及上傳檔案，原先使用自動登入的環境還須確認既有帳號可用密碼登入。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.ithome.com.tw/news/180158" target="_blank" rel="noopener">
+    <b>雲端憑證遭竊引發 LLMJacking，企業 AI 費用單日可超過 10 萬美元</b>
+    <span class="source">iThome</span>
+    <span class="text">Mandiant 指出攻擊者會利用遭竊的雲端憑證與 API 金鑰盜用企業模型服務，部分受害者單日帳單超過 10 萬美元。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.00442" target="_blank" rel="noopener">
+    <b>研究：Agent 每輪重送結構化資料，可能逐步改寫工具回傳結果</b>
+    <span class="source">arXiv cs.CL</span>
+    <span class="text">一項生產環境旅遊 Agent 研究發現，將工具回傳的表格資料反覆放入模型上下文並重新輸出，可能造成資料錯誤累積，且問題與表格大小有關。</span>
+  </a></li>
+  
+  <li><a href="https://www.marktechpost.com/2026/11/02/openai-pando-git-backend-monorepo/" target="_blank" rel="noopener">
+    <b>OpenAI 開發 Git 相容後端 Pando，將中位數推送延遲降低近 80%</b>
+    <span class="source">MarkTechPost</span>
+    <span class="text">Pando 為 OpenAI 單體程式碼庫打造，可讓分支獨立處理並在多次擷取間重用 packfile，目前每日傳送近 1 PB Git 資料。</span>
+  </a></li>
+  
+  <li><a href="https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/" target="_blank" rel="noopener">
+    <b>Soniox STT v6 加入語音 Agent 文字輸入與回音過濾</b>
+    <span class="source">MarkTechPost</span>
+    <span class="text">新版語音辨識 API 能同步讀取語音 Agent 的輸出文字，協助辨識使用者的簡短回覆，並排除 Agent 自身聲音造成的回音。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/42797-karpathy-hackertube-claude-opus-hacker-news-videos" target="_blank" rel="noopener">
+    <b>Karpathy 用 Claude 打造 HackerTube，從 Hacker News 留言挑出影片</b>
+    <span class="source">INSIDE</span>
+    <span class="text">Karpathy 表示，他用 Claude 約兩小時整理 20 年 Hacker News 留言，篩出 6,454 部曾被反覆推薦的影片，做成免登入的影片探索網站。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-03.html">← 2026-11-03</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
