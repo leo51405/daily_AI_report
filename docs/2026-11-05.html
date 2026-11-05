@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-05</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-05 星期四</h1>
+  <div class="meta">從 143 則新聞中精選 12 則 · 更新於 10:23</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://openai.com/index/a-thousand-fewer-paths-to-root" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 14">
+  <span class="fallback">OpenAI</span>
+  
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://openai.com/index/a-thousand-fewer-paths-to-root" target="_blank" rel="noopener"><h2>OpenAI 自動化管線找出並修補 948 個 Linux 核心提權漏洞</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 公布一套自主漏洞處理管線，能在 Linux 核心中找出、驗證並產生修補程式，已處理 948 個本機權限提升漏洞。這顯示 AI 安全工具開始從漏洞搜尋延伸到驗證與修補，但仍需留意修補程式的人工審查與實際部署。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>建立可自動找出、驗證並產生修補程式的管線，據稱找出 948 個 Linux 核心本機提權漏洞。</dd>
+      <dt>能做什麼</dt><dd>可用於核心漏洞研究與修補流程自動化；原文未提及實際部署或工程整合方式。</dd>
+      <dt>能否試用</dt><dd>原文未提及是否釋出程式碼、模型或服務。</dd>
+      <dt>限制</dt><dd>原文未提及驗證方式、適用範圍或修補成果是否已合併至 Linux 核心。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">OpenAI · A thousand fewer paths to root</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/04/ricursive-ripple-65b-preview-open-weight-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-5-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Ripple-65B Preview 開源，主打終端操作基準表現</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Ricursive Intelligence 發布 65B 稠密型開放權重模型 Ripple-65B Preview，採 Apache 2.0 授權。官方公布其 Terminal-Bench 2.1 得分為 80.5，並稱表現勝過參數量最多達 15 倍的美國開放模型。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>這是從頭預訓練的 65B 稠密開放權重模型，專攻代理式程式開發；報告在 Terminal-Bench 2.1 自評得分 80.5。</dd>
+      <dt>能做什麼</dt><dd>可試用於終端操作型程式代理，例如執行命令、修改程式碼及處理開發任務；也可在本機或自架環境測試。</dd>
+      <dt>能否試用</dt><dd>權重已在 Hugging Face 提供，含 BF16 指令版、基礎版及實驗性 NVFP4 版，均採 Apache 2.0；文中亦列出 Together AI、GMI Cloud、OpenRouter 等服務，其中 Together AI 當時標示即將推出。 <a href="https://huggingface.co/ricursiveAI/Ripple-65B-Preview" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>資料與效能比較多為 Ricursive 自行評測；在 SciCode、DeepSWE 等項目表現較弱。BF16 推論需資料中心 GPU，NVFP4 版本則屬實驗性，訓練及研發成本據稱為 3,200 萬美元。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/03/tencent-wevisone-vl-vision-language-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-4-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>WeVisOne-VL 以 2B、4B 模型整合多種視覺任務</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">騰訊推出 Apache 2.0 授權的視覺語言模型 WeVisOne-VL，提供 2B 與 4B 版本，可處理物件偵測、OCR、計數、分割與透明度摳圖。模型以 960 萬參數的像素解碼器支援細粒度視覺輸出。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>以 2B、4B 規模的單一視覺語言模型涵蓋偵測、OCR、計數、指涉、分割與 alpha 去背，並用小型像素解碼器直接輸出遮罩或去背結果。</dd>
+      <dt>能做什麼</dt><dd>可用於影像標註、物件定位、OCR、分割及去背等流程，適合評估以一個模型取代多個專用視覺元件的可能性。</dd>
+      <dt>能否試用</dt><dd>2B、4B 權重與 GitHub 程式碼已公開，採 Apache 2.0；另有兩種模型的線上展示。 <a href="https://github.com/Tencent/WeVisOne-VL" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>基準數據為自家回報，且缺席物件拒答能力在 PR-Bench 的拒答率為 52.6%；微調程式碼仍列在 TODO，GGUF 版本無法輸出遮罩。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180205" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1104-anthropic_flashprove-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Anthropic 開源 FlashProve，以零知識證明驗證模型來源</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">FlashProve 利用密碼學證明，讓使用者確認 AI 回應是否來自指定模型，而不必公開模型權重，可用於偵測服務端掉包或輸出遭竄改。這仍是有明顯限制的研究原型；相關報導指出，證明所需 GPU 時間約為一般推論的 70 至 95 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>FlashProve 使用 zkSNARK，讓供應商替模型回答產生密碼學證明，使使用者可驗證回答是否來自指定模型，而不必取得模型權重或重新執行推論。</dd>
+      <dt>能做什麼</dt><dd>可供 AI 服務的使用者或稽核機構驗證模型身分，協助檢查供應商是否暗中替換模型或輸出是否遭竄改。</dd>
+      <dt>能否試用</dt><dd>程式碼、技術報告及形式化驗證工具已公開；原文未提及授權方式。 <a href="https://github.com/anthropics/FlashProve" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>目前仍是研究原型，只支援特定模型架構與推論條件；在 Llama 4 Maverick 測試中，產生證明的 GPU 運算時間約為一般推論的 70 至 95 倍，單份證明約 19 MB。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180219" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_207_-_scaling_git_at_openai_-_openai_-_openai.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI 自建 Git 後端 Pando，推送延遲中位數降低近 80%</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Pando 保留 Git 協定與既有操作方式，並讓不同分支可獨立更新、重複利用 Git 資料封裝檔，以因應 AI 代理帶來的大量並行開發。OpenAI 表示，改用 Pando 後程式碼推送延遲中位數降低近 80%，每日傳輸量接近 1 PB。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Pando 在保留 Git 協定與操作方式下，讓不同分支能並行更新，並重用推送時收到的 packfile；OpenAI 表示推送延遲中位數降低近 80%。</dd>
+      <dt>能做什麼</dt><dd>適合大型單一程式碼儲存庫、分支與 CI 擷取量龐大的工程環境，以改善推送、讀取及合併作業。</dd>
+      <dt>能否試用</dt><dd>已在 OpenAI 正式環境處理流量，但 Pando 本身尚未宣布對外提供；部分用戶端改善已回饋開源社群。</dd>
+      <dt>限制</dt><dd>目前只支援 OpenAI 單一程式碼儲存庫的開發工作；跨分支讀取不保證取得同一時間點的整個儲存庫狀態。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://technews.tw/2026/11/05/tencent-unveils-new-gen-large-language-model-hy4-visual-understanding-open-source/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 136">
+  <span class="fallback">科技新報</span>
+  <img src="https://img.technews.tw/wp-content/uploads/2026/08/14135459/tencent-3.jpeg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>騰訊發布混元 Hy4，首次加入視覺理解並預告開源</h3>
+    </a>
+    <div class="source">科技新報</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">騰訊發布新一代大語言模型混元 Hy4，首次加入視覺理解，並強化指令遵循與長文本理解。候選消息未提供模型規格或基準測試數字，官方表示將開源。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Hy4 首次加入視覺理解與電腦操作能力，並強化長程 Agent、長文本理解及專業工作任務；模型採 770B 混合專家架構。</dd>
+      <dt>能做什麼</dt><dd>預期可用於圖表與影像理解、圖形介面或命令列操作，以及金融分析、遊戲開發和科學研究等長程任務。</dd>
+      <dt>能否試用</dt><dd>騰訊表示模型權重將於近期開源，目前尚未釋出。</dd>
+      <dt>限制</dt><dd>騰訊承認 Hy4 與頂尖閉源模型仍有較大差距；原文未提及權重授權、硬體需求或基準評測結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.03992" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>FlagRot 提出選擇性旋轉，改善低位元 KV 快取量化</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">FlagRot 指出，低位元 KV 快取常用的旋轉處理並非總能降低量化誤差，因此提出選擇性旋轉方法，只對適合的部分套用旋轉。研究聚焦 2-bit KV 快取，目標是在縮小長上下文推論記憶體用量時，避免不必要的精度損失。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>FlagRot 會依校準後的注意力誤差，逐段選擇旋轉或不旋轉 KV 快取，再於讀取時相應旋轉 Query，避免一律旋轉造成某些通道誤差反而增加。</dd>
+      <dt>能做什麼</dt><dd>可作為低位元 KV 快取量化方案，搭配 vLLM 測試長上下文推論，以降低快取誤差並改善量化後的任務表現。</dd>
+      <dt>能否試用</dt><dd>論文與 GitHub 程式碼已公開；原文指出可作為 vLLM 外掛使用，但未提及授權方式。 <a href="https://github.com/KunmingSHAO/FlagRot_releaser" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>效果來自論文所列模型與基準測試：2.5-bit 設定改善 12 個模型的 KL 散度，RULER 與 LongBench 的增益有限且依模型而異；原文未提及硬體需求。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180200" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1104-siri-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Apple 開放第三方 App 串接 Siri AI，支援組合式任務</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">在 iOS 27.3、iPadOS 27.3 與 macOS 27.3 測試版中，開發者可將自家 App 整合至 Siri AI，利用自然語言、個人情境與螢幕內容理解執行操作。Apple 也推出 Skills 機制，讓 Siri 能串接多項操作完成較複雜的任務。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>第三方 App 可整合新一代 Siri AI 的自然語言理解、個人情境及螢幕內容辨識，並用 Skills 將多個 App 操作組成單一任務流程。</dd>
+      <dt>能做什麼</dt><dd>可讓使用者以自然語言完成跨步驟的 App 操作，例如查詢訂單、預訂餐廳或組合多項 App 內動作。</dd>
+      <dt>能否試用</dt><dd>已隨 iOS 27.3、iPadOS 27.3 與 macOS 27.3 測試版提供開發者預覽；App 預計於 2027 年春季才可提交至 App Store。</dd>
+      <dt>限制</dt><dd>目前仍是開發者預覽，尚未支援繁體中文；部分雲端功能設有每日使用上限，付費擴充方案與價格未公布。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/new-open-source-benchmark-reveals-reasoning-as-the-biggest-bottleneck-for-ai-in-cloud-operations/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2025/02/Huginn-RM-title.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>CloudOpsBench 評測 AI 代理處理雲端維運任務的能力</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">新開源基準 CloudOpsBench 涵蓋修復服務、移除資源、調整存取權限、部署更新與停用專案等 DevOps 工作，用來評估 AI 代理在雲端操作中的表現。研究指出，推理能力是目前的主要瓶頸，但候選消息未列出具體分數。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>CloudOpsBench 提供 45 項 AWS 雲端維運任務，評估 AI 代理修復服務、調整權限、部署更新及除役等操作，並在真實 AWS 與模擬器中執行相同任務。</dd>
+      <dt>能做什麼</dt><dd>可用於比較雲端維運代理的任務完成率與失敗模式，特別是檢查代理是否判斷正確任務範圍、查全相關服務並避免危險操作。</dd>
+      <dt>能否試用</dt><dd>GitHub 專案已公開，採 Apache 2.0。 <a href="https://github.com/CloudOpsBench/CloudOpsBench" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>目前第一版僅含 AWS 任務；即使表現最佳的模型也只完成 60%，且部分錯誤可能造成不可逆的基礎設施影響；GCP、Azure、OCI 支援仍在規劃中。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.ithome.com.tw/news/180198" target="_blank" rel="noopener">
+    <b>多起 AI 開發平台資安事件涉及客戶金鑰遭竊</b>
+    <span class="source">iThome</span>
+    <span class="text">Wiz 調查指出，部分遭入侵平台上的環境變數與敏感憑證可能外洩，遭竊的 AI 服務金鑰可被用來未經授權呼叫模型。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180220" target="_blank" rel="noopener">
+    <b>Postman 外掛安裝與 Codex Hook 核准流程引發授權疑慮</b>
+    <span class="source">iThome</span>
+    <span class="text">使用者指出 Postman 桌面版可能未經明確同意便替 Codex 與 Claude Code 安裝外掛，並嘗試代為核准 Codex Hook；Postman 表示將檢討同意與核准機制。</span>
+  </a></li>
+  
+  <li><a href="https://www.qbitai.com/2026/11/507533.html" target="_blank" rel="noopener">
+    <b>openJiuwen 推出長影片視聽雙流記憶，宣稱問答延遲最高降 97%</b>
+    <span class="source">量子位</span>
+    <span class="text">openJiuwen 發布 Agent-Memory，主打整合長影片的視覺與音訊記憶，並宣稱問答延遲最高可降低 97%。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-04.html">← 2026-11-04</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
