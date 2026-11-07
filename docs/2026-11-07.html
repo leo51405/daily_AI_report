@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-07</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-07 星期六</h1>
+  <div class="meta">從 116 則新聞中精選 14 則 · 更新於 09:53</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.ithome.com.tw/news/180285" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1106-gpt-6_cyber-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.ithome.com.tw/news/180285" target="_blank" rel="noopener"><h2>OpenAI 發表 GPT-6 Cyber，稱已找出 Firefox 81 個高風險漏洞</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 推出專為資安研究設計的 GPT-6 Cyber；據報導，該模型在 Firefox 找出 81 個先前未知的高風險漏洞，並為 Linux 核心 948 個漏洞產生可運作的攻擊程式。這些數字來自候選新聞的報導，漏洞與攻擊程式的驗證狀態仍須留意。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>GPT-6 Cyber 在 ExploitGym 利用測試得分 48.5%，並在 Firefox 與 Linux 核心研究中找出大量漏洞、產生可運作的攻擊程式，能力較前代提升。</dd>
+      <dt>能做什麼</dt><dd>可供資安研究人員分析大型程式碼庫、驗證漏洞及測試提權風險；原文也提到可用於漏洞修補研究。</dd>
+      <dt>能否試用</dt><dd>目前僅透過 API 及 Codex 提供給部分經核准的 Daybreak Red 客戶，未提及程式碼或模型權重釋出。</dd>
+      <dt>限制</dt><dd>存取受限且 OpenAI 將其資安能力風險列為 Critical；Linux 核心測試約耗用 121 萬美元 API 額度，測試結果不代表所有環境。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">iThome · OpenAI發表GPT-6 Cyber，找出Firefox 81個未知高風險漏洞</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/ripple-65b-preview-delivers-strong-agentic-coding-results-as-a-fully-apache-2-0-open-us-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/ricurisve_intelligence.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Ripple-65B Preview 主打開源代理式程式設計能力</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Ricursive Intelligence 發布 650 億參數開放權重模型 Ripple-65B Preview，稱其在 TerminalBench 2.1 的開源美國模型中排名第一，研發成本約 3,200 萬美元。其他基準測試表現則不全然領先，分數仍應搭配各項評測結果解讀。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Ripple-65B Preview 是 650 億參數的稠密 Transformer，主打代理式程式設計；公司稱其 TerminalBench 2.1 得分 80.52，在開放權重的美國模型中領先。</dd>
+      <dt>能做什麼</dt><dd>可用於程式碼任務與代理式開發流程，並可部署在使用者自有硬體上；模型針對 Nvidia 硬體最佳化。</dd>
+      <dt>能否試用</dt><dd>已在 Hugging Face 釋出，採 Apache 2.0 授權。 <a href="http://huggingface.co/ricursiveAI/Ripple-65B-Preview" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>文中指出它在其他基準表現不及 Inkling 2 Small；硬體需求與正式環境可靠度原文未提及，基準成績為公司所述。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/05/thinking-machines-inkling-2-small-release/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-12-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Thinking Machines 推出 594B MoE 模型 Inkling 2 Small</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Inkling 2 Small 採 5,940 億總參數、每次啟用 170 億參數的 MoE 架構；公司稱其 Artificial Analysis Intelligence Index 得分為 31。模型可透過 Tinker 執行，Apache 2.0 權重則仍是預計推出。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Inkling 2 Small 是總計 594B、啟用 17B 參數的稀疏 MoE，支援文字與圖片輸入、可調推理強度及 100 萬 token 上下文。</dd>
+      <dt>能做什麼</dt><dd>可透過 Tinker API 用於代理式程式設計、視覺理解與知識工作，也可在 Tinker 上微調及推論。</dd>
+      <dt>能否試用</dt><dd>目前可在 Tinker 使用；上線時權重未開放，Thinking Machines 計畫通過外部安全測試與紅隊測試後，以 Apache 2.0 釋出。 <a href="https://github.com/thinking-machines-lab/tinker-cookbook" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>目前只能透過 Tinker API 使用，硬體需求未公開且不支援音訊；Terminal-Bench 4.0 得分偏低，部分效能數據來自實驗室基準。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/06/zyphra-zyfa-fp8-flashattention-amd-mi355x/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-13-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>ZYFA 為 AMD MI355X 提供開源 FP8 FlashAttention 核心</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Zyphra 開源適用於 AMD Instinct MI355X 的 FP8 與 BF16 prefill attention kernels。在真實模型 activations 上，FP8 kernels 相較 AMD AITER 快 1.16 至 1.76 倍，head dimension 128 時誤差降低 62% 至 78%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>METR 的稽核指出，Anthropic 模型能力提升速度約為先前的 1.9 倍，並估計約 80% 的加速與 AI 協助內部研究有關。</dd>
+      <dt>能做什麼</dt><dd>可供 AI 安全與研發團隊評估 AI 輔助研究是否加速模型能力成長，並作為監測研發風險的參考。</dd>
+      <dt>能否試用</dt><dd>這是 METR 的研究與稽核結果，不是可試用的模型或工具；原文未提及程式碼、模型權重或 API。</dd>
+      <dt>限制</dt><dd>Anthropic 刪除了多數關鍵證據；METR 表示加速幅度可能介於 1.3 至 3 倍，且員工生產力自評證據較不可靠。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/metr-finds-anthropic-may-have-crossed-its-own-ai-acceleration-warning-threshold-back-in-july/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/METR-Anthropic-Report.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>METR：AI 輔助研究可能使 Anthropic 模型研發速度約翻倍</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">METR 花 11 週稽核 Anthropic 內部研究資料，估計模型研發速度大約加快一倍，其中約 80% 的提升來自 AI 輔助研究。Anthropic 遮蔽了最關鍵的部分證據，因此這項估計仍有重要資訊無法公開檢驗。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Vals 的模擬網路測試顯示，開放權重模型 DeepSeek 的多步驟網路攻擊任務完成率已接近受限使用的頂尖專有模型。</dd>
+      <dt>能做什麼</dt><dd>可提醒防禦團隊在企業網路演練與威脅建模時，將開放權重模型可協助執行多步驟攻擊納入假設。</dd>
+      <dt>能否試用</dt><dd>文章報導的是 Vals 的測試結果；測試所用模型的具體版本、程式碼、權重取得方式與授權原文未提及。</dd>
+      <dt>限制</dt><dd>結果來自兩種模擬企業網路情境，不等同真實攻擊成效；文中也指出，現實攻擊者常使用較舊或較低成本的模型。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.wired.com/story/free-chinese-ai-models-are-getting-scary-good-at-hacking/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 234">
+  <span class="fallback">Wired</span>
+  <img src="https://media.wired.com/photos/6aebae965d3f8b6dd99468be/master/pass/Security_Open-WeightAIModels.gif" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>測試顯示 DeepSeek、GLM 的網路攻擊能力接近頂尖專有模型</h3>
+    </a>
+    <div class="source">Wired</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Wired 報導的一項模擬網路入侵實驗中，DeepSeek 與 GLM 模型展現的駭侵能力已不遠於 OpenAI 最強、尚未公開的資安模型。結果反映的是特定模擬環境下的測試，不等同於真實攻擊成效。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Teammates 與一次性任務代理不同，可在各自的虛擬機、桌面與瀏覽器中持續處理進行中的工作，並透過專屬討論串或 Slack 追蹤互動。</dd>
+      <dt>能做什麼</dt><dd>適合交辦需要持續跟進的工作，例如在虛擬機中操作瀏覽器、處理長期專案任務。</dd>
+      <dt>能否試用</dt><dd>可透過 Perplexity 使用，但須訂閱每月 200 美元的 Max 方案；程式碼、模型權重與 API 資訊原文未提及。</dd>
+      <dt>限制</dt><dd>價格門檻高；代理使用量可能受到限制，但文章未提供 Teammates 的具體用量上限或工作能力範圍。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/perplexity-now-has-its-own-always-on-ai-agent/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/perplexity.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Perplexity 推出可在虛擬機持續工作的 Teammates 代理</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Perplexity 推出 Teammates，讓 AI 代理在自己的虛擬機中持續處理專案，而非只在單次對話中回應。功能需訂閱每月 200 美元的 Max 方案，顯示長時間自主代理正成為產品新形態。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Mirage 將場景描述、物件偵測、OCR、分割與空間關係等視覺能力整合在 22 MB 權重檔中，並以結構化觀察輔助文字模型回答圖片問題。</dd>
+      <dt>能做什麼</dt><dd>可評估用於手機、穿戴裝置或機器人的端側視覺；也可把 Mirage 的結構化輸出交給小型文字模型，測試低成本視覺問答流程。</dd>
+      <dt>能否試用</dt><dd>作者稱模型已發布，並提供 Galaxy S26 的端側效能測試；權重下載方式、程式碼與授權原文未提及，內文提到有 Mirage playground。</dd>
+      <dt>限制</dt><dd>VQA 結果僅測試 256 題，且文字模型可能受輸出格式影響；Mirage 本身也有漏辨物件的案例，結構化觀察的效益不一定適用所有模型。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xpm8mw/mirage_a_22_mb_visuallanguage_model_that_runs/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://preview.redd.it/yeo2x908i10i1.png?width=140&amp;height=110&amp;auto=webp&amp;s=94897cf505e279ff8a9a290bf6a074bc96a95bd7" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Mirage 以 22 MB 權重檔整合多種視覺任務</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Cactus Compute 發布輕量視覺語言模型 Mirage，稱 22 MB 權重即可在單次處理中執行場景描述、物件偵測、OCR、分割、空間關係分析與判斷。產品定位為手機、穿戴裝置與機器人等邊緣裝置；候選資料未提供獨立基準測試數字。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Meta Muse 的 Spaces 可依文字描述建立可互動的應用式介面，並在連接外部服務後持續更新其中的資訊；使用者也能編輯內容與調整顯示位置。</dd>
+      <dt>能做什麼</dt><dd>可在 Muse 中建立購物整理、學校儀表板、音樂追蹤器或每週規劃工具，並串接 Gmail、Google Calendar、Notion 等服務。</dd>
+      <dt>能否試用</dt><dd>Meta 正向所有 Muse 使用者推出 Spaces；程式碼、模型權重與獨立 API 原文未提及。</dd>
+      <dt>限制</dt><dd>功能依賴 Muse 及已連接的外部服務；跨使用者分享與協作仍在研究中，資料處理與權限細節原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.theverge.com/tech/1028871/meta-muse-ai-spaces" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 85">
+  <span class="fallback">The Verge</span>
+  <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/11/meta-muse-spaces.png?quality=90&amp;strip=all&amp;crop=8.0752843063528,0,91.924715693647,74.471659887186" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Meta Muse 可依需求生成可互動的自訂 Spaces</h3>
+    </a>
+    <div class="source">The Verge</div>
+    
+
+<p class="summary">Meta 在 Muse 助理中推出 Spaces，使用者可建立購物中心、課程儀表板、音樂追蹤器或問答遊戲等應用式介面，並直接在 Muse 中互動。這讓代理從回答問題延伸到生成可操作的專屬工具。</p>
+
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/" target="_blank" rel="noopener">
+    <b>SageMaker Inference 支援 NVIDIA MIG 切分 GPU</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">Amazon SageMaker Inference 新增 Multi-Instance GPU 支援，可將單張 GPU 切成具硬體隔離的區塊，讓不同模型共用加速器或配置合適的運算資源。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/42845-anthropic-claude-personal-finance-plaid-beta" target="_blank" rel="noopener">
+    <b>Claude 個人理財 Beta 可唯讀連結銀行與信用卡帳戶</b>
+    <span class="source">INSIDE</span>
+    <span class="text">Claude Personal Finance 透過 Plaid 以唯讀權限連結帳戶，最多可讀取兩年交易紀錄，並先向美國 Pro、Max、Ultra 用戶推出。</span>
+  </a></li>
+  
+  <li><a href="https://techcrunch.com/2026/11/06/underdog-shows-off-a-32mb-speech-model-in-new-demo/" target="_blank" rel="noopener">
+    <b>Underdog 展示可生成語音與音樂的 32 MB 模型</b>
+    <span class="source">TechCrunch</span>
+    <span class="text">Underdog 展示一款僅 32 MB 的語音模型，除了語音生成，也能產生音樂。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.06977" target="_blank" rel="noopener">
+    <b>BlockLock 提出固定批次形狀的可重現 LLM 推論方法</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">這篇研究提出 BlockLock，利用固定 batch geometry 改善同一請求在不同批次組成下的推論一致性，並試圖降低逐算子採用 batch-invariant kernels 的成本。</span>
+  </a></li>
+  
+  <li><a href="https://openai.com/index/partnering-with-hacktron" target="_blank" rel="noopener">
+    <b>OpenAI 與 Hacktron 合作測試系統與第三方服務連線安全</b>
+    <span class="source">OpenAI</span>
+    <span class="text">OpenAI 將與 Hacktron 合作尋找自身系統漏洞、測試第三方服務連線並強化防禦，公告尚未公布測試成果。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-06.html">← 2026-11-06</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
