@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-09</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-09 星期一</h1>
+  <div class="meta">從 56 則新聞中精選 12 則 · 更新於 09:42</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://the-decoder.com/ai-coding-agents-still-need-human-cleanup-on-nearly-three-out-of-four-tasks-in-a-real-world-test/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/co-design-bench-nano-banana-pro.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://the-decoder.com/ai-coding-agents-still-need-human-cleanup-on-nearly-three-out-of-four-tasks-in-a-real-world-test/" target="_blank" rel="noopener"><h2>真實失敗案例揭露 AI 程式代理落差：完整解題率僅 26.4%</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">阿里巴巴推出 Co-Design Bench，以使用者實際提出、曾讓程式代理失手的需求測試代理能力。最佳模型 GPT-6 Astra 完整解決率只有 26.4%，但同一批模型在傳統基準測試的分數超過 99%，顯示測試資料與真實開發任務之間仍有明顯落差。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Co-Design Bench 以真實使用者的程式修改需求測試代理，並涵蓋圖片、音訊、影片及文件等輸入；比起已接近飽和的舊基準，更強調需求是否完整落實到可運作的應用程式。</dd>
+      <dt>能做什麼</dt><dd>可用來比較程式代理在真實專案修改中的完整解題能力，並應把模型與執行環境（harness）配對評估。</dd>
+      <dt>能否試用</dt><dd>arXiv 論文可取得；基準資料、程式碼或 API 是否公開，原文未提及。 <a href="https://arxiv.org/abs/2610.35138" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>最佳模型平均只滿足約 70% 需求，完整正確率為 26.4%；測試只包含固定需求，AI 評審也可能出錯，且不同 harness 會大幅影響結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">The Decoder · AI coding agents still need human cleanup on nearly three out of four tasks in a real-world test</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/07/nous-research-arete-27b-qwen3-8-27b-propaganda-fine-tune/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-15-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Nous Research 發布 Arete-27B：自家測試中的宣傳式回答降至 0.9%</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Arete-27B 是以 Qwen3.8-27B 微調的 Apache 2.0 模型。Nous Research 在 803 題自建評測中，宣傳式回答比例從基礎模型的 22% 降至 0.9%，Hermes Bench 分數則維持在 65.60%；結果目前仍以團隊自建評測為主。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Arete-27B 是以 Qwen3.8-27B 進行監督式微調的開放權重模型，目標是降低回答採用中國官方敘事的情形，同時維持原有能力。</dd>
+      <dt>能做什麼</dt><dd>可供需要本機部署、希望減少特定政治敘事影響的開發者測試，也可用公開資料與評測集重現或延伸其評估。</dd>
+      <dt>能否試用</dt><dd>模型權重與訓練資料已公開，模型採 Apache 2.0；評測集採 MIT。BF16 權重約 53.81 GB，另有社群量化版本；原文稱尚無代管推論服務。 <a href="https://huggingface.co/NousResearch/Arete-27B" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>宣傳式回答比例與能力表現來自 Nous 自家的有限評測；803 題評測中仍有 216 個回答事實分數為 0，且不同模型的部分基準使用不同環境或設定。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xr2aaa/tencentqwen3827bdspineb16_hugging_face/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://external-preview.redd.it/lNifT7TrJMRI87N4wsxmI0Gg7py-FiZ5PuifI5jM38Q.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=076c14d3281a31ba3559272f90db87087119bb9c" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>騰訊據報推出 Qwen3.8-27B 推測解碼方案，宣稱解碼速度提升 3 倍</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">社群貼文指出，騰訊開發了搭配 Qwen3.8-27B 的新推測解碼方法，宣稱可讓解碼速度提升 3 倍。候選資訊未提供測試設定與比較基準，實際效能仍待原始技術資料或獨立測試確認。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>貼文稱有一種針對 27B 模型的推測解碼方法，宣稱解碼速度可提升 3 倍；方法細節與比較基準原文未提及。</dd>
+      <dt>能做什麼</dt><dd>若數據成立，可用於降低大型模型生成延遲；具體工程情境原文未提及。</dd>
+      <dt>能否試用</dt><dd>是否公開程式碼、模型、API 或展示，原文未提及。</dd>
+      <dt>限制</dt><dd>目前只有 Reddit 貼文中的說法，缺少方法、硬體、測試條件與結果細節，無法判斷提升是否可重現。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://technews.tw/2026/11/09/ai-aids-combating-superviruses/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 136">
+  <span class="fallback">科技新報</span>
+  <img src="https://img.technews.tw/wp-content/uploads/2022/01/20141720/shutterstock_1287396223-e1642659479153.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google DeepMind 將 AI 用於抗微生物藥物抗藥性研究</h3>
+    </a>
+    <div class="source">科技新報</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google DeepMind 正把 AI 技術導入抗微生物抗藥性（AMR）研究，目標是協助應對細菌對現有藥物產生抗性的問題。候選資訊未列出模型、實驗方法或量化成果，技術進展細節仍需後續資料補充。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>文章描述 DeepMind 將結構生物學、生成式模型及 ProtNLM 用於分析未充分註解的蛋白質，以尋找潛在藥物標的；可用工具相較之下多了協助標記候選標的的能力。</dd>
+      <dt>能做什麼</dt><dd>可供抗菌藥物研究者探索蛋白質資料、評估結構並尋找可能的藥物標的；具體流程與實際成果原文未提及。</dd>
+      <dt>能否試用</dt><dd>ProtNLM、相關模型或平台是否可供外部試用，原文未提及。</dd>
+      <dt>限制</dt><dd>文章未提供模型效能、實驗驗證結果、硬體需求、成本或授權資訊；能否轉化為有效療法原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://technews.tw/2026/11/09/ai-agent-swarms-minecraft-experiment/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 136">
+  <span class="fallback">科技新報</span>
+  <img src="https://img.technews.tw/wp-content/uploads/2026/11/02115204/minecraft-agent-harness.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>50 個 AI 代理在《Minecraft》嘗試建設文明，卻受官僚流程拖累</h3>
+    </a>
+    <div class="source">科技新報</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">YC 與 Olam Labs 讓 50 個 AI 代理在《Minecraft》中合作建立繁榮社群，觀察多代理協作如何演變。實驗中的代理群體陷入官僚式流程而未能成功，呈現群體代理在協調與決策上的實際瓶頸。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>以 Minecraft 與 Mindustry 作為多代理協作和對抗的測試場，觀察大量代理人如何分工、溝通及處理突發狀況；文章稱相關代理群體與測試環境已開源。</dd>
+      <dt>能做什麼</dt><dd>可用來研究多代理系統的協作、任務分派、故障處理與群體規模變化，也可作為代理 harness 的實驗環境。</dd>
+      <dt>能否試用</dt><dd>GitHub 上提供 Minecraft agent harness；文章稱測試環境與代理群體已開源，授權條款原文未提及。 <a href="https://github.com/yc-software/minecraft-agent-harness" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>結果來自特定遊戲、模型與場次，不能直接代表真實世界任務；文章也未提供授權與正式部署驗證資訊。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xrathc/how_much_code_do_ai_models_and_harnesses_add_i/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://preview.redd.it/ige03af8qg0i1.png?width=140&amp;height=106&amp;auto=webp&amp;s=efa14b0e1128dc1105c90078da718e76a4c91958" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>開源 Parsimony 基準測量 AI 程式碼的冗長與過度設計</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Parsimony 是一個開源基準，試圖補足既有測試只看解題率與 token 成本、較少衡量程式碼複雜度的不足。它會計算程式碼修改中的語法單位，讓評測能比較模型或代理是否以過度冗長的實作換取通過測試。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Parsimony 用語法單位衡量程式碼補丁相對於人類修正的冗長程度，補足只看解題率或 token 成本、未衡量過度設計的基準。</dd>
+      <dt>能做什麼</dt><dd>可用來比較不同模型或 harness 產生的補丁是否比人工修正更冗長，協助評估程式碼代理帶來的維護負擔。</dd>
+      <dt>能否試用</dt><dd>內文提供 Parsimony 網站與 GitHub 專案連結，並稱其為開源基準；授權條款原文未提及。</dd>
+      <dt>限制</dt><dd>結果依賴已公開的補丁與特定基準，部分較新模型的資料標為未驗證；語法單位數量也不等同程式碼品質或實際技術債。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180295" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_217_-_intelligent_terminal_sidebar_brin_-_devblogs.microsoft.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Microsoft Intelligent Terminal 0.3 新增背景執行模式</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Intelligent Terminal 0.3 加入 Headless Mode，讓 AI 代理任務與程式編譯等長時間工作在背景持續執行，即使使用者關閉終端機視窗也不會中斷。這讓開發者可以把代理工作交由終端工具執行，而不必一直保持互動視窗開啟。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Intelligent Terminal 0.3 新增背景執行模式，關閉終端機視窗後仍可保留執行中的工作，並加入集中查看代理狀態與工作階段的側邊欄。</dd>
+      <dt>能做什麼</dt><dd>適合在 Windows 上讓 AI 程式代理或編譯等長時間工作於視窗關閉後繼續執行，並從系統匣找回工作介面。</dd>
+      <dt>能否試用</dt><dd>0.3 已透過 GitHub 與 Microsoft Store 提供下載；原文指出產品仍處於實驗性階段，授權原文未提及。 <a href="https://github.com/microsoft/intelligent-terminal/releases/tag/v0.3" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>背景工作無法在電腦重新開機或應用程式完全結束後繼續；產品仍屬實驗性。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://technews.tw/2026/11/09/magnetic-material-breakthrough-reduces-chip-power-consumption/" target="_blank" rel="noopener">
+    <b>布朗大學研究嘗試解決多鐵材料晶片的微縮瓶頸</b>
+    <span class="source">科技新報</span>
+    <span class="text">布朗大學團隊提出解決多鐵材料「死層」問題的方法，目標是讓這類材料能用於更低功耗的晶片。</span>
+  </a></li>
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xr97iz/resurrecting_2013_ewaste_native_cuda_mamba1/" target="_blank" rel="noopener">
+    <b>社群專案讓較舊 NVIDIA GPU 執行新版 CUDA 與 PyTorch</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">一項 Windows 專案嘗試支援 SM 3.5 至 7.5 的舊款 NVIDIA GPU，並移植 PyTorch 2.7.1 等現代 AI 軟體堆疊。</span>
+  </a></li>
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xr78s5/intel_arc_pro_b70_32gb_1299_vs_nvidia_rtx_5090/" target="_blank" rel="noopener">
+    <b>社群實測 Intel Arc Pro B70：Qwen3.8-27B 推論約為 RTX 5090 的一半速度</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">使用者實測指出，32GB 的 Arc Pro B70 在 Qwen3.8-27B 生成速度約為 RTX 5090 的一半、預填充約三分之一，並分享了最佳化後的設定。</span>
+  </a></li>
+  
+  <li><a href="https://the-decoder.com/andrej-karpathy-built-a-curated-video-platform-in-a-weekend-using-claude-and-20-years-of-hacker-news/" target="_blank" rel="noopener">
+    <b>Karpathy 用 Claude 篩選 4,300 萬則 Hacker News 留言，整理出 6,454 部影片</b>
+    <span class="source">The Decoder</span>
+    <span class="text">Andrej Karpathy 使用 Claude Opus 5.5 從 20 年、約 4,300 萬則 Hacker News 留言中整理出 6,454 部影片，打造個人化影片探索平台。</span>
+  </a></li>
+  
+  <li><a href="https://www.wired.com/story/nyt-cooking-new-ai-powered-recipe-modifier-is-pretty-good/" target="_blank" rel="noopener">
+    <b>《紐約時報》Cooking App 測試 AI 食譜調整功能</b>
+    <span class="source">Wired</span>
+    <span class="text">新功能可協助使用者替換食材或依需求調整食譜，目前以測試版形式提供。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-08.html">← 2026-11-08</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
