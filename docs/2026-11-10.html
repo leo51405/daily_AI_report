@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-10</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-10 星期二</h1>
+  <div class="meta">從 145 則新聞中精選 12 則 · 更新於 12:05</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://the-decoder.com/claude-fable-5-2-and-mythos-5-2-cement-anthropics-ai-lead-just-before-its-ipo/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/fable_52_sand.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://the-decoder.com/claude-fable-5-2-and-mythos-5-2-cement-anthropics-ai-lead-just-before-its-ipo/" target="_blank" rel="noopener"><h2>Anthropic 推出 Claude Fable 5.2 與 Mythos 5.2，強化程式、推理與資安能力</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 發布兩款新模型，稱其在程式撰寫、推理與視覺能力上提升；報導並指出，模型能解開未解物理問題、設計可運作的作業系統，並展現更強的資安能力。產品分為一般可用版本與僅供驗證組織使用的版本，讓高能力模型的存取受到限制。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Fable 5.2 與 Mythos 5.2 強化高難度程式、推理與資安工作，並在 Anthropic 所述測試中以多代理完成費馬最後定理的 Lean 形式化證明。相較前代，官方稱輸出速度最高提升 30%，且 Mythos 找出更多漏洞並更能重現、修補漏洞。</dd>
+      <dt>能做什麼</dt><dd>可用於高難度程式開發、科學工作流程與形式化數學；Mythos 也適合經核准的資安漏洞研究與修補。</dd>
+      <dt>能否試用</dt><dd>Fable 已提供所有使用者，Mythos 須向 Anthropic 資安或生命科學驗證計畫申請；價格為每百萬輸入 token 8 美元、輸出 token 40 美元。原文未提及授權方式。</dd>
+      <dt>限制</dt><dd>高運算等級每項任務平均成本為 26.50 美元，且 Fable 會阻擋多數資安相關任務；效能與漏洞成果主要依 Anthropic 及指定基準測試，原文未提及獨立驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">The Decoder · Claude Fable 5.2 and Mythos 5.2 cement Anthropic&#39;s AI lead just before its IPO</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/meta-launches-muse-ember-a-small-ai-model-built-for-the-repetitive-work-agents-actually-do/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Meta 推出 Muse Ember 小模型，瞄準 Agent 重複性任務</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Muse Ember 是 Meta 面向工具呼叫、路由與資料擷取等重複性 Agent 工作打造的小型模型。Meta 主打其每美元推理效能，報導所列輸入價格為每百萬 Token 0.1 美元；但在較複雜的實際任務上仍有侷限。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Muse Ember 是 Meta 目前最小、效率最高的模型，主打 Agent 日常工具呼叫、請求分流、資料擷取及小型程式任務，並支援文字、圖片、音訊、影片與最多 100 萬 token 脈絡。</dd>
+      <dt>能做什麼</dt><dd>可用於 Agent 工作流程中的工具路由、長文件處理、資料擷取，以及成本敏感的重複性任務。</dd>
+      <dt>能否試用</dt><dd>已透過 Meta Model API 與 Muse Code 提供，價格為每百萬輸入 token 0.10 美元、輸出 token 0.50 美元；原文未提及授權方式。</dd>
+      <dt>限制</dt><dd>Artificial Analysis 測試中每項任務成本約 0.14 美元，但真實程式任務測試落後 Claude Haiku 5.5；原文未提及硬體需求或授權細節。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180340" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_221_-_introducing_images_2.6_-_openai_-_openai.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI Images 2.6 加入 GIF 生成與 SVG 輸出</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Images 2.6 可依文字指令生成循環播放的 GIF，也能將手繪草圖轉為動畫角色；API 可設定 2 至 16 格影格及各格顯示時間，並新增 SVG 輸出與編輯控制。OpenAI 表示生成速度較前代快 50%，功能已在 ChatGPT、Codex 與 API 推出，GIF 功能正逐步開放。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Images 2.6 新增循環 GIF 生成、SVG 輸出與 API 圖片標註編輯，並以複雜度參數控制生成前的規劃程度；官方稱生成速度提升 50%。</dd>
+      <dt>能做什麼</dt><dd>可用於製作品牌吉祥物動畫、產品展示 GIF、社群貼圖，以及產生網站圖示或插畫，並透過標註圖層指定局部修改。</dd>
+      <dt>能否試用</dt><dd>已在 ChatGPT、Codex 與 API 提供，兩款 API 模型為 Flare 與 Sunburst；ChatGPT 的 GIF 功能正逐步開放。原文未提及授權方式。</dd>
+      <dt>限制</dt><dd>單段 GIF 限 2 至 16 格；SVG 目前僅支援圖片生成端點，不能透過圖片編輯端點產生。複雜度提高可能增加生成時間。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/bytedances-seedream-5-5-promises-pixel-stable-image-editing-across-100-rounds-without-color-drift/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/seedance_examples-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Seedream 5.5 主打最多 100 輪穩定影像編修</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">字節跳動 Seed 推出面向專業製作流程的影像模型 Seedream 5.5，支援多輪編修，最多可進行 100 次迭代並維持色彩穩定。模型也能原生輸出透明背景 RGBA 影像；其優於 GPT-Image-2.5 的說法則是字節跳動公布的結果。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Seedream 5.5 主打最多 100 輪的穩定影像編修，聲稱能以像素層級保留未修改區域，並可原生輸出透明背景 RGBA 圖片。</dd>
+      <dt>能做什麼</dt><dd>適合需要反覆修改、維持品牌或角色外觀一致的專業影像製作流程，也可直接生成透明背景設計素材。</dd>
+      <dt>能否試用</dt><dd>正透過 Jimeng、Doubao、Doubao Work 與 Volcengine Ark 逐步推出，Pro 版尚在規劃；原文未提及授權方式。</dd>
+      <dt>限制</dt><dd>畫質、文字結構與編修穩定性的優勢為 ByteDance 的說法，原文未提供獨立基準測試或具體成效數據。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/09/baidu-ernie-evolve-automated-research-system/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-21-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>百度 ERNIE Evolve 以自動實驗搜尋模型效能提升</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">ERNIE Evolve 能修改程式、執行實驗，並只保留經驗證的效能改進。百度表示，系統刷新 NanoChat 與 NanoGPT Speedrun 的公開最佳成績，也加速了 ERNIE-5.5-Flash 推論。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>ERNIE Evolve 以雙層迴圈讓 Agent 自動選研究方向、修改訓練或推論程式並執行實驗，再透過隱藏評估器與審查者篩選變更。</dd>
+      <dt>能做什麼</dt><dd>可用於有固定目標與可重複評估流程的工程專案，例如自動尋找推論延遲、吞吐量或訓練效能的程式最佳化方案。</dd>
+      <dt>能否試用</dt><dd>自動研究系統本身未釋出，GitHub 僅公開結果與日誌；原文未提及授權方式。 <a href="https://github.com/ernie-research/ERNIE-Evolve-Results" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>測試使用 1 張 B200 或 8 張 H100，生產測試的 GPU 型號未披露；結果為百度自述，部分公開基準領先幅度有限，SOL-ExecBench 也未達榜首。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180336" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/tpu-8tx_and_8i-max-googleti_gong_.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 推出 TPU 8tx 機密運算與雙晶片 TPU 8i Max</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 擴充第八代 TPU 系列：TPU 8tx 可在資料處理期間保護敏感資料，TPU 8i Max 則將兩顆 TPU 8i 封裝在單一晶片模組上，面向長上下文與 Agent 推論。這是 Google 一年內推出的第四款 TPU；報導指出產品預計 2027 年供應。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>TPU 8tx 在 TPU 8t 系統上加入資料傳輸與處理加密，TPU 8i Max 則將兩顆 8i 整合，提升記憶體容量、頻寬與並行吞吐量。</dd>
+      <dt>能做什麼</dt><dd>8tx 面向需要保護模型權重、提示詞與企業資料的機密訓練或推論；8i Max 面向大量 Agent 同時處理長脈絡、文件與郵件的工作負載。</dd>
+      <dt>能否試用</dt><dd>原文未提及 TPU 8tx 或 8i Max 的供應與試用方式；文中另提到 TorchTPU 為開源專案，但未提供相關連結或授權資訊。</dd>
+      <dt>限制</dt><dd>系統建置在 Google TPU 上，8tx 的地端部署僅提及可由特定企業採用；原文未提及價格、供應時程或獨立效能測試。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180337" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_220_-_inside_githubs_new_git_storage_a_-_github.blog_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>GitHub 新儲存架構 Rubicon 壓測達每秒 7,200 次推送</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">GitHub 公布新一代 Git 儲存架構 Rubicon，目標是支援大量 AI Agent 同時操作同一個程式碼儲存庫。官方內部測試稱系統可讓 5,000 個 Agent 同時作業、每秒處理 7,200 次推送，讀取延遲仍維持低水準；目前僅有限度私人預覽。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Rubicon 將 Git 儲存、讀寫運算與分支參照更新拆開，讓不同代理可並行更新各自分支，並將資料維護工作移出讀寫節點。</dd>
+      <dt>能做什麼</dt><dd>可支援高流量程式碼儲存庫中大量 AI Agent 同時推送變更，並降低合併整理或垃圾回收對讀取與寫入的干擾。</dd>
+      <dt>能否試用</dt><dd>目前僅提供有限私人預覽；原文未提及授權方式。</dd>
+      <dt>限制</dt><dd>每秒 7,200 次推送與 5,000 個代理的數據來自 GitHub 內部測試，尚非公開可用的普遍效能結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180347" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_223_-_golands_profiler_now_works_with_-_blog.jetbrains.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>GoLand 2026.3 開放效能分析器供 AI Agent 操作</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">JetBrains 新版 GoLand 讓 AI Agent 能依開發者描述啟動程式、收集效能資料，並定位 CPU、記憶體或 API 回應速度的瓶頸。工具目前支援 Claude Code、Codex 與 Junie，讓 Agent 可直接參與 Go 程式的效能診斷。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v2">值得用進專案</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>GoLand 2026.3 讓 AI Agent 能透過內建技能與 MCP 工具操作效能分析器，依 CPU、阻塞、鎖競爭或記憶體問題擷取資料並定位程式碼。</dd>
+      <dt>能做什麼</dt><dd>Go 服務或背景工作程式出現回應變慢、CPU 過高、記憶體持續增加時，可讓 Agent 蒐集剖析資料並提出改善建議，再由開發者透過火焰圖核對。</dd>
+      <dt>能否試用</dt><dd>GoLand 2026.3 已發布，支援 Claude Code、Codex 與 Junie；原文未提及授權或價格細節。</dd>
+      <dt>限制</dt><dd>效能分析器須在編譯時修改執行檔，不能直接附加至未以效能分析模式啟動的程式；較適合長時間運作的程式，不適合執行後立即結束的命令列工具。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://arxiv.org/abs/2611.08639" target="_blank" rel="noopener">
+    <b>研究指出，多選題格式可能降低模型拒答率</b>
+    <span class="source">arXiv cs.CL</span>
+    <span class="text">一篇研究以 WMDP 安全評測為例，探討要求模型選擇特定字母如何抑制拒答，提醒多選題測試可能低估模型的安全風險。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.08684" target="_blank" rel="noopener">
+    <b>研究警告：逾時重試可能讓過載的 LLM 引擎更難恢復</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">研究指出，即使請求逾時後客戶端已重試或取消，推論引擎仍可能繼續處理原工作，使短暫過載演變成持續性壅塞。</span>
+  </a></li>
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xs8hfw/free_opensource_voice_typing_for_any_app_on/" target="_blank" rel="noopener">
+    <b>開源手機語音輸入工具可離線執行 Parakeet 0.6B</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">ThumbFree 將 NVIDIA Parakeet 0.6B 語音模型放在 Android 與 iPhone 本機執行，完成模型下載後即可離線語音輸入，不必將音訊送往伺服器。</span>
+  </a></li>
+  
+  <li><a href="https://www.marktechpost.com/2026/11/08/0sec-labs-open-sources-0-ai-security-harness/" target="_blank" rel="noopener">
+    <b>0sec Labs 開源支援 CLI、網頁介面與 MCP 的 AI 資安工具</b>
+    <span class="source">MarkTechPost</span>
+    <span class="text">開源工具 0 提供程式碼審查、滲透測試與逆向分析等功能，可透過瀏覽器介面、CLI 或 MCP 使用，並能連接使用者自選的模型供應商。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-09.html">← 2026-11-09</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
