@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-12</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-12 星期四</h1>
+  <div class="meta">從 160 則新聞中精選 15 則 · 更新於 10:56</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.ithome.com.tw/news/180430" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_228_-_-_deepmind.google.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.ithome.com.tw/news/180430" target="_blank" rel="noopener"><h2>DeepMind 以 AI 代理形式化驗證 Signal 核心程式庫</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">DeepMind 以 AlphaProof Code 驗證 Signal 的 libsignal，將安全性證明延伸至編譯後的機器碼，涵蓋前向保密、身分驗證及入侵後安全性恢復。5 名研究人員與 AI 代理合作，4 週內產生約 650 萬行 Lean 證明程式碼，讓原本可能耗時數年的驗證工作大幅加速。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>相較於驗證抽象協定或修改過的程式，此研究直接驗證未修改的 Rust 版 libsignal 編譯成 AArch64 機器碼後的行為。</dd>
+      <dt>能做什麼</dt><dd>可作為高安全性軟體的驗證參考，例如確認加密通訊程式的編譯成品符合前向保密、身分驗證等安全規格。</dd>
+      <dt>能否試用</dt><dd>DeepMind 已公開 Lean 證明與驗證成果；AlphaProof Code 框架是否公開、授權為何，原文未提及。</dd>
+      <dt>限制</dt><dd>驗證範圍限於特定版本 libsignal 的命令列測試程式，不涵蓋 Signal App、群組通訊或所有後量子安全性質；部分底層密碼運算仍依賴安全假設。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">iThome · DeepMind以AI代理驗證Signal加密實作安全性，數學證明擴及機器碼層級</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180406" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1111-claude_fable_5.2-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Anthropic 推出 Claude Fable 5.2 與 Mythos 5.2，速度最高提升 30%</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 發布面向高難度技術工作的 Fable 5.2 與 Mythos 5.2，強化程式撰寫、推理與視覺能力。相較 5.1 版，輸出速度最高提升 30%，輸入與輸出 token 價格降低 20%；快速模式的生成速度最高可達原本的 2.5 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Fable 5.2 與 Mythos 5.2 相較 5.1 提升生成速度，並新增快速模式；Anthropic 也主張其程式、推理與視覺能力有所提升。</dd>
+      <dt>能做什麼</dt><dd>可試用於程式開發、研究、搜尋與資安工作；Mythos 另針對資安或生物醫學研究組織提供申請使用管道。</dd>
+      <dt>能否試用</dt><dd>原文提及 Fable 5.2 可供一般使用者使用，並列出模型價格；Mythos 5.2 須透過 Anthropic 的資安或生物醫學驗證計畫申請，具體 API 或入口原文未提及。</dd>
+      <dt>限制</dt><dd>多項領先結果來自 Anthropic 公布的基準測試，部分測項由其他模型領先；Mythos 使用資格受限，且快速模式價格較高。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180428" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1111-_gemini_4_carbon-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 開放 Gemini 4 Carbon，主打程式開發與長時間代理任務</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Gemini 4 Carbon 已開放企業、開發者及付費個人用戶使用，主打程式開發、代理式 AI、科學研究與長時間自主執行任務。API 價格據報約為 Anthropic Fable／Mythos 5.2 的一半；模型推出初期曾限供受信任的資安防禦人員使用。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Gemini 4 Carbon 主打程式開發、代理式 AI 與長時間自主任務，並搭配 Antigravity 預覽中的 /swarm，將單一提示詞拆成可協調的代理團隊。</dd>
+      <dt>能做什麼</dt><dd>可透過 API 測試程式開發或長時程代理任務，也可用 /swarm 分派、追蹤多代理合作的大型專案。</dd>
+      <dt>能否試用</dt><dd>已透過 Google AI Studio、Gemini for business 的 API 提供企業與開發者使用，也供 Google AI Ultra 訂閱者使用；另有 11 月 30 日前 API 半價方案。</dd>
+      <dt>限制</dt><dd>免費版目前不能使用；文中效能與成本比較為 Google 所述，且未提供正式環境可靠度或服務水準資訊。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180400" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1112-threat_actors_use_agentic_ai_tooling-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>微軟揭露代理式 AI 搜尋外洩憑證，5 分鐘內即可外傳雲端資料</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">微軟威脅情報團隊觀察到攻擊者利用代理型 AI 大量搜尋公開 GitHub 儲存庫中的外洩憑證，再以有效憑證登入企業雲端環境。一起案例中，代理從搜尋 GitHub 機密資料到經 Azure Key Vault 外傳資料僅花 5 分鐘，凸顯憑證外洩與雲端權限管理的風險。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>相較於只按預先設定步驟執行的自動化工具，攻擊者使用的代理型 AI 能依 API 呼叫結果調整後續操作，從搜尋外洩憑證到雲端資料外傳曾僅花 5 分鐘。</dd>
+      <dt>能做什麼</dt><dd>企業可據此強化 GitHub 憑證掃描與撤銷、服務主體最小權限管理，並關聯分析異常登入、資源存取及 API 重試紀錄。</dd>
+      <dt>能否試用</dt><dd>這則是微軟觀察到的攻擊活動與防禦建議，原文未提及可供試用的工具或程式碼。</dd>
+      <dt>限制</dt><dd>原文提供的是已觀察案例，未提及攻擊規模或各項防禦措施的量化成效；刪除公開程式碼不會使已外洩憑證失效。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/google-joins-the-decision-model-wave-with-gemini-decision-1-scoring-1000-questions-in-a-single-pass/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Google 推出 Gemini Decisions API，一次評估最多 1,000 題多模態問題</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Gemini Decisions API 可對文字、圖片、音訊、影片與 PDF 的是非題、選擇題及規準評分題，回傳校準後的機率結果，一次最多處理 1,000 題。結果延遲約 150–250 毫秒，輸入價格為每百萬 token 0.10 美元，適合大量分類與評分工作。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Gemini Decisions API 專為封閉式判斷設計，可一次處理最多 1,000 題文字、圖片、音訊、影片或 PDF 問題，並回傳選項機率與信心值。</dd>
+      <dt>能做什麼</dt><dd>可用於大量內容的是非題或分類評估，例如安全檢查、選項評分，或依輸入內容動態選擇模型。</dd>
+      <dt>能否試用</dt><dd>已可透過 Google AI Studio 使用，OpenRouter、LangChain、Vercel 等整合則陸續推出；價格為每百萬輸入 token 0.10 美元且不收輸出 token 費。</dd>
+      <dt>限制</dt><dd>只適合是非題、選擇題或量表評分等封閉式判斷；延遲與成本比較為 Google 所述，原文未提供獨立評測。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/10/ifm-pan-2-open-world-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-28-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>MBZUAI 開源 29B 世界模型 PAN 2，可模擬 20 秒行動結果</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">MBZUAI 基礎模型研究所發布 Apache 2.0 授權的 PAN 2，結合大型語言模型規劃器與 290 億參數擴散 Transformer，根據動作生成後續情境影片。模型可模擬最長約 20 秒的行動結果，定位於機器人等實體 AI 的規劃與訓練。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>PAN 2 將 LLM 的概念推理與影片生成模型結合，依場景和文字動作模擬後續世界狀態，可生成最長 20 秒影片，供代理先評估行動計畫。</dd>
+      <dt>能做什麼</dt><dd>機器人或代理開發者可先模擬多步驟計畫，例如物體操作或場景中的連續動作，再挑選較合適的行動。</dd>
+      <dt>能否試用</dt><dd>模型權重、訓練程式碼與推論程式碼已以 Apache 2.0 授權公開。 <a href="https://github.com/ifm-ai/PAN2" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>需要資料中心 GPU，單個工作程序須載入完整 29B BF16 模型；自家測試中完整計畫完成率為 34%，約三分之二計畫會漏掉步驟。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/10/fish-audio-live-3-full-duplex-voice-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-27-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Fish Audio 發布全雙工語音模型 Live 3，最低 186 毫秒回應</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Live 3 可在說話時同步聆聽，並即時判別「嗯」等附和聲與真正的插話，減少語音代理對話中的停頓與誤判。官方稱最快可在 186 毫秒內回應；目前推出版本僅支援英文。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Live 3 是全雙工語音模型，可在說話時持續聆聽，並由語音模型判斷何時等待、回應或停止，而非只依賴人工設定的停頓門檻。</dd>
+      <dt>能做什麼</dt><dd>可用於電話或網站語音代理，處理使用者插話、短促應答、修正訂單內容等需要即時判斷輪替時機的情境。</dd>
+      <dt>能否試用</dt><dd>可透過 Fish Agent Platform、Fish Audio API 使用，企業也可部署於本機；Agents 平台為公開 Beta。原文列出的 Web SDK 為 GitHub 專案。 <a href="https://github.com/fishaudio/fish-agent-sdk-web" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>目前僅支援英文，未公布基準分數或延遲分布；186 毫秒只代表「嗯哼」等短反應，不是完整回答的首音延遲。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 7">
+  <span class="fallback">Google DeepMind</span>
+  <img src="https://lh3.googleusercontent.com/VPOhADdGu1T7kK_gWBiGzyVawQbKCjpL3-B0L0wxpYCyr8cHxviYmo9Hghy4f1laeIo2YKwuz8E07TR9HWWk2b0EONi0uvju-8TDLHX6YWHG4dXe3w=w528-h297-n-nu-rw-lo" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>DeepMind 發布 AlphaGenome 2，預測 DNA 變異對特定細胞的影響</h3>
+    </a>
+    <div class="source">Google DeepMind</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">AlphaGenome 2 用於預測 DNA 序列及其變異如何影響不同人類細胞類型的調控活動，協助研究者分析變異與疾病的關聯。模型透過 AlphaGenome API 提供非商業研究使用。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>AlphaGenome 2 以細胞類型或狀態作為條件，預測 DNA 變異在特定細胞中的影響；也能利用少量新單細胞資料推論未量測的性質，無須重新訓練。</dd>
+      <dt>能做什麼</dt><dd>研究人員可用它優先篩選疾病相關細胞中的基因變異，或補足單細胞實驗未量測的染色質可及性等資料，以安排後續實驗。</dd>
+      <dt>能否試用</dt><dd>已透過 AlphaGenome API 提供非商業研究使用，並提供互動式 Colab 教學；商業研究目前為私人預覽。</dd>
+      <dt>限制</dt><dd>目前商業研究尚非一般開放；模型預測結果屬研究工具，原文未提供獨立驗證或臨床應用成效。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.inside.com.tw/article/42882-n8n-labs-nod-open-source-personal-ai-agent-runs-locally" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 18">
+  <span class="fallback">INSIDE</span>
+  <img src="https://bucket-image.inkmaginecms.com/version/social/9dde7c0f-a597-445c-80dd-9a93db8a4006/image/2026/11/b922925d-88c4-41b6-9adb-c4379126e18d.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>n8n Labs 推出開源個人代理 Nod，可在本機沙盒操作瀏覽器</h3>
+    </a>
+    <div class="source">INSIDE</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Nod 研究預覽版可在使用者的 Mac 或 Windows 電腦沙盒中操作瀏覽器，代為完成網頁任務；專案採 Apache 2.0 授權。模型用量費用由使用者直接支付給模型供應商。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Nod 是獨立的開源個人代理，可在本機沙盒操作自有瀏覽器與多種服務，並支援排程背景任務及檢視、編輯或刪除記憶。</dd>
+      <dt>能做什麼</dt><dd>可用來監控價格、整理供應商發票，或在使用者核准後搜尋及預訂飯店；也能連接 Gmail、Calendar、Drive 與 Slack。</dd>
+      <dt>能否試用</dt><dd>目前以研究預覽版提供，免費、開源，程式碼可在 GitHub 取得；可自選超過 20 家模型供應商或連接自架模型，模型用量費另計。 <a href="https://github.com/n8n-io/nod" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>macOS 需 14 以上，Windows 11 仍為預覽；筆電休眠時排程不會執行，每個安裝 app 僅支援一位擁有者。安全檢查本身也由模型執行，且預設連線經 n8n 代管服務。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180431" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/jie_tu_2026-11-11_xia_wu_6.15.28.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 推出醫療版 Gemini，可連接電子病歷並協助多步驟工作</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Gemini for healthcare 整合醫療專用 Skills、資料連接器與治理機制，可串接 Epic、Oracle Health 等電子病歷系統。AI 代理可協助整理病史、準備看診資料，以及處理保險事前授權與理賠審查；目前已在美國開放預覽。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Gemini for healthcare 將醫療專用 Skills、資料連接器與治理機制整合，讓 Agent 能跨系統整理病歷、比對保險規則並協助多步驟工作，而不只是回答問題。</dd>
+      <dt>能做什麼</dt><dd>可用於看診前彙整病史、過敏與待辦檢查，或協助醫院整理事前授權文件、保險公司比對理賠資料。</dd>
+      <dt>能否試用</dt><dd>已在美國開放預覽，提供 Gemini Enterprise Standard 與 Plus 客戶使用；可連接 Epic、Oracle Health 等系統。</dd>
+      <dt>限制</dt><dd>Epic 與 Oracle Health 連接器目前只能讀取病歷、不能寫回；最終臨床與保險決策仍由專業人員負責，合作案例尚未公布量化成效。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://the-decoder.com/grok-built-apps-exposed-patient-data-plaintext-passwords-and-spacexsis-own-sales-pipeline/" target="_blank" rel="noopener">
+    <b>研究人員發現逾 3.5 萬個 Grok 建置應用可免登入存取</b>
+    <span class="source">The Decoder</span>
+    <span class="text">Claroc 指出多個 Grok 建置應用因預設設為「持有連結即可存取」，暴露病患資料、明文密碼等資訊。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180407" target="_blank" rel="noopener">
+    <b>Fireworks AI 遭駭波及 Notion，部分 AI 對話紀錄遭未授權存取</b>
+    <span class="source">iThome</span>
+    <span class="text">Notion 通知受影響客戶，事件涉及約 1% 工作空間的部分 Notion AI 對話紀錄。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180415" target="_blank" rel="noopener">
+    <b>ElastiCache Serverless 加入向量、全文與混合搜尋</b>
+    <span class="source">iThome</span>
+    <span class="text">Valkey 快取現在可在單次查詢中結合文字與向量條件，檢索持續更新的資料並支援彙總。</span>
+  </a></li>
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/detecting-and-recovering-from-silent-data-corruption-on-amazon-sagemaker-hyperpod/" target="_blank" rel="noopener">
+    <b>AWS 提出 SageMaker HyperPod GPU 靜默資料毀損偵測與復原方法</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">新方法在 PyTorch DDP 訓練流程加入三項檢查，用於發現錯誤但看似合理的 GPU 輸出、定位故障節點並觸發自動復原。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.13059" target="_blank" rel="noopener">
+    <b>研究團隊為 204 種語言訓練多詞元切分器</b>
+    <span class="source">arXiv cs.CL</span>
+    <span class="text">研究提出以約 200 種語言的人工作品從頭訓練的 Havon v3 詞元切分器，目標是降低多種語言相較 GPT-4o 切分器所需的 token 數。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-11.html">← 2026-11-11</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
