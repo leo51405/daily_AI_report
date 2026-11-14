@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-14</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-14 星期六</h1>
+  <div class="meta">從 133 則新聞中精選 15 則 · 更新於 10:24</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 14">
+  <span class="fallback">OpenAI</span>
+  
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank" rel="noopener"><h2>ChatGPT Wallet 讓 AI 代理在使用者核准後代為付款</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 推出 ChatGPT Wallet，讓 ChatGPT Work、Codex 與 dots 中的代理能在使用者核准後完成購買，並沿用既有信用卡的安全防護。這讓代理從代查商品延伸到交易執行，但付款仍須由使用者授權。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>讓 ChatGPT 中的代理能在使用者核准後代為完成購買，並沿用既有信用卡防護機制。</dd>
+      <dt>能做什麼</dt><dd>可讓 ChatGPT Work、Codex 或 dots 中的代理在使用者確認後代購商品或服務。</dd>
+      <dt>能否試用</dt><dd>原文未提及是否已開放使用，也未提及 API、程式碼、授權或展示。</dd>
+      <dt>限制</dt><dd>原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">OpenAI · Introducing ChatGPT Wallet</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/13/google-gemini-4-hydrogen/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-19999-1-1-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Gemini 4 Hydrogen 主打快速代理任務，支援 100 萬 token 上下文</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 發布 Gemini 4 Hydrogen，提供 100 萬 token 上下文與 4 段思考程度，定價為每百萬輸入／輸出 token 1.50／7.50 美元。Google 報告其 Artificial Analysis 分數為 51、Terminal-Bench 4.1 成績為 57%，並稱速度較 Gemini 3.8 Flash 快 2.5 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>提供 100 萬 token 的統一上下文，並以四種思考層級支援代理與程式開發任務；也可在 Antigravity 中與 Carbon 分工協作。</dd>
+      <dt>能做什麼</dt><dd>可用 Gemini API 建置程式碼代理、多步驟工具流程，或讓 Hydrogen 執行修改檔案與測試等工作。</dd>
+      <dt>能否試用</dt><dd>已透過 Gemini API、Google AI Studio 等服務提供；模型權重未公開，僅能使用 Google 託管 API，屬專有模型。 <a href="https://github.com/google-gemini/cookbook/" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>每百萬輸入／輸出 token 分別為 1.50／7.50 美元，輸出上限為 65,536 token；多項成績由 Google 自行評測，且 Agent Arena 排名第 5。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180462" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/alphagenome-2-dna-cell-context-banner-20261112-visible-session-1440x630.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>AlphaGenome 2 細化至細胞層級，預測 DNA 變異影響</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">DeepMind 發布 AlphaGenome 2，可依不同細胞類型與狀態，預測 DNA 變異對基因表現的影響。相較前代以組織整體分子活動為主，新版有助於找出只在特定細胞中作用、且可能與疾病相關的基因變異。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>新版可把細胞類型或狀態與 DNA 序列一併輸入，細分特定細胞中的變異影響；也能用少量新單細胞資料建立未見過的預測條件，無須重新訓練。</dd>
+      <dt>能做什麼</dt><dd>可用於研究疾病相關 DNA 變異、目標基因及受影響的細胞類型，或預測未量測的染色質開放程度與 DNA 甲基化狀態。</dd>
+      <dt>能否試用</dt><dd>已透過 AlphaGenome API 開放非商業研究使用；商業研究目前僅提供私人預覽，程式碼、權重與授權細節原文未提及。</dd>
+      <dt>限制</dt><dd>商業研究尚未公開開放；文中成效來自特定資料集與研究案例，未提及其他限制。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/13/google-tpu-sync-kv-cache-transfer-library/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-19999-2-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 開源 TPU Sync，KV cache 傳輸延遲降低逾 90%</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 開源 C++ 函式庫 TPU Sync，可在 TPU HBM、主機 DRAM、儲存裝置與網路間搬移 KV cache 和模型權重。Google 表示，在 235B 至 480B 的 MoE 模型上，KV cache 傳輸延遲降低超過 90%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>以開源 C++ 函式庫直接搬移 TPU 上的 KV cache 與模型權重，並整合 HBM、主機記憶體、共享儲存與資料中心網路，支援非同步 DMA 與計算重疊。</dd>
+      <dt>能做什麼</dt><dd>可用於 Cloud TPU 推論服務的 prefill／decode 分離、前綴快取，以及強化學習中的訓練器至取樣器權重傳送。</dd>
+      <dt>能否試用</dt><dd>程式碼已以 Apache-2.0 授權公開，支援 Cloud TPU v7x、v6e，並整合 vLLM-TorchTPU、SGLang-TorchTPU 等工具。 <a href="https://github.com/google/tpu-sync" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>目前 README 不建議一般用途；強化學習與儲存分層仍屬實驗性，效能數據為 Google 內部測試結果，實際成效會因工作負載而異。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xv7fku/perplexity_releases_decider_v13_26b_and_decider/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://external-preview.redd.it/8NexKOdMNGuw0dDaC4Bo-Vpl6eyn0zfw_EgkJqBqjtA.png?width=140&amp;height=75&amp;auto=webp&amp;s=b1ba17cad9bbe2cc6a232cd4a825c707aba19914" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Perplexity 推出 Apache 2.0 開源決策模型，直接輸出機率分布</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Perplexity 發布 Decider v1.3（26B）與 Decider Flash v1.3（5B），作為開放權重的分類與決策模型；模型依輸入狀態及選項輸出機率分布，而非逐 token 生成文字。v1.3 新增 Locate span 擷取功能，並在 63 項查詢分類任務中報告平均準確率 91.6%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>決策模型直接輸出答案選項的機率分布，而非逐 token 生成文字；v1.3 另加入 locate，可回傳原文片段及字元位置。</dd>
+      <dt>能做什麼</dt><dd>可用於分類、重排序、PII 偵測、命名實體辨識及抽取式問答；多個問題也能共用同一段輸入狀態。</dd>
+      <dt>能否試用</dt><dd>內文提到模型可透過 Perplexity API、OpenRouter 使用，並提供模型權重；兩款模型採 Apache 2.0 授權。</dd>
+      <dt>限制</dt><dd>機率應以自有資料校準與設定門檻；locate 僅支援文字，與決策問題混合時需要額外 forward pass，且多數評測為 Perplexity 自行進行。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.14925" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>ToolTurns 以 2,620 題評測多輪對話中的工具使用能力</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究者提出 ToolTurns，評測語言模型代理在多輪對話中使用工具的能力，涵蓋 2,620 個問題、1,827 種工具與 11,004 個 API 端點。這補足既有工具使用基準多以單次請求為主的缺口，可用來測試代理跨回合維持任務脈絡的表現。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>ToolTurns 以 2,620 題測試代理在刻意資訊不足的請求及兩輪後續對話中，能否澄清需求、使用工具並保留上下文；另提出開源使用者模擬器。</dd>
+      <dt>能做什麼</dt><dd>可作為多輪工具代理的評測基準，檢查代理是否能在對話延續時維持任務成功，而非只測單次工具呼叫。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；摘要稱使用者模擬器為開源，但程式碼的實際發布位置與授權原文未提及。 <a href="https://arxiv.org/abs/2611.14925" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>在九個模型的評測中，最佳代理完成個別請求的比例為 69.6%，完整對話僅 39.8%；結果反映此評測流程，原文未提及其他使用限制。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.14769" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
+</div>
+
+      <h3>研究指出偏好式模型排行榜可能遭到操弄</h3>
+    </a>
+    <div class="source">arXiv cs.AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">一項研究檢視 Arena 類排行榜的匿名成對比較評分，指出偏好式評測可能受到操弄，進而影響模型排名的可信度。這提醒工程團隊在比較模型時，不宜只依賴單一排行榜，還應檢視評測設計與結果的穩健性。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>指出採 Bradley–Terry 模型的偏好式排行榜，可能受策略性投票、挑選有利提示，以及加入無關模型等方式操弄。</dd>
+      <dt>能做什麼</dt><dd>可用於檢視模型排行榜與偏好式評測流程的弱點，並據此設計防護措施。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；程式碼、資料集或工具的發布情況原文未提及。 <a href="https://arxiv.org/abs/2611.14769" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>研究以公開排行榜資料展示攻擊效果；文中指出單一攻擊最多可提高約 15 至 20 名，合併攻擊最多約 45 名，未提及防護措施的實測效果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/anthropics-claude-for-manufacturing-plugs-ai-directly-into-factory-software-to-automate-industrial-workflows/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/claude_for_manufactoring.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Claude for Manufacturing 串接工廠軟體，支援 17 種工作技能</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 推出 Claude for Manufacturing 外掛，連接 Autodesk Fusion、Oracle NetSuite 與 Infor，提供 17 種專用技能。代理可協助草擬報價、比較供應商及處理延遲交貨的備援訂單，但下單等操作仍須經人工核准。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Claude for Manufacturing 透過工業軟體介面與 17 種工作技能，讓 AI 協助處理報價、供應商比較、品質報告、設計變體及產線排程等工作，結果可連回原始文件供審查。</dd>
+      <dt>能做什麼</dt><dd>製造業團隊可用它依實際庫存草擬報價、分析設備感測資料，或在供應延遲時提出備援採購與生產排程調整。</dd>
+      <dt>能否試用</dt><dd>已提供給 Claude Team 與 Enterprise 客戶；程式碼、API、授權及展示原文未提及。</dd>
+      <dt>限制</dt><dd>主要串接 Autodesk Fusion、Oracle NetSuite、Microsoft 365 與 Infor，其他系統需透過檔案匯出；尚不能控制實體機器，部分採購與排程操作需人工核准。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180503" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/aws-agentcore-runtime-v2-expanded-compute-banner-1440x630.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>AWS AgentCore Runtime V2 單一工作階段支援 8 vCPU、32 GB 記憶體</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">AWS 擴充 Bedrock AgentCore 執行環境，新版 Runtime V2 單一工作階段最多提供 8 個 vCPU、32 GB 記憶體，容器映像檔上限提高至 10 GB。這讓代理可在執行環境內編譯大型程式專案、操作瀏覽器或載入本地模型；新版已成為 19 個 AWS 區域新建環境的預設版本。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v2">值得用進專案</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Runtime V2 將單一工作階段資源上限提高至 8 vCPU、32 GB 記憶體與 10 GB 容器映像檔，並結合快照啟動及工作階段內記憶體回收。</dd>
+      <dt>能做什麼</dt><dd>適合在託管隔離環境中執行需大量資源的代理工作，例如編譯大型專案、操作瀏覽器或載入本地模型。</dd>
+      <dt>能否試用</dt><dd>已在 19 個 AWS 區域成為新建執行環境的預設版本；既有環境可透過 platformVersion 設定切換至 V2，或保留 V1。</dd>
+      <dt>限制</dt><dd>每個工作階段最多 8 vCPU、32 GB 記憶體，映像檔上限 10 GB；記憶體用量最多減少 68% 不代表整體費用同比降低，而啟動時間數據來自簡易代理測試。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xvdmzb/tontaube_v11_openweights_tts_with_voice_cloning/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  
+</div>
+
+      <h3>開源 Tontaube V1.1 提供長篇語音生成與零樣本聲音複製</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Tontaube V1.1 是面向有聲書、文章朗讀與語音代理的開放權重文字轉語音模型，支援零樣本聲音複製。其 4-bit 版本可在桌上型 CPU 上以接近即時的速度生成語音，降低長篇語音生成的硬體門檻。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Tontaube V1.1 主打長篇串流語音生成與零樣本聲音複製，提供 4-bit 權重、CPU 推論及語速、停頓、音調等風格控制。</dd>
+      <dt>能做什麼</dt><dd>可用於有聲書、文章朗讀及語音代理的語音生成；可用 5 至 60 秒參考音訊複製聲音。</dd>
+      <dt>能否試用</dt><dd>內文提供程式碼、4-bit 與全精度權重及瀏覽器展示入口；程式碼採 Apache 2.0，權重使用作者社群授權，研究與個人使用免費。</dd>
+      <dt>限制</dt><dd>支援範圍為 Linux x86-64 的 NVIDIA GPU 或 CPU，Windows 需透過 WSL2；主要語言為英文與德文，其他列出的語言未經母語者確認，權重也不是 OSI 開源授權。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://the-decoder.com/former-openai-researcher-says-he-found-nvidia-blackwell-fingerprints-hidden-inside-six-chinese-ai-models/" target="_blank" rel="noopener">
+    <b>研究者稱可從模型權重辨識中國模型的 Blackwell GPU 特徵</b>
+    <span class="source">The Decoder</span>
+    <span class="text">前 OpenAI 研究員 Will DePue 表示，其方法可從公開模型權重辨識出 DeepSeek、Moonshot AI、MiniMax 與螞蟻集團模型中的 Nvidia Blackwell GPU 特徵；此說法仍應視為研究者提出的技術主張。</span>
+  </a></li>
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xvbn2m/qwen359b_running_on_a_ps4s_gpu_offline_using_its/" target="_blank" rel="noopener">
+    <b>Qwen3.5-9B 在 PS4 離線運行，MTP 推測解碼達每秒 31–39 token</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">開發者展示以 MTP 推測解碼在原版 PS4 上執行 Qwen3.5-9B，速度達每秒 31–39 token，較未使用該方法的每秒 22 token 提升。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180433" target="_blank" rel="noopener">
+    <b>NIST 發布對抗式機器學習攻擊分類草案</b>
+    <span class="source">iThome</span>
+    <span class="text">NIST 的草案整理預測式機器學習、生成式 AI 與代理式 AI 可能面臨的攻擊及防禦方式，並提醒注意 MCP 工具供應鏈風險。</span>
+  </a></li>
+  
+  <li><a href="https://www.wired.com/story/microsoft-365-crawls-back-to-life-after-a-24-hour-outage/" target="_blank" rel="noopener">
+    <b>Microsoft 365 全球服務中斷逾 24 小時，原因為錯誤更新</b>
+    <span class="source">Wired</span>
+    <span class="text">Microsoft 表示，造成多項 Microsoft 365 服務全球中斷的原因是錯誤更新，而非網路攻擊或 AI，事件凸顯雲端服務變更管理與復原能力的重要性。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180481" target="_blank" rel="noopener">
+    <b>Google 威脅情報團隊警告 AI 可加速多階段網攻</b>
+    <span class="source">iThome</span>
+    <span class="text">Google 威脅情報團隊指出，攻擊者可用多個 AI 代理串接入侵、漏洞搜尋與憑證蒐集等工作，讓部分攻擊流程在不到六小時內完成，企業應嚴格管理代理權限。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-13.html">← 2026-11-13</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
