@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-15</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-15 星期日</h1>
+  <div class="meta">從 54 則新聞中精選 13 則 · 更新於 09:52</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://the-decoder.com/runways-open-source-praxis-1-turns-video-ai-into-a-robot-controller/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/Runway-Praxis-1.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://the-decoder.com/runways-open-source-praxis-1-turns-video-ai-into-a-robot-controller/" target="_blank" rel="noopener"><h2>Runway 開源 Praxis-1，將影片知識用於機器人控制</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Runway 以 Apache 2.0 授權釋出 Praxis-1 的權重與原始碼，利用影片訓練所得知識控制機器人。它在 NVIDIA RoboLab-120 的 World Action Model 類別領先，但目前還無法自行規劃複雜的連續動作。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Praxis-1 把從一般影片學到的物體移動與互動知識，用於預測場景變化並轉換成機器人動作；相較只靠機器人專屬資料訓練，嘗試減少對這類資料的依賴。</dd>
+      <dt>能做什麼</dt><dd>可用於機器人依攝影機畫面、文字指令與自身位置連續調整動作，例如抓取、堆疊或操作抽屜；長任務仍需先拆解成明確步驟。</dd>
+      <dt>能否試用</dt><dd>權重與程式碼已公開，採 Apache 2.0 授權，可商用；下載權重需註冊並同意存取條款，也提供部分機器人的預先調適版本。 <a href="https://huggingface.co/collections/runwayml/praxis-1" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>基礎版須再用機器人資料調適；標準版需要 80 GB GPU 記憶體，壓縮版對 RTX 5090 32 GB 的需求仍是估算。測試由 Runway 自行執行、尚未獨立驗證，且模型會混淆相似物件、難以處理模糊指令與自行規劃複雜長任務。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">The Decoder · Runway&#39;s open-source Praxis-1 turns video AI into a robot controller</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-19999-5-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Memorilla 將文件集壓縮成 16 個記憶 token，供凍結 LLM 使用</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">史丹佛研究團隊開源 Memorilla，將文件集合壓縮為 16 個記憶 token，供凍結的 Qwen3-8B 使用。它在 FactKG 達到 84.33%，使用的文件 token 數比完整上下文少 108 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Memorilla 將整個文件集轉成固定 16 個記憶向量，讓凍結的 LLM 使用；在 FactKG 上以少 108 倍文件 token 的輸入，取得高於全文放入上下文的分數。</dd>
+      <dt>能做什麼</dt><dd>適合文件庫或長期對話記憶需要壓縮、又希望避免每次把大量文件塞進提示詞的問答系統；也可作為代理的精簡記憶模組。</dd>
+      <dt>能否試用</dt><dd>程式碼、訓練配方與檢查點已公開，採 Apache 2.0 授權，模型檢查點可從 Hugging Face 取得；另有 CC BY 4.0 的 PersonalizationV4 資料集。 <a href="https://github.com/snap-stanford/memorilla" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>快速開始需要 Linux、CUDA、Python 3.11 與 80 GB GPU，首次執行約下載 25 GB 模型；4 百萬文件的快取需 80 GiB。基準測試由研究團隊自行回報，且在 PubMedQA 等部分測試落後其他方法。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.inside.com.tw/article/42910-openai-daybreak-defense-factory-red-team-automated-patching-cyber-at-the-frontier" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 18">
+  <span class="fallback">INSIDE</span>
+  <img src="https://bucket-image.inkmaginecms.com/version/social/cabinet/2023/05/b1fe11c0-a238-45f8-8e7b-c885c7984b04.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI 推出 AI 漏洞修補與自動化紅隊測試工具</h3>
+    </a>
+    <div class="source">INSIDE</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 發表 Daybreak Defense Factory 與 Daybreak Red Team：前者以 AI 代理尋找漏洞並準備修補，後者自動測試網頁應用程式。兩者目前都開放早期試用，候選資訊未提供測試成效數據。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Daybreak Red Team 以模型搭配原始碼與應用脈絡找出攻擊路徑，並驗證掃描工具、漏洞通報及修補結果；Defense Factory 則把掃描、驗證到產生修補合併請求串成流程。</dd>
+      <dt>能做什麼</dt><dd>可用於企業網頁應用程式的持續紅隊測試，以及替漏洞產生附有驗證測試的修補提案，交由工程師審核後再合併。</dd>
+      <dt>能否試用</dt><dd>Red Team 已開放早期試用；Defense Factory 的一般開放狀況、價格與時程原文未提及。</dd>
+      <dt>限制</dt><dd>Defense Factory 不會直接修改正式環境，仍需工程師審核；兩項產品的價格與一般開放時程尚未公布，測試成效與硬體需求原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xw09tu/ibm_trains_two_small_open_models_to_ignore_orders/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://external-preview.redd.it/jKDiyYlMH9q9-sxqyLuDwYt6Ed8Igc-G2BfjfuDd18s.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=4a91c41e48f0ec485069ec5314dab9ec2deff795" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>IBM 訓練兩款開源小模型，抵禦文件中的隱藏指令</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">IBM 訓練兩款小型開源模型，目標是讓模型不服從藏在文件中的指令，降低間接提示注入風險。候選資訊未列出模型名稱、參數規模或防禦評測結果。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>標題提到 IBM 訓練兩款開源小模型來抵禦文件中的隱藏指令，但內文沒有交代模型做法或相較既有方法新增的能力，原文未提及。</dd>
+      <dt>能做什麼</dt><dd>依標題可知方向是降低小模型遭文件隱藏指令影響的風險；具體工程情境與使用方式原文未提及。</dd>
+      <dt>能否試用</dt><dd>原文未提及模型、程式碼、權重或 API 是否已釋出。</dd>
+      <dt>限制</dt><dd>原文僅有一句簡短評論，模型規模、測試結果、授權與適用限制原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/14/cmpnd-dspy-wsp-weight-space-programming/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-19999-6-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>dspy-wsp 嘗試以 LLM 直接編輯小模型權重</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Cmpnd 發布實驗性 DSPy 最佳化器 dspy-wsp：由前沿 LLM 在沙盒中讀取並修改小模型權重，再測試修改效果，不使用梯度。每次執行成本約 5 至 10 美元。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>dspy-wsp 讓前沿 LLM 直接讀取並編輯小模型權重，不需梯度、訓練迴圈或微調資料集；編輯結果可作為小型補丁檢視。</dd>
+      <dt>能做什麼</dt><dd>可在 DSPy 決策程式中，依自訂指標調整本機小模型，例如改善客服工單分類或其他結構化決策任務。</dd>
+      <dt>能否試用</dt><dd>原型已開源，採 MIT 授權，可用 pip 安裝 dspy-wsp；實驗使用 GPT-6-Astra 作為權重編輯器，並需 DSPy 3.5。 <a href="https://github.com/cmpnd-ai/dspy-wsp" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>實驗性高，每次測試耗時約 78 至 167 分鐘，且需支付前沿模型呼叫費用；成果主要來自有限模型與 Typed Decisions 測試，較大型模型的提升較弱，嚴格評分規則下增益也可能縮小。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xw9mpa/nexaginexn26_hugging_face/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  <img src="https://external-preview.redd.it/lg8w6r8_mxYUJozMRtbcNvkkKjgZLHY1rqYK6CS4dNg.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=474cb0c808530d81bf3a1e053b60fa3b4bc176f5" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Nex-N2.6 發布約 3,210 億參數 FP8 多模態代理模型</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Nex-AGI 發布 Nex-N2.6 的 FP8 量化權重，模型約有 3,210 億參數，基於 GLM-5.3-Flash。它面向電腦操作、程式撰寫及長程工具使用任務，但候選資訊未提供基準測試成績。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Nex-N2.6 是建立在 GLM-5.3-Flash 上的多模態代理模型，主打電腦操作、程式撰寫與長時程工具任務，並著重減少重複推理、遵循當前環境可用工具。</dd>
+      <dt>能做什麼</dt><dd>可評估用於需要操作電腦介面、撰寫程式或多步驟呼叫工具的代理流程。</dd>
+      <dt>能否試用</dt><dd>內文稱儲存庫提供約 3,210 億參數的 FP8 量化權重；授權、API 或展示方式原文未提及。</dd>
+      <dt>限制</dt><dd>模型規模約 3,210 億參數，部署硬體需求與成本原文未提及；內文未提供基準測試或實際任務成效。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/gemini-4-carbon-takes-the-matharena-crown-but-costs-15-times-more-than-gpt-6-1-sol/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Gemini 4 Carbon 登上 MathArena 榜首，但測試與成本有疑點</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">報導稱 Gemini 4 Carbon 與 Anthropic Fable 5.2 在 MathArena 超越 GPT-6.1 Sol，Gemini 4 Carbon 的成本則是 GPT-6.1 Sol 的 15 倍。測試中 Gemini 幾乎不放棄題目，且被指未遵守時限，排名比較因此需要審慎看待。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Gemini 4 Carbon 在 MathArena 數學基準測試登頂，顯示其數學解題能力可能具競爭力；不過內文未提供測試方法或具體分數。</dd>
+      <dt>能做什麼</dt><dd>可評估用於高難度數學題求解，但需留意長時間執行與推理成本。</dd>
+      <dt>能否試用</dt><dd>內文稱 Gemini 4 Carbon 是公開可用模型之一，但取得方式、API 與授權原文未提及。</dd>
+      <dt>限制</dt><dd>常見失敗是超過時限，也可能長時間執行腳本而不檢查進度；測試設定下成本約為 GPT-6.1 Sol 的 15 倍，文中亦未提供獨立驗證資訊。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xw7zrg/tinyvoca_a_fully_open_45mparameter_tts_code/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 274">
+  <span class="fallback">r/LocalLLaMA</span>
+  
+</div>
+
+      <h3>tiny-voca：4.5M 參數開源語音合成模型，可在 CPU 即時運行</h3>
+    </a>
+    <div class="source">r/LocalLLaMA</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">tiny-voca 是完整開源的英文文字轉語音模型，包含程式碼、權重與資料集，模型約 453 萬參數、18 MB，提供兩種聲音。作者稱它可在 CPU 上以即時速度 70 倍運行，也能在瀏覽器本機使用。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>tiny-voca 以 450 萬參數和 source-filter 合成器產生語音，不用神經聲碼器，聲稱可在四核心 CPU 上以即時速度約 70 倍運行，並可在瀏覽器執行。</dd>
+      <dt>能做什麼</dt><dd>適合測試英文文字轉語音、瀏覽器端或本機低資源語音合成；內文表示瀏覽器展示不會將資料送到伺服器。</dd>
+      <dt>能否試用</dt><dd>內文稱程式碼、權重、訓練配方與資料集皆已公開，但授權原文未提及；相關連結欄未提供可選連結。</dd>
+      <dt>限制</dt><dd>僅支援英文與兩種聲音，不支援聲音複製；外語姓名及特殊拼字可能讀錯，聲音略顯合成，且訓練音訊本身也是合成資料。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/anthropic-says-outdated-prompting-habits-are-slowing-down-claude-opus-5-5/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Anthropic 更新 Claude Opus 5.5 提示建議，預設從 Medium effort 開始</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 將 Claude Opus 5.5 設為所有付費方案的預設模型，並建議使用者不要沿用舊提示習慣。新指南建議先用 Medium effort，而非直接要求模型「think hard」。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v2">值得用進專案</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Anthropic 建議 Opus 5.5 從 Medium effort 開始，省略「仔細思考」等舊式提示，並一次交代目標、格式與追問時機；模型也更能直接處理多步驟任務與圖表。</dd>
+      <dt>能做什麼</dt><dd>可用於文件、試算表、圖表判讀或多步驟工作流程；提示中直接指定成品與格式，若 Medium 不足再切換 High。</dd>
+      <dt>能否試用</dt><dd>內文稱 Opus 5.5 已是 Pro、Max、Ultra 與 Team 方案的預設模型，且可在模型選單調整 effort；其他 API 或授權資訊原文未提及。</dd>
+      <dt>限制</dt><dd>Medium 與前代 High 表現相當、圖表判讀等提升均為 Anthropic 的內部測試說法；提高 effort 會增加成本，也不保證成果更好。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xwan2j/update_tandemcpp_deepseekv41_on_a_64_gb_pc_with_a/" target="_blank" rel="noopener">
+    <b>tandem.cpp 讓 64GB 記憶體電腦搭配 16GB 顯卡執行大型 MoE</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">這組 llama.cpp 修補程式將常用專家留在 GPU、其餘交由 CPU 協助，作者稱可在 64GB 記憶體與 16GB 顯卡的電腦執行 DeepSeek-V4.1-Flash，並加入 ROCm 支援。</span>
+  </a></li>
+  
+  <li><a href="https://www.marktechpost.com/2026/11/13/vercel-ui-sdk-agent-ui-behaviors/" target="_blank" rel="noopener">
+    <b>Vercel Labs 推出供 AI coding agent 使用的 UI SDK</b>
+    <span class="source">MarkTechPost</span>
+    <span class="text">這套 Apache 2.0 Beta 函式庫提供 50 多種 UI 行為，可供 coding agent 組合成 React、Vue、Svelte、Solid 與 Web Components 元件。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/42908-claude-code-doctor-prompt-audit-checks-claude-md-skills-agents-outdated-instructions" target="_blank" rel="noopener">
+    <b>Claude Code 新增提示詞稽核，可檢查過時規則與路徑</b>
+    <span class="source">INSIDE</span>
+    <span class="text">Claude Code 的 `/doctor prompt-audit` 可檢查 CLAUDE.md、skills、agents 與 commands，找出過時提示、失效路徑及矛盾規則，並在使用者確認前只產生報告。</span>
+  </a></li>
+  
+  <li><a href="https://www.qbitai.com/2026/11/510232.html" target="_blank" rel="noopener">
+    <b>新濕實驗預測基準提醒：增加算力不保證預測更準</b>
+    <span class="source">量子位</span>
+    <span class="text">史丹佛、哈佛、康乃爾等團隊參與推出濕實驗結果預測基準，報導指出推理投入拉高、算力增加 5 倍仍未必提升預測；候選資訊未提供基準名稱與具體成績。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-14.html">← 2026-11-14</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
