@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-17</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-17 星期二</h1>
+  <div class="meta">從 145 則新聞中精選 12 則 · 更新於 12:28</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-92221-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/" target="_blank" rel="noopener"><h2>阿里推出 Qwen4-Max：2.4 兆參數 MoE，支援百萬 token 上下文</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">Qwen4-Max 採用 2.4 兆參數 MoE 架構，每個 token 啟用 710 億參數，並支援原生視覺輸入與 100 萬 token 上下文。官方資料列出輸入價格為每百萬 token 1.5 美元，並稱 Work360 每項任務成本降低 62%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Qwen4-Max 以稀疏 MoE 架構搭配 QSA、Gated Residual 與 N-gram Embedding，支援文字、圖片、影片及 100 萬 token 上下文。相較前代，原文也稱其每項任務平均成本降低 62%。</dd>
+      <dt>能做什麼</dt><dd>可用於需要長上下文和工具呼叫的專業代理工作，例如處理大型文件、長對話或多模態內容；API 支援函式呼叫、結構化輸出、批次處理與網路搜尋。</dd>
+      <dt>能否試用</dt><dd>可透過 QwenCloud API 等託管服務使用，模型 ID 為 qwen4-max；沒有開放權重，無法自行部署。原文稱 Token Plan 預覽已開放，但相關連結指向 Kimi 模型頁，未提供可用的 Qwen 試用連結。</dd>
+      <dt>限制</dt><dd>基準測試尚未在發布時由第三方獨立重現；原文指出其在程式碼與視覺測試較弱。模型為專有且僅託管提供，無法自架或量化部署。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">MarkTechPost · Alibaba Releases Qwen4-Max: 2.4T MoE, 71B Active, 1M Context</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/google-warns-that-fully-automated-cyberattacks-have-arrived-and-will-get-worse-fast/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Google 首度發現無人介入的自動化漏洞攻擊流程</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 威脅情報團隊發現名為 exploit_agent 的 AI 框架，能比對修補前後的程式碼、找出漏洞並建立攻擊程式，過程無須人工介入。這顯示 AI 已能串起漏洞探索與利用流程，可能進一步縮短攻擊者利用漏洞的時間。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Google GTIG 首度觀察到疑似全自動、無人介入的漏洞攻擊流程，能比對修補前後程式碼、找漏洞、開發利用程式並自動執行。</dd>
+      <dt>能做什麼</dt><dd>資安團隊可將此趨勢納入威脅模型，檢視修補程式、對外服務及漏洞通報流程是否能及時因應自動化攻擊。</dd>
+      <dt>能否試用</dt><dd>原文未提及可供外部使用的工具、程式碼或 API；報導的是 GTIG 在暴露伺服器上觀察到的系統。</dd>
+      <dt>限制</dt><dd>目前攻擊較重速度、犧牲隱匿性，會留下較容易偵測的鑑識痕跡；歸因與目標資訊來自伺服器資料及設定檔線索。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/openais-gpt-6-astra-tackles-the-standard-models-toughest-math-problem-on-a-lattice/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/openai_standard_model.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>GPT-6 Astra 協助完成粒子物理格點標準模型證明</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 物理學家 Nathaniel Craig 提供定義格點標準模型的策略後，GPT-6 Astra 將其發展成一份可運作的證明，處理的是困擾粒子物理學界逾 25 年的問題。Craig 指出距離完整解決仍有不少工作，成果目前不宜視為最終定論。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>GPT-6 Astra 協助把物理學家的構想發展成格點標準模型所需的建構，並主導詳細證明，處理了重疊費米子相位設定長期難以證明的問題。</dd>
+      <dt>能做什麼</dt><dd>可作為理論物理研究者運用 AI 協助構造數學證明的案例，尤其是格點場論相關研究；原文指出距離實際模擬仍有不少工作。</dd>
+      <dt>能否試用</dt><dd>相關成果以預印本公開；GPT-6 Astra 是否可供外部使用，原文未提及。 <a href="https://arxiv.org/abs/2610.09093" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>研究者仍需審閱證明，雖有多位格點場論學者檢視並提出問題，實際可行的標準模型模擬尚未完成。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/anthropic-says-the-key-to-agent-memory-is-knowing-what-to-forget-not-how-much-to-store/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/10/anthropic_claude-2.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Anthropic：代理記憶的關鍵是選擇性保留，而非堆積紀錄</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 比較 Claude 跨工作階段的記憶方式，發現少量、經挑選的策略筆記，比保存數百份檔案更能支援長期任務。在《Pokémon Red》測試中，Claude Fable 5 只保留少數策略檔案，前進距離是 Sonnet 3.7 的四倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Anthropic 的研究指出，代理記憶重點在選擇性記錄，而非保存所有紀錄；Dreaming 會事後對照過往對話，整理記憶並修正錯誤。</dd>
+      <dt>能做什麼</dt><dd>適合測試需要跨多次工作階段延續脈絡的代理，例如多日專案協作，或將大量文件整理成可搜尋的知識庫。</dd>
+      <dt>能否試用</dt><dd>Dreaming 已以 Claude Managed Agents 研究預覽提供，支援 Claude Opus 4.7 與 Sonnet 4.6；原文未提供試用連結。</dd>
+      <dt>限制</dt><dd>Dreaming 會增加運算成本且結果需等待，記憶與 wiki 也需要維護；測試多為 Anthropic 自家評估，寶可夢比較每個模型僅一次遊玩。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/16/meta-jittests-llm-catching-tests-privacy-bugs/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-98888-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Meta 將 LLM 產生的風險測試導入程式碼審查</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Meta 的 JiTTests 會針對高風險程式碼變更產生預期應失敗的測試，協助在程式碼合併前攔截問題。Meta 表示，系統在 2026 年上半年攔下 74 起隱私重大事件，工程師回報的真陽性率為 60%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>JiTTests 不是只對程式碼差異留下審查意見，而是產生預期在高風險變更上失敗的可執行測試，提供具體行為證據。</dd>
+      <dt>能做什麼</dt><dd>可用於大型程式碼庫的合併前檢查：針對高風險差異產生測試，再由模型評分與規則過濾，協助工程師確認變更是否造成非預期行為。</dd>
+      <dt>能否試用</dt><dd>目前是 Meta 內部基礎設施，未公開程式碼、模型或 API；相關連結提供研究論文。 <a href="https://arxiv.org/abs/2601.22832" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>成效數據來自 Meta 自家程式碼庫與回報；早期部署的 41 個候選案例中僅 8 個獲確認，後續較佳數字也未經文中所述的獨立驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180525" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/windows-aion-instruct-local-ai-banner-1440x630-v2.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Windows 本機 AI 模型改用 Aion Instruct，上下文容量擴大逾九倍</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">微軟將以 Aion Instruct 取代 Windows 裝置端的 Phi Silica；新模型參數量較少，但可處理的輸入上下文增加逾九倍。更新預計先推送給 Windows Insider 的 Copilot+ PC，並擴大支援 NVIDIA RTX 與 AMD RDNA 4 GPU。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Aion Instruct 將裝置端模型參數量由 38 億降至 23 億，同時把上下文上限從 3,500 提高至 32,000 個詞元，並擴大規劃中的 GPU 支援。</dd>
+      <dt>能做什麼</dt><dd>Windows 應用可透過既有 Windows AI API，在本機進行摘要、改寫或文字生成；較長上下文可減少處理文件或對話時切分資料的需求。</dd>
+      <dt>能否試用</dt><dd>微軟已於 10 月提供獨立測試套件；預計自 11 月 20 日起向 Windows Insider 分階段推送，2027 年 1 月下旬擴大至符合條件的正式版裝置。</dd>
+      <dt>限制</dt><dd>GPU 支援仍依相容性與測試結果分階段開放；自訂提示詞、輸出格式及模型行為需重新驗證，原有 Phi Silica LoRA 無法直接沿用，隱形文字浮水印也可能影響字串解析。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.theverge.com/policy/1034527/openai-csam-classifier" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 85">
+  <span class="fallback">The Verge</span>
+  <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/STK155_OPEN_AI_CVirginia_C-1.jpg?quality=90&amp;strip=all&amp;crop=0,0,100,100" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI 推出兒少性虐待影像分類器，協助調查人員篩查檢舉</h3>
+    </a>
+    <div class="source">The Verge</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 推出新的影像分類器，目標是協助兒少性虐待調查人員從大量檢舉中更快找出可採取行動的素材。這項工具聚焦於辨識相關影像，並作為調查流程的輔助，而非取代人工判斷。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>OpenAI 推出可辨識兒少性虐待影像、並特別標記 AI 生成內容的分類器；公司稱其誤報影像減少 48%，被標出的影像含虐待內容的機率為原本的兩倍。</dd>
+      <dt>能做什麼</dt><dd>經審核的機構可用來協助調查人員篩查大量檢舉，優先處理較可能涉及虐待的影像，並區分合成影像與真實兒童影像。</dd>
+      <dt>能否試用</dt><dd>OpenAI 表示向經審核的組織免費提供；原文未提及公開程式碼、模型權重或 API 的取得方式。</dd>
+      <dt>限制</dt><dd>免費使用限經審核組織；效能數字為 OpenAI 提供，原文未提及獨立評測結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://infosecu.technews.tw/2026/11/17/amazon-captured-records-of-ai-agents-trying-to-steal-ai-provider-keys/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 136">
+  <span class="fallback">科技新報</span>
+  <img src="https://img.technews.tw/wp-content/uploads/2022/01/29143821/shutterstock_1569353527.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>亞馬遜誘捕網觀察到疑似 AI 代理竊取金鑰以維持攻擊循環</h3>
+    </a>
+    <div class="source">科技新報</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">亞馬遜威脅情報團隊在誘捕環境中觀察到疑似由 AI 代理執行的攻擊，涉及竊取憑證並取得算力，以延續後續行動。這類案例凸顯代理工具可能把憑證濫用、資源取得與自動化操作串成持續循環。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>亞馬遜誘捕網觀察到疑似代理程式竊取 AI 服務金鑰，再用被盜憑證支付後續推論費用，形成可能自我延續的攻擊循環。</dd>
+      <dt>能做什麼</dt><dd>維運 AI 閘道與代理平台的團隊可據此檢查管理端點、預設憑證、SSRF 風險，以及原始碼、映像檔和環境檔中的金鑰外洩。</dd>
+      <dt>能否試用</dt><dd>這是亞馬遜 MadPot 誘捕感測器的威脅情報觀察；原文未提及對外提供偵測工具、程式碼或 API。</dd>
+      <dt>限制</dt><dd>亞馬遜僅以中度信心判斷攻擊可能使用 ARTEX，無法驗證代理程式宣稱的所有外部成果，也無法確認實際受害範圍。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xxuzgg/amd_loom_fun_added_radeon_9700_support_over_the/" target="_blank" rel="noopener">
+    <b>社群測試 AMD Loom：Radeon 9700 上 48 個模型平均快 42%</b>
+    <span class="source">r/LocalLLaMA</span>
+    <span class="text">AMD Loom 是實驗性推論堆疊，發布者稱其在 Radeon 9700 測試 48 個模型，平均速度比 llama.cpp 快 42%，但結果仍屬社群測試。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.17539" target="_blank" rel="noopener">
+    <b>研究提出以可驗證代理搜尋粉末 X 光繞射晶體結構</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">這項研究把粉末 X 光繞射結構判定建模為可驗證的代理搜尋問題，透過爬山式方法探索候選晶體結構。</span>
+  </a></li>
+  
+  <li><a href="https://www.theverge.com/tech/1034110/google-ask-maps-ai-trip-planning" target="_blank" rel="noopener">
+    <b>Google Maps 新增 AI 行程規劃，可提供各站即時資訊</b>
+    <span class="source">The Verge</span>
+    <span class="text">Maps 的 Ask Maps 可依需求建立單日或多日行程，並提供行程各站的即時資訊。</span>
+  </a></li>
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/get-answers-from-tables-with-tabular-search-in-amazon-bedrock-managed-knowledge-base/" target="_blank" rel="noopener">
+    <b>Amazon Bedrock 知識庫新增表格搜尋</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">Bedrock Managed Knowledge Base 現可搜尋 CSV、XLSX 與 XLS，跨資料列查找和計算，再結合文件內容回答多步驟問題。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-16.html">← 2026-11-16</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>

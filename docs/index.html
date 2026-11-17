@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI 日報 · 2026-11-16</title>
+<title>AI 日報 · 2026-11-17</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,38 +125,38 @@
   </header>
   
 <div class="dateline">
-  <h1>2026-11-16 星期一</h1>
-  <div class="meta">從 56 則新聞中精選 12 則 · 更新於 09:59</div>
+  <h1>2026-11-17 星期二</h1>
+  <div class="meta">從 145 則新聞中精選 12 則 · 更新於 12:28</div>
 </div>
 
 
 <article class="hero">
-  <a href="https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/" target="_blank" rel="noopener">
-<div class="thumb" style="--hue: 158">
-  <span class="fallback">The Decoder</span>
-  
+  <a href="https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-92221-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 </a>
   <div>
     <span class="badge">頭條</span>
-    <a href="https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/" target="_blank" rel="noopener"><h2>美團開源 1.6 兆參數代理模型 LongCat-2.5，訓練未使用輝達 GPU</h2></a>
+    <a href="https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/" target="_blank" rel="noopener"><h2>阿里推出 Qwen4-Max：2.4 兆參數 MoE，支援百萬 token 上下文</h2></a>
     
 
 <details class="insight">
-  <summary><p class="summary">美團釋出 LongCat-2.5 權重，這款面向 AI 代理的模型總參數達 1.6 兆，並以中國硬體完成訓練。它在 Terminal Bench 得分 88.4；美團展示的部署使用 194 張華為昇騰晶片。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Qwen4-Max 採用 2.4 兆參數 MoE 架構，每個 token 啟用 710 億參數，並支援原生視覺輸入與 100 萬 token 上下文。官方資料列出輸入價格為每百萬 token 1.5 美元，並稱 Work360 每項任務成本降低 62%。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>LongCat-2.5 是 1.6 兆參數的 MoE 代理模型，每個 token 約啟用 480 億參數；相較前代加入影像理解，並以 4 位元量化專家權重與啟用值，面向多步驟代理任務。</dd>
-      <dt>能做什麼</dt><dd>可用於需要長時間自主執行的程式開發代理，例如理解程式庫、修補錯誤與操作終端機；也能處理文字、影像及影片輸入。</dd>
-      <dt>能否試用</dt><dd>已釋出模型權重，採 MIT 授權，可商用、修改與再散布；另有 API、聊天介面及獨立的 W4A4 權重版本。 <a href="https://huggingface.co/meituan-longcat/LongCat-2.5" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>自架指南描述的是 194 張華為昇騰加速器組成的叢集，原文未提供 NVIDIA GPU 部署指引；多項效能數據為美團公布，BrowseComp 測試使用其自家環境。</dd>
+      <dt>新在哪裡</dt><dd>Qwen4-Max 以稀疏 MoE 架構搭配 QSA、Gated Residual 與 N-gram Embedding，支援文字、圖片、影片及 100 萬 token 上下文。相較前代，原文也稱其每項任務平均成本降低 62%。</dd>
+      <dt>能做什麼</dt><dd>可用於需要長上下文和工具呼叫的專業代理工作，例如處理大型文件、長對話或多模態內容；API 支援函式呼叫、結構化輸出、批次處理與網路搜尋。</dd>
+      <dt>能否試用</dt><dd>可透過 QwenCloud API 等託管服務使用，模型 ID 為 qwen4-max；沒有開放權重，無法自行部署。原文稱 Token Plan 預覽已開放，但相關連結指向 Kimi 模型頁，未提供可用的 Qwen 試用連結。</dd>
+      <dt>限制</dt><dd>基準測試尚未在發布時由第三方獨立重現；原文指出其在程式碼與視覺測試較弱。模型為專有且僅託管提供，無法自架或量化部署。</dd>
     </dl>
   </div>
 </details>
 
 
-    <p class="source">The Decoder · Meituan releases a 1.6-trillion-parameter agent model that never touched an Nvidia GPU</p>
+    <p class="source">MarkTechPost · Alibaba Releases Qwen4-Max: 2.4T MoE, 71B Active, 1M Context</p>
   </div>
 </article>
 
@@ -166,27 +166,27 @@
 <div class="grid">
   
   <article class="card">
-    <a href="https://the-decoder.com/anthropics-claude-fable-5-2-doesnt-generate-images-it-paints-them/" target="_blank" rel="noopener">
+    <a href="https://the-decoder.com/google-warns-that-fully-automated-cyberattacks-have-arrived-and-will-get-worse-fast/" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 158">
   <span class="fallback">The Decoder</span>
-  <img src="https://the-decoder.com/wp-content/uploads/2026/11/claude_fable_5.2_painting.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  
 </div>
 
-      <h3>Claude Fable 5.2 以程式碼模擬數十萬筆筆觸繪圖</h3>
+      <h3>Google 首度發現無人介入的自動化漏洞攻擊流程</h3>
     </a>
     <div class="source">The Decoder</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Anthropic 的 Claude Fable 5.2 不直接計算像素，而是撰寫 Python 程式，在虛擬畫布上安排數十萬筆模擬筆觸，呈現刷毛紋理與顏料效果。這種以程式生成圖像的做法，與常見的直接產生像素方式不同。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Google 威脅情報團隊發現名為 exploit_agent 的 AI 框架，能比對修補前後的程式碼、找出漏洞並建立攻擊程式，過程無須人工介入。這顯示 AI 已能串起漏洞探索與利用流程，可能進一步縮短攻擊者利用漏洞的時間。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>Claude Fable 5.2 不透過擴散模型生成圖像，而是用程式逐筆模擬刷毛、顏料與畫布，並觀察畫面後覆蓋修正；單幅作品可包含數十萬筆筆觸。</dd>
-      <dt>能做什麼</dt><dd>可用來探索需要逐步規劃、觀察結果並修正的生成式繪圖流程，也可能為具物理限制的機器人操作提供研究方向。</dd>
-      <dt>能否試用</dt><dd>原文提到 Anthropic 員工展示作品與實驗，但未提及模型是否已公開提供、程式碼或權重，也未提及授權。</dd>
-      <dt>限制</dt><dd>繪畫需產生大量筆觸，且真實機械手臂仍有精細動作控制限制；文中 RoboDojo Sim 分數是 Anthropic 的內部測試結果。</dd>
+      <dt>新在哪裡</dt><dd>Google GTIG 首度觀察到疑似全自動、無人介入的漏洞攻擊流程，能比對修補前後程式碼、找漏洞、開發利用程式並自動執行。</dd>
+      <dt>能做什麼</dt><dd>資安團隊可將此趨勢納入威脅模型，檢視修補程式、對外服務及漏洞通報流程是否能及時因應自動化攻擊。</dd>
+      <dt>能否試用</dt><dd>原文未提及可供外部使用的工具、程式碼或 API；報導的是 GTIG 在暴露伺服器上觀察到的系統。</dd>
+      <dt>限制</dt><dd>目前攻擊較重速度、犧牲隱匿性，會留下較容易偵測的鑑識痕跡；歸因與目標資訊來自伺服器資料及設定檔線索。</dd>
     </dl>
   </div>
 </details>
@@ -195,56 +195,114 @@
   </article>
   
   <article class="card">
-    <a href="https://www.ithome.com.tw/news/180508" target="_blank" rel="noopener">
+    <a href="https://the-decoder.com/openais-gpt-6-astra-tackles-the-standard-models-toughest-math-problem-on-a-lattice/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/openai_standard_model.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>GPT-6 Astra 協助完成粒子物理格點標準模型證明</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 物理學家 Nathaniel Craig 提供定義格點標準模型的策略後，GPT-6 Astra 將其發展成一份可運作的證明，處理的是困擾粒子物理學界逾 25 年的問題。Craig 指出距離完整解決仍有不少工作，成果目前不宜視為最終定論。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>GPT-6 Astra 協助把物理學家的構想發展成格點標準模型所需的建構，並主導詳細證明，處理了重疊費米子相位設定長期難以證明的問題。</dd>
+      <dt>能做什麼</dt><dd>可作為理論物理研究者運用 AI 協助構造數學證明的案例，尤其是格點場論相關研究；原文指出距離實際模擬仍有不少工作。</dd>
+      <dt>能否試用</dt><dd>相關成果以預印本公開；GPT-6 Astra 是否可供外部使用，原文未提及。 <a href="https://arxiv.org/abs/2610.09093" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>研究者仍需審閱證明，雖有多位格點場論學者檢視並提出問題，實際可行的標準模型模擬尚未完成。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/anthropic-says-the-key-to-agent-memory-is-knowing-what-to-forget-not-how-much-to-store/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/10/anthropic_claude-2.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Anthropic：代理記憶的關鍵是選擇性保留，而非堆積紀錄</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Anthropic 比較 Claude 跨工作階段的記憶方式，發現少量、經挑選的策略筆記，比保存數百份檔案更能支援長期任務。在《Pokémon Red》測試中，Claude Fable 5 只保留少數策略檔案，前進距離是 Sonnet 3.7 的四倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Anthropic 的研究指出，代理記憶重點在選擇性記錄，而非保存所有紀錄；Dreaming 會事後對照過往對話，整理記憶並修正錯誤。</dd>
+      <dt>能做什麼</dt><dd>適合測試需要跨多次工作階段延續脈絡的代理，例如多日專案協作，或將大量文件整理成可搜尋的知識庫。</dd>
+      <dt>能否試用</dt><dd>Dreaming 已以 Claude Managed Agents 研究預覽提供，支援 Claude Opus 4.7 與 Sonnet 4.6；原文未提供試用連結。</dd>
+      <dt>限制</dt><dd>Dreaming 會增加運算成本且結果需等待，記憶與 wiki 也需要維護；測試多為 Anthropic 自家評估，寶可夢比較每個模型僅一次遊玩。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/16/meta-jittests-llm-catching-tests-privacy-bugs/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-98888-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Meta 將 LLM 產生的風險測試導入程式碼審查</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Meta 的 JiTTests 會針對高風險程式碼變更產生預期應失敗的測試，協助在程式碼合併前攔截問題。Meta 表示，系統在 2026 年上半年攔下 74 起隱私重大事件，工程師回報的真陽性率為 60%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>JiTTests 不是只對程式碼差異留下審查意見，而是產生預期在高風險變更上失敗的可執行測試，提供具體行為證據。</dd>
+      <dt>能做什麼</dt><dd>可用於大型程式碼庫的合併前檢查：針對高風險差異產生測試，再由模型評分與規則過濾，協助工程師確認變更是否造成非預期行為。</dd>
+      <dt>能否試用</dt><dd>目前是 Meta 內部基礎設施，未公開程式碼、模型或 API；相關連結提供研究論文。 <a href="https://arxiv.org/abs/2601.22832" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>成效數據來自 Meta 自家程式碼庫與回報；早期部署的 41 個候選案例中僅 8 個獲確認，後續較佳數字也未經文中所述的獨立驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180525" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 134">
   <span class="fallback">iThome</span>
-  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1116-artex-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/windows-aion-instruct-local-ai-banner-1440x630-v2.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>FBI 示警駭客以 AI 滲透工具加速入侵，最快不到 3 小時取得高權限</h3>
+      <h3>Windows 本機 AI 模型改用 Aion Instruct，上下文容量擴大逾九倍</h3>
     </a>
     <div class="source">iThome</div>
     
 
 <details class="insight">
-  <summary><p class="summary">FBI 指出，駭客使用開源工具 ARTEX 自動尋找系統弱點並利用漏洞，部分事件從鎖定目標到取得受害系統高權限不到 3 小時。警示也提到攻擊者可能進一步竊取資料，顯示自動化滲透工具正在縮短攻擊所需時間。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>ARTEX 將外部大型語言模型接入多個 AI 代理，讓使用者以自然語言指定目標，自動尋找弱點、測試漏洞並接續操作，減少逐項手動下指令。</dd>
-      <dt>能做什麼</dt><dd>原本可用於經授權的滲透測試；企業也可依 FBI 建議檢查對外服務、雲端憑證與 OAuth 授權，並監控異常 API 呼叫。</dd>
-      <dt>能否試用</dt><dd>原始專案曾以開源工具公開，但開發者已停止釋出且原始 GitHub 儲存庫下架；分支、修改版與封存副本仍在流通，另有商業版。授權原文未提及。</dd>
-      <dt>限制</dt><dd>工具被駭客用於實際入侵，且公開網路上曾有大量暴露的管理介面；原文未提及各分支版本的安全性或維護狀況。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xx1owx/moe_offload_on_a_3090_prefill_345_466_ts_by/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 274">
-  <span class="fallback">r/LocalLLaMA</span>
-  <img src="https://preview.redd.it/5dlnj6wict1i1.gif?frame=1&amp;width=140&amp;height=45&amp;auto=webp&amp;s=f65b32644597c4a0f7689904ec8415206b77f2cd" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>調校 CUDA 記憶體複製，RTX 3090 的 MoE CPU 卸載前置處理提升約 35%</h3>
-    </a>
-    <div class="source">r/LocalLLaMA</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">一項社群測試針對 Qwen3.6 35B-A3B 的 CPU 卸載流程調校資料複製，在 RTX 3090 與 Ryzen 7 7800X3D 上，前置處理速度由 345 提升至 466 token/s。這是單一硬體配置的測試結果，顯示記憶體傳輸調校可能改善 MoE 推論效能。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">微軟將以 Aion Instruct 取代 Windows 裝置端的 Phi Silica；新模型參數量較少，但可處理的輸入上下文增加逾九倍。更新預計先推送給 Windows Insider 的 Copilot+ PC，並擴大支援 NVIDIA RTX 與 AMD RDNA 4 GPU。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>這項工具會調校 CUDA 記憶體複製流程，以加快 CPU 卸載時的前置處理；作者展示單張 RTX 3090 搭配特定 CPU 時，prefill 從 345 提升至 466 tokens/s。</dd>
-      <dt>能做什麼</dt><dd>可用於 GPU 記憶體不足、需要把 MoE 專家卸載至 CPU 的本機推論環境，嘗試改善提示詞前置處理速度。</dd>
-      <dt>能否試用</dt><dd>內文附有 GitHub 程式碼連結，表示工具已可取得；授權原文未提及。</dd>
-      <dt>限制</dt><dd>數據來自單一 RTX 3090 與 Ryzen 7 7800X3D 的測試配置，原文未提供其他硬體或模型的驗證結果；相關限制與授權原文未提及。</dd>
+      <dt>新在哪裡</dt><dd>Aion Instruct 將裝置端模型參數量由 38 億降至 23 億，同時把上下文上限從 3,500 提高至 32,000 個詞元，並擴大規劃中的 GPU 支援。</dd>
+      <dt>能做什麼</dt><dd>Windows 應用可透過既有 Windows AI API，在本機進行摘要、改寫或文字生成；較長上下文可減少處理文件或對話時切分資料的需求。</dd>
+      <dt>能否試用</dt><dd>微軟已於 10 月提供獨立測試套件；預計自 11 月 20 日起向 Windows Insider 分階段推送，2027 年 1 月下旬擴大至符合條件的正式版裝置。</dd>
+      <dt>限制</dt><dd>GPU 支援仍依相容性與測試結果分階段開放；自訂提示詞、輸出格式及模型行為需重新驗證，原有 Phi Silica LoRA 無法直接沿用，隱形文字浮水印也可能影響字串解析。</dd>
     </dl>
   </div>
 </details>
@@ -253,143 +311,56 @@
   </article>
   
   <article class="card">
-    <a href="https://technews.tw/2026/11/16/ai-tool-trained-on-40-million-photos-study-suggests-an-older-looking-appearance-may-be-a-warning-sign-for-health-issues/" target="_blank" rel="noopener">
+    <a href="https://www.theverge.com/policy/1034527/openai-csam-classifier" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 85">
+  <span class="fallback">The Verge</span>
+  <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/08/STK155_OPEN_AI_CVirginia_C-1.jpg?quality=90&amp;strip=all&amp;crop=0,0,100,100" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI 推出兒少性虐待影像分類器，協助調查人員篩查檢舉</h3>
+    </a>
+    <div class="source">The Verge</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 推出新的影像分類器，目標是協助兒少性虐待調查人員從大量檢舉中更快找出可採取行動的素材。這項工具聚焦於辨識相關影像，並作為調查流程的輔助，而非取代人工判斷。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>OpenAI 推出可辨識兒少性虐待影像、並特別標記 AI 生成內容的分類器；公司稱其誤報影像減少 48%，被標出的影像含虐待內容的機率為原本的兩倍。</dd>
+      <dt>能做什麼</dt><dd>經審核的機構可用來協助調查人員篩查大量檢舉，優先處理較可能涉及虐待的影像，並區分合成影像與真實兒童影像。</dd>
+      <dt>能否試用</dt><dd>OpenAI 表示向經審核的組織免費提供；原文未提及公開程式碼、模型權重或 API 的取得方式。</dd>
+      <dt>限制</dt><dd>免費使用限經審核組織；效能數字為 OpenAI 提供，原文未提及獨立評測結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://infosecu.technews.tw/2026/11/17/amazon-captured-records-of-ai-agents-trying-to-steal-ai-provider-keys/" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 136">
   <span class="fallback">科技新報</span>
-  <img src="https://img.technews.tw/wp-content/uploads/2026/01/14122337/javier-quiroga-FeBqmwrm1YI-unsplash.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  <img src="https://img.technews.tw/wp-content/uploads/2022/01/29143821/shutterstock_1569353527.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>研究團隊以 4,000 萬張照片訓練 AI，從臉部影像評估健康風險</h3>
+      <h3>亞馬遜誘捕網觀察到疑似 AI 代理竊取金鑰以維持攻擊循環</h3>
     </a>
     <div class="source">科技新報</div>
     
 
 <details class="insight">
-  <summary><p class="summary">醫療研究團隊開發的 AI 系統以 4,000 萬張照片訓練，目標是從單張臉部照片辨識與健康狀況、疾病風險相關的訊號。候選報導未提供模型效能或驗證細節，實際臨床用途仍需看後續研究。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">亞馬遜威脅情報團隊在誘捕環境中觀察到疑似由 AI 代理執行的攻擊，涉及竊取憑證並取得算力，以延續後續行動。這類案例凸顯代理工具可能把憑證濫用、資源取得與自動化操作串成持續循環。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>FAHR-Face 以超過 4,000 萬張臉部照片訓練基礎模型，並衍生出估算外貌年齡及預測癌症患者存活風險的工具，嘗試從臉部影像擷取不同健康訊號。</dd>
-      <dt>能做什麼</dt><dd>研究方向是協助醫師在手術、放射治療或藥物治療前評估患者狀況，作為臨床決策的輔助資訊。</dd>
-      <dt>能否試用</dt><dd>研究成果已發表於《刺胳針數位健康》；原文未提及模型、程式碼或 API 是否公開，也未提及授權。</dd>
-      <dt>限制</dt><dd>存活風險模型以癌症患者資料訓練及測試，研究團隊指出仍需更大規模臨床測試；原文未提及其他族群或醫療情境的驗證。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xx0fqn/cpuonly_boost_for_q2_0_on_avxvnni_pull_request/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 274">
-  <span class="fallback">r/LocalLLaMA</span>
-  <img src="https://external-preview.redd.it/4FKUyUstZyzNJrYVmnIRKQoxuq2wnbwYeQ840Ls68tw.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=e7d36932d1af23826395656890e56965f9ee667c" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>llama.cpp 加入 AVX-VNNI 與 VBMI 路徑，部分 Q2_0 前置處理快 1.31 倍</h3>
-    </a>
-    <div class="source">r/LocalLLaMA</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">一項 llama.cpp 拉取請求的測試顯示，在 AMD EPYC 9645、使用 8 個 CPU 核心時，Bonsai 1.7B Q2_0 的 512-token 前置處理速度由約 142.5 提升至 186.4 token/s，約快 1.31 倍。相同測試的 128-token 解碼速度則沒有提升，略低於原版。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v1">值得試玩</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>llama.cpp 加入 AVX-VNNI 與 VBMI 路徑後，部分 Q2_0 CPU 前置處理測試提升約 1.3 倍；貼文也報告大型模型 CPU 卸載解碼速度改善。</dd>
-      <dt>能做什麼</dt><dd>適合在支援相關指令集的 CPU 上測試低位元量化模型，特別是 GPU 搭配 CPU 卸載 MoE 專家的混合推論。</dd>
-      <dt>能否試用</dt><dd>貼文表示 llama.cpp 已有相關路徑，並提到另有 AVX-512 VNNI 相關 PR 開放中；授權原文未提及。</dd>
-      <dt>限制</dt><dd>測試僅使用特定 AMD EPYC 9645、八核心及有限模型，且只跑三次；速度提升因模型與工作負載而異，部分生成測試甚至沒有提升。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://openai.com/index/step-toward-defining-the-standard-model" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 14">
-  <span class="fallback">OpenAI</span>
-  
-</div>
-
-      <h3>OpenAI 探索標準模型的格點定義，稱 GPT-6 Astra 協助整理證明</h3>
-    </a>
-    <div class="source">OpenAI</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">OpenAI 介紹一項粒子物理研究，探索標準模型的候選非微擾格點定義，並表示 GPT-6 Astra 協助將想法整理成詳細證明。報導未列出證明內容或獨立驗證結果，研究的具體方法與影響仍待進一步資料。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>OpenAI 探索以格點方式給出標準模型的非微擾定義，並表示 GPT-6 Astra 協助把想法整理成詳細證明。</dd>
-      <dt>能做什麼</dt><dd>可供粒子物理研究者參考 AI 協助整理數學推導與形式化證明的研究方向。</dd>
-      <dt>能否試用</dt><dd>原文僅描述研究探索與 GPT-6 Astra 的協助，未提及論文、程式碼、模型或展示是否公開，也未提及授權。</dd>
-      <dt>限制</dt><dd>原文未提供證明細節、驗證方式或研究成果的外部評估。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1xwyp7w/x3guard_a_150m_parameter_prompt_guard/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 274">
-  <span class="fallback">r/LocalLLaMA</span>
-  <img src="https://external-preview.redd.it/QdEHuI6FFlBhZWTdrklytnmg96jkIWYTksNjqVqRTrs.png?width=640&amp;crop=smart&amp;auto=webp&amp;s=b5a49272d9a642371bcecf43db0c6da533d19b1c" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>150M 參數 X3Guard 同時偵測有害與對抗性提示</h3>
-    </a>
-    <div class="source">r/LocalLLaMA</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">Axiomic Labs 釋出 X3Guard-150M 提示防護模型，單次判斷即可標記提示是否有害、是否具對抗性。開發者稱它能勝過多個參數量更大的模型，但目前候選資訊未提供具體基準測試數據。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v1">值得試玩</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>X3Guard-150M 用單一小型模型同時判斷提示詞是否有害及是否具對抗性，並宣稱可在瀏覽器與邊緣裝置執行。</dd>
-      <dt>能做什麼</dt><dd>可作為聊天產品或本機 AI 應用的提示詞防護層，在送交生成模型前檢查有害或對抗性輸入。</dd>
-      <dt>能否試用</dt><dd>貼文宣稱模型已釋出，並提供模型卡與瀏覽器展示；授權原文未提及。</dd>
-      <dt>限制</dt><dd>優於大型模型及 iPhone 上數十毫秒回應速度是貼文中的宣稱，原文未提供評測細節、測試集或授權資訊。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://technews.tw/2026/11/16/serve-robotics-wants-to-democratize-sidewalk-delivery-robots/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 136">
-  <span class="fallback">科技新報</span>
-  <img src="https://img.technews.tw/wp-content/uploads/2026/11/13120809/Serve-Robotics.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>Serve Robotics 開放配送 API，讓商家直接呼叫人行道送貨機器人</h3>
-    </a>
-    <div class="source">科技新報</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">Serve Robotics 推出開發者入口與配送 API，讓商家可直接串接機器人配送服務，不必透過外送平台下單。這為商家建立機器人配送流程提供了新的整合介面；候選資訊未提供服務範圍或 API 規格。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v1">值得試玩</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>Serve Robotics 開放 API，讓商家與 AI 代理可直接提交取件、送達地點並追蹤人行道送貨機器人，無須只透過外送平台下單。</dd>
-      <dt>能做什麼</dt><dd>美國服務區內的商家可評估把機器人配送整合到自家網站或 POS；開發者也能先用沙盒測試下單與追蹤流程。</dd>
-      <dt>能否試用</dt><dd>技術文件可供查閱，沙盒模擬環境已開放；使用真實機器人須提出申請並經人工審核，原文未提及授權。</dd>
-      <dt>限制</dt><dd>真實配送僅限美國既有服務區與營運時間，貨物須放入機器人貨箱；實際價格未公布，且真實機器人使用須審核。</dd>
+      <dt>新在哪裡</dt><dd>亞馬遜誘捕網觀察到疑似代理程式竊取 AI 服務金鑰，再用被盜憑證支付後續推論費用，形成可能自我延續的攻擊循環。</dd>
+      <dt>能做什麼</dt><dd>維運 AI 閘道與代理平台的團隊可據此檢查管理端點、預設憑證、SSRF 風險，以及原始碼、映像檔和環境檔中的金鑰外洩。</dd>
+      <dt>能否試用</dt><dd>這是亞馬遜 MadPot 誘捕感測器的威脅情報觀察；原文未提及對外提供偵測工具、程式碼或 API。</dd>
+      <dt>限制</dt><dd>亞馬遜僅以中度信心判斷攻擊可能使用 ARTEX，無法驗證代理程式宣稱的所有外部成果，也無法確認實際受害範圍。</dd>
     </dl>
   </div>
 </details>
@@ -404,29 +375,35 @@
 <div class="section-title">快訊</div>
 <ul class="briefs">
   
-  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xx7qbf/i_have_created_a_tool_to_observe_what_happens/" target="_blank" rel="noopener">
-    <b>開源工具 inside-llm 可逐 token 比較 GGUF 模型量化差異</b>
+  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xxuzgg/amd_loom_fun_added_radeon_9700_support_over_the/" target="_blank" rel="noopener">
+    <b>社群測試 AMD Loom：Radeon 9700 上 48 個模型平均快 42%</b>
     <span class="source">r/LocalLLaMA</span>
-    <span class="text">inside-llm 透過 llama.cpp 載入一個或兩個 GGUF 模型，逐 token 顯示模型輸出差異，方便檢視不同量化版本從何處開始分歧。</span>
+    <span class="text">AMD Loom 是實驗性推論堆疊，發布者稱其在 Radeon 9700 測試 48 個模型，平均速度比 llama.cpp 快 42%，但結果仍屬社群測試。</span>
   </a></li>
   
-  <li><a href="https://www.reddit.com/r/LocalLLaMA/comments/1xx2vi0/audiocpp_soulxflashhead_lfm3audio_owsm_v4/" target="_blank" rel="noopener">
-    <b>audio.cpp 整合語音辨識、對話與頭像生成，提供本機即時虛擬人聊天</b>
-    <span class="source">r/LocalLLaMA</span>
-    <span class="text">audio.cpp 0.9.5 的 WebUI 結合 SoulX-FlashHead、OWSM v4 與 LFM3-Audio，串起說話頭像生成、語音轉文字、對話及語音合成流程。</span>
+  <li><a href="https://arxiv.org/abs/2611.17539" target="_blank" rel="noopener">
+    <b>研究提出以可驗證代理搜尋粉末 X 光繞射晶體結構</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">這項研究把粉末 X 光繞射結構判定建模為可驗證的代理搜尋問題，透過爬山式方法探索候選晶體結構。</span>
   </a></li>
   
-  <li><a href="https://www.ithome.com.tw/news/180511" target="_blank" rel="noopener">
-    <b>Microsoft 365 全球中斷逾 30 小時，起因為網路升級瑕疵遭變更觸發</b>
-    <span class="source">iThome</span>
-    <span class="text">微軟表示，先前網路容量升級留下的技術瑕疵在近期網路變更後觸發，造成 Exchange Online、Teams 等服務大規模中斷；事故與網路攻擊或 AI 無關。</span>
+  <li><a href="https://www.theverge.com/tech/1034110/google-ask-maps-ai-trip-planning" target="_blank" rel="noopener">
+    <b>Google Maps 新增 AI 行程規劃，可提供各站即時資訊</b>
+    <span class="source">The Verge</span>
+    <span class="text">Maps 的 Ask Maps 可依需求建立單日或多日行程，並提供行程各站的即時資訊。</span>
+  </a></li>
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/get-answers-from-tables-with-tabular-search-in-amazon-bedrock-managed-knowledge-base/" target="_blank" rel="noopener">
+    <b>Amazon Bedrock 知識庫新增表格搜尋</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">Bedrock Managed Knowledge Base 現可搜尋 CSV、XLSX 與 XLS，跨資料列查找和計算，再結合文件內容回答多步驟問題。</span>
   </a></li>
   
 </ul>
 
 
 <nav class="pager">
-  <span><a href="2026-11-15.html">← 2026-11-15</a></span>
+  <span><a href="2026-11-16.html">← 2026-11-16</a></span>
   <span></span>
 </nav>
 
