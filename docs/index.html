@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI 日報 · 2026-11-23</title>
+<title>AI 日報 · 2026-11-24</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,38 +125,38 @@
   </header>
   
 <div class="dateline">
-  <h1>2026-11-23 星期一</h1>
-  <div class="meta">從 44 則新聞中精選 12 則 · 更新於 10:42</div>
+  <h1>2026-11-24 星期二</h1>
+  <div class="meta">從 96 則新聞中精選 12 則 · 更新於 13:58</div>
 </div>
 
 
 <article class="hero">
-  <a href="https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens" target="_blank" rel="noopener">
-<div class="thumb" style="--hue: 122">
-  <span class="fallback">Hacker News</span>
-  <img src="https://dragos.brightspotcdn.com/dims4/default/41c5c4a/2147483647/strip/true/crop/1307x735+309+0/resize/1440x810!/format/webp/quality/90/?url=https%3A%2F%2Fdragos-production-dragos.s3.us-west-2.amazonaws.com%2Fbrightspot%2Fd4%2Fb6%2Fb4dbcbe348a8b3506fb99c5419e7%2Fxot-hero.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  <a href="https://the-decoder.com/gpt-6-2-astra-solved-a-math-theorem-no-other-ai-could-crack-then-invented-its-own-proof-strategy/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/gpt_lean_proof.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 </a>
   <div>
     <span class="badge">頭條</span>
-    <a href="https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens" target="_blank" rel="noopener"><h2>Dragos 揭露 AI 推論供應鏈遭入侵：提示詞外洩並有雲端金鑰遭竊</h2></a>
+    <a href="https://the-decoder.com/gpt-6-2-astra-solved-a-math-theorem-no-other-ai-could-crack-then-invented-its-own-proof-strategy/" target="_blank" rel="noopener"><h2>GPT-6.2 Astra 首度產出可機器驗證的 Smoktunowicz 猜想證明</h2></a>
     
 
 <details class="insight">
-  <summary><p class="summary">Dragos 以近 200 萬筆測試提示詞檢查 AI 推論供應鏈，發現至少 3 家供應商遭入侵，攻擊者竊取數百組 AWS 金鑰，部分轉售商也能讀取客戶請求。OpenRouter 隨後停用涉事供應商，事件凸顯透過第三方推論服務傳送提示詞時，可能同時暴露敏感資料與雲端憑證。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">OpenAI 的 GPT-6.2 Astra 獨立產出 Smoktunowicz gap theorem 的 Lean 機器可驗證證明；報導指出，模型在數學函式庫缺少必要基礎時，改用自己的證明策略。在 Autoform-Hard 評測中，Astra 解出 56 題中的 49 題。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>以近兩百萬則含獨特誘餌憑證的提示詞追蹤推論資料流向，揭露提示詞遭竊、供應商遭入侵，以及雲端金鑰被用來存取 AWS 資源等風險。</dd>
-      <dt>能做什麼</dt><dd>資安團隊可據此檢視 AI 推論服務、路由器及轉售商的資料處理風險，並監控提示詞中憑證遭竊後的雲端異常活動。</dd>
-      <dt>能否試用</dt><dd>原文未提及是否公開報告、程式碼或可試用服務。</dd>
-      <dt>限制</dt><dd>調查涵蓋 2026 年 7 至 11 月、約兩百萬則提示詞；結果來自特定服務與供應商，原文未提供完整調查範圍或可重現資料。</dd>
+      <dt>新在哪裡</dt><dd>Vals AI 稱這是首個以 Lean 撰寫、可機器驗證的 Smoktunowicz gap theorem 證明，且 Astra 在該次執行中未獲人工協助；因 Mathlib 缺少原證明所需基礎，它改用「capacity」指標推導。</dd>
+      <dt>能做什麼</dt><dd>可用於探索 AI 自動形式化數學證明的能力，例如把數學定理轉成 Lean 證明，供機器檢查。</dd>
+      <dt>能否試用</dt><dd>原文未提及 Astra 是否對外開放、是否提供 API、模型權重或程式碼。</dd>
+      <dt>限制</dt><dd>成果來自 Autoform-Hard 的 56 題子集，證明耗時 94 分鐘、花費 21.58 美元；原文未提及其他數學任務上的表現。</dd>
     </dl>
   </div>
 </details>
 
 
-    <p class="source">Hacker News · AI Supply Chain Security: What Canary Tokens Found</p>
+    <p class="source">The Decoder · GPT-6.2 Astra solved a math theorem no other AI could crack, then invented its own proof strategy</p>
   </div>
 </article>
 
@@ -166,27 +166,27 @@
 <div class="grid">
   
   <article class="card">
-    <a href="https://www.marktechpost.com/2026/11/22/nvidia-alpamayo-2-edge-2b-reasoning-vla-drive-thor/" target="_blank" rel="noopener">
+    <a href="https://the-decoder.com/openai-updates-chatgpt-to-handle-complex-everyday-questions-web-searches-and-images-more-reliably/" target="_blank" rel="noopener">
       
-<div class="thumb" style="--hue: 244">
-  <span class="fallback">MarkTechPost</span>
-  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-1113454-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/openai_chatgpt_pattern.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>NVIDIA 推出 2B 級 Alpamayo 2 Edge VLA，面向 DRIVE Thor 車載平台</h3>
+      <h3>OpenAI 更新 ChatGPT 預設模型，影像理解與指令遵循測試提升</h3>
     </a>
-    <div class="source">MarkTechPost</div>
+    <div class="source">The Decoder</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Alpamayo 2 Edge 是可推理的視覺－語言－動作模型，能規劃駕駛軌跡並解釋決策，部署目標為 DRIVE AGX Thor。官方資料稱其像素到軌跡延遲約 160–190 毫秒，模型規模約 20 億參數。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">GPT-6.2 Sol 成為 ChatGPT 對話頁面的新預設模型，並開始全球推出。OpenAI 內部測試中，影像理解分數由 47.4 升至 71.7，複雜指令的正確處理率為 78.1%。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>這款約 2B 級 VLA 可把多鏡頭影像、導航指令與車輛歷史姿態轉成 6.4 秒軌跡，並依情境選擇輸出因果推理，目標是在車載運算限制下進行規劃。</dd>
-      <dt>能做什麼</dt><dd>可在 DRIVE AGX Thor 上試做車載閉迴路軌跡規劃，也可用於研究多鏡頭自駕模型的推理與部署流程。</dd>
-      <dt>能否試用</dt><dd>Hugging Face 已提供模型權重，GitHub 提供模型與部署相關程式；原文稱模型為開放模型，但具體授權原文未提及。 <a href="https://huggingface.co/nvidia/Alpamayo2-Edge" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>Thor 即時運作需依 NVIDIA 的 FP8／TensorRT 配方部署；BF16 只在 H100 上驗證，其他 GPU 架構尚未驗證。閉迴路成績為 NVIDIA 自家測試，不能視為實際道路表現保證。</dd>
+      <dt>新在哪裡</dt><dd>GPT-6.2 Sol 是針對聊天調校的版本，OpenAI 表示其影像理解、複雜指令遵循、網頁搜尋與安全表現較 GPT-6 提升。</dd>
+      <dt>能做什麼</dt><dd>可在 ChatGPT 中試用於需要理解圖片、處理複雜要求或搜尋網路資料的工作情境。</dd>
+      <dt>能否試用</dt><dd>正向全球推出，Plus、Pro、Business 與 Enterprise 用戶可使用；原文未提及 API 或模型權重。</dd>
+      <dt>限制</dt><dd>文中數據來自 OpenAI 內部測試，且只適用於 ChatGPT 聊天模式；Work 與 Codex 模型未更新，Enterprise 管理員可控制是否開放。</dd>
     </dl>
   </div>
 </details>
@@ -195,56 +195,27 @@
   </article>
   
   <article class="card">
-    <a href="https://the-decoder.com/ai-coding-agents-ace-isolated-tests-but-complete-fewer-than-one-in-ten-tasks-in-a-simulated-workplace/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 158">
-  <span class="fallback">The Decoder</span>
-  <img src="https://the-decoder.com/wp-content/uploads/2026/11/cowork-benchmark-chatgpt-5-6.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>模擬職場測試顯示，AI 程式代理完成完整工作任務的比例不到一成</h3>
-    </a>
-    <div class="source">The Decoder</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">一項模擬開發團隊的測試，要求代理在有同事、專案看板與不完整交接的情境中，自主處理並結案軟體工單。即使是 Opus 5.5 和 Astra，完成任務的比例仍不到 10%，顯示孤立程式測試未必能代表真實工作表現。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>研究把程式代理放進含同事、專案看板與聊天紀錄的模擬軟體公司，評估完整職場任務，而不只測單一程式問題。</dd>
-      <dt>能做什麼</dt><dd>可作為設計企業內 AI 程式代理評測的參考，檢查代理是否能跨工具與上下文完成端到端工作。</dd>
-      <dt>能否試用</dt><dd>原文未提及研究資料、程式碼、模型或測試環境是否公開。</dd>
-      <dt>限制</dt><dd>文中只提到即使 Claude Opus 5.5 與 GPT-6 Astra 完整完成任務的比例也不到一成；測試細節與結果可重現性原文未提及。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://the-decoder.com/ai-is-getting-better-faster-than-experts-can-reliably-test-whether-new-systems-are-safe-metr-warns/" target="_blank" rel="noopener">
+    <a href="https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 158">
   <span class="fallback">The Decoder</span>
   
 </div>
 
-      <h3>METR 警告：前沿模型能力進步太快，現有安全評測難以可靠追蹤</h3>
+      <h3>Z.ai 推出 750B 參數 GLM-5.4，以 Loop Transformer 重複運算 28 層</h3>
     </a>
     <div class="source">The Decoder</div>
     
 
 <details class="insight">
-  <summary><p class="summary">METR 指出，Opus 5.5、GPT-6 Astra 等模型在研究任務上的能力提升，使現有測量資料更難判斷進步速度。該組織提醒，目前測試既可能高估模型能力，也不足以排除 AI 加速研發的風險。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">GLM-5.4 是 Z.ai 首款採用 Loop Transformer 的旗艦模型，將 28 層重複運算，以增加每個 token 的計算深度，而不再堆疊更多參數。Z.ai 稱其能力可比肩 2 至 3 兆參數模型，但目前公布的基準測試僅來自較小的 30B 測試模型。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
-    <span class="verdict v0">值得知道</span>
+    <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>METR 指出模型在可明確評分的長時程任務上進步迅速，可能讓現有公開資料與常見測試不足以追蹤能力變化及風險。</dd>
-      <dt>能做什麼</dt><dd>AI 安全與評測團隊可用來檢視測試是否過度貼近訓練環境，並增加長時程、開放式任務的評估。</dd>
-      <dt>能否試用</dt><dd>這是 METR 的研究與警示；原文未提及可試用工具、程式碼或模型發布。</dd>
-      <dt>限制</dt><dd>「每 3.6 個月可處理任務時長加倍」的外推是以現有資料做的簡單推估；模型仍不擅長缺少即時回饋、需要判斷的開放式任務。</dd>
+      <dt>新在哪裡</dt><dd>GLM-5.4 採用 Loop Transformer，讓共享的 28 層區塊重複運算兩次，透過閘門控制中間結果，增加計算深度而不增加參數量。</dd>
+      <dt>能做什麼</dt><dd>可透過 GLM Coding Plan、ZCode 或 Z.ai Chat 試用於程式開發，以及產生影片、遊戲或 CAD 模型等「Generalized Coding」任務。</dd>
+      <dt>能否試用</dt><dd>已可透過 GLM Coding Plan、ZCode 與 Z.ai Chat 使用；API 尚待推出，權重預計完成安全測試後釋出，授權原文未提及。</dd>
+      <dt>限制</dt><dd>750B 版本尚無公開基準分數或獨立評測；文中量化增益來自額外使用約 10% 訓練算力的 30B 測試，且模型可能陷入冗長推理。</dd>
     </dl>
   </div>
 </details>
@@ -253,27 +224,27 @@
   </article>
   
   <article class="card">
-    <a href="https://www.ithome.com.tw/news/180676" target="_blank" rel="noopener">
+    <a href="https://www.ithome.com.tw/news/180741" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 134">
   <span class="fallback">iThome</span>
-  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1123-github_copilot_cli-v2-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1124-claude_ship-960-2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>微軟揭露 GitHub Copilot CLI 釣魚風險：裝置驗證流程可能被用來操控代理</h3>
+      <h3>Anthropic 推出 Claude Ship，讓代理人審查、修正並核准 GitHub PR</h3>
     </a>
     <div class="source">iThome</div>
     
 
 <details class="insight">
-  <summary><p class="summary">攻擊者可利用合法的裝置驗證碼登入流程，誘使開發者核准登入，進而取得 OAuth 存取權杖。微軟研究指出，在特定條件下，攻擊者可能藉此遠端操控 AI 代理，讓它在使用者電腦上執行命令。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Claude Ship 將程式碼審查、PR 修正與核准政策串進交付流程；核准代理可依據團隊政策自動處理例行變更。Code Review 已正式推出，PR Steward 與 Claude Approvals 則向 Team、Enterprise 用戶公開測試。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
-    <span class="verdict v0">值得知道</span>
+    <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>揭露裝置驗證碼釣魚可讓攻擊者取得 GitHub OAuth 權杖，並在特定條件下利用 Copilot CLI 的遠端控制功能操控本機 AI 代理；微軟也開發了兩種 Defender XDR 偵測機制。</dd>
-      <dt>能做什麼</dt><dd>企業可檢查異常 OAuth 授權，並提醒開發者只核准自己發起的裝置登入；也可評估是否限制代理的遠端控制、雲端工作階段儲存與記憶功能。</dd>
-      <dt>能否試用</dt><dd>微軟研究人員已開發針對電子郵件與 Teams 釣魚訊息的 Defender XDR 偵測機制；是否已正式推出或如何啟用，原文未提及。</dd>
-      <dt>限制</dt><dd>代理遭遠端操控須同時符合遠端控制已啟用、組織政策允許且工作階段仍執行等條件，仍受本機權限與核准機制限制。</dd>
+      <dt>新在哪裡</dt><dd>Claude Ship 把 AI 程式代理的工作延伸到 GitHub PR 交付流程，整合程式碼審查、依意見修正與依企業政策核准變更。</dd>
+      <dt>能做什麼</dt><dd>可用於 GitHub 儲存庫的 PR 流程，讓代理人分類審查問題、修復測試失敗或合併衝突，並將例行變更交由政策核准。</dd>
+      <dt>能否試用</dt><dd>目前開放 Claude Team 與 Enterprise 用戶測試；依 token 使用量計費，原文未提及程式碼或模型權重釋出。</dd>
+      <dt>限制</dt><dd>目前僅支援 GitHub；Anthropic 提供的 PR 數量與撤銷率改善數據來自自家 Claude Code 團隊，且建議企業先以觀察模式驗證判斷能力。</dd>
     </dl>
   </div>
 </details>
@@ -282,27 +253,27 @@
   </article>
   
   <article class="card">
-    <a href="https://www.marktechpost.com/2026/11/22/google-gemini-api-tool-retrieval/" target="_blank" rel="noopener">
+    <a href="https://www.marktechpost.com/2026/11/23/meta-tlx-triton-low-level-extensions/" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 244">
   <span class="fallback">MarkTechPost</span>
-  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-123454-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  
 </div>
 
-      <h3>Gemini API 預覽 Tool Retrieval，按需載入大型工具庫的參數規格</h3>
+      <h3>Meta 推出 Triton 低階擴充功能，增加 GPU 硬體控制能力</h3>
     </a>
     <div class="source">MarkTechPost</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Google 在 Gemini API 預覽 Tool Retrieval，讓代理先保留大型工具庫，再按需求取回工具的參數結構，而非一次載入所有規格。此功能可在單一 Interactions API 請求中使用，目標是降低工具數量增加時的上下文負擔。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Meta 的 TLX（Triton Low-Level Extensions）讓 Python Triton kernel 能控制 warp-group、barrier、TMA 與 GPU cluster 等功能。Meta 表示，已將其用於廣告與 LLM 工作負載，支援 NVIDIA Hopper、Blackwell 及 AMD MI350。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>Gemini API 的 Tool Retrieval 可先提供工具名稱與簡短描述，待模型需要時才載入工具參數規格，減少每次請求都附帶大型工具庫規格的負擔。</dd>
-      <dt>能做什麼</dt><dd>適合工具或 MCP 伺服器很多的代理，例如按任務檢索退款、查詢或管理工具的規格；也可由自有工具目錄執行客戶端檢索。</dd>
-      <dt>能否試用</dt><dd>目前在 Gemini Interactions API 的 v1beta 預覽版提供伺服器端與客戶端模式；原文未提及開放原始碼或授權。</dd>
-      <dt>限制</dt><dd>僅支援 Interactions API；伺服器端檢索會增加一次模型呼叫並按輸入 token 計費，載入的規格會留在對話上下文中。Google 建議少於 20 個且穩定的工具採靜態載入，且尚未公布此功能的 token 節省或準確度數據。</dd>
+      <dt>新在哪裡</dt><dd>TLX 是 Triton 擴充功能，讓 Python kernel 能控制 warp groups、barriers、TMA 與 clusters，在保留 Triton 編程方式的同時增加 GPU 硬體協調能力。</dd>
+      <dt>能做什麼</dt><dd>適合 GPU kernel 工程師在 Triton 中撰寫並調校 GEMM、注意力或廣告推論等 kernel，避免為了這類控制完全改用 CUDA。</dd>
+      <dt>能否試用</dt><dd>已開源，採 MIT 授權；可從 Meta 的 Triton fork 取得，也可透過 PyPI 套件 triton-utlx 作為上游 Triton 外掛使用。</dd>
+      <dt>限制</dt><dd>支援範圍為 NVIDIA Hopper、Blackwell 與 AMD MI300、MI350 系列；效能數據由 Meta 自行回報，B200 dense attention forward 約為 FlashAttention-4 的 87%，尚無獨立評測。</dd>
     </dl>
   </div>
 </details>
@@ -311,85 +282,114 @@
   </article>
   
   <article class="card">
-    <a href="https://the-decoder.com/gpt-6-2-astra-and-sol-get-to-the-point-faster-but-score-lower-on-transparency-than-claude/" target="_blank" rel="noopener">
+    <a href="https://openai.com/index/introducing-shirudo" target="_blank" rel="noopener">
       
-<div class="thumb" style="--hue: 158">
-  <span class="fallback">The Decoder</span>
+<div class="thumb" style="--hue: 14">
+  <span class="fallback">OpenAI</span>
   
 </div>
 
-      <h3>評測指出 GPT-6.2 Astra、Sol 回答更精簡，但較少表明不確定性</h3>
+      <h3>OpenAI 與 Cisco 開源 Shirudo，協助 Linux 系統在修補期間維持防護</h3>
     </a>
-    <div class="source">The Decoder</div>
+    <div class="source">OpenAI</div>
     
 
 <details class="insight">
-  <summary><p class="summary">報導比較 OpenAI 的 GPT-6.2 Astra、Sol 與 Claude，指出前兩者回答更短、更直接，但承認不確定性的傾向較低。評測中 Claude 的透明度表現較佳，提醒模型回答精簡不等於更能準確呈現信心程度。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>Artificial Analysis 的評測顯示，GPT-6.2 Astra 與 Sol 回答更精簡、較直接，但評測中的承認不確定性分數也比前代低。</dd>
-      <dt>能做什麼</dt><dd>模型選型或產品 QA 團隊可將回答長度、直接性與不確定性表達納入評估，依使用情境調整模型或提示詞。</dd>
-      <dt>能否試用</dt><dd>這是模型溝通風格評測；原文未提及新模型的取得方式、API 或程式碼發布。</dd>
-      <dt>限制</dt><dd>評測使用 900 道英文題目、沒有 system prompt，並由 AI 評審判斷人格特質；分數是相對排名，不代表整體品質或答錯率。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://www.ithome.com.tw/news/180698" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 134">
-  <span class="fallback">iThome</span>
-  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1123-signal-960.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>Signal 將限制 Siri、Gemini 擷取手機版訊息畫面</h3>
-    </a>
-    <div class="source">iThome</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">Signal 宣布把防止作業系統 AI 助理截取訊息畫面的措施，從 Windows 擴大至 iOS 27 與 Android 版。這是應用程式層級的資料防護，目標是降低內建代理人讀取或保存 Signal 對話畫面的風險。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>Signal 將以限制作業系統 AI 代理讀取螢幕的方式，擴大保護訊息畫面；相較只靠通訊內容加密，這也試圖降低 OS 層級擷取畫面造成的外洩。</dd>
-      <dt>能做什麼</dt><dd>手機通訊 App 開發者可參考此作法，評估如何避免 Siri、Gemini 等系統代理讀取或保存敏感畫面。</dd>
-      <dt>能否試用</dt><dd>Signal 已在 Windows 桌面版封鎖 Recall 擷取，並宣布措施將擴大至 iOS 27 與 Android；原文未提及程式碼或可供其他 App 使用的 API。</dd>
-      <dt>限制</dt><dd>防護並非百分之百，無法阻止代理透過檔案系統等其他方式取得資料；Signal 也指出 OS 業者缺乏文件與支援，且 macOS 桌面版尚無法實作同類防護。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 158">
-  <span class="fallback">The Decoder</span>
-  
-</div>
-
-      <h3>Perplexity 推出 Monitor API，定期監看網頁並以 webhook 通知變更</h3>
-    </a>
-    <div class="source">The Decoder</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">Monitor API 可依排程持續搜尋網頁，並在判定出現相關變化時透過 webhook 通知代理，而非每次都由使用者發出單次查詢。Perplexity 表示，系統會先過濾不重要結果，讓代理能用於持續監看資訊。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Shirudo 是用於 Linux 的開源執行環境，目標是在系統部署修補程式期間保護正在運作的服務。這項合作聚焦於基礎設施防護，讓團隊能在修補作業尚未完成時降低系統暴露風險。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>Monitor API 可按排程搜尋網路或追蹤網頁變更，並以 webhook 傳送通過相關性、可信度、新穎性與時效性門檻的更新，省去自行維護排程、去重與差異比對流程。</dd>
-      <dt>能做什麼</dt><dd>可用於追蹤目標客戶融資與人事消息、競品價格與版本更新，或監看法規與政策頁面變動，再觸發內部代理或通知流程。</dd>
-      <dt>能否試用</dt><dd>API 與 API console 已可使用，沿用 Perplexity Search、Context 與 Agent API 的金鑰；網頁監看每千次成功執行 1 美元，頁面監看每千個擷取網址 1 美元。</dd>
-      <dt>限制</dt><dd>監看頻率介於每 15 分鐘至每週，也可設定 cron；與 Firecrawl、Exa、Parallel 的比較是 Perplexity 針對 60 個主題進行的早期內部測試，原文未提供獨立驗證結果。</dd>
+      <dt>新在哪裡</dt><dd>Shirudo 使用 eBPF 在執行中的 Linux 系統載入可驗證的臨時防護，讓團隊能在永久修補程式與重啟前，針對易受攻擊的程式路徑設置防護。</dd>
+      <dt>能做什麼</dt><dd>可用於 Linux 服務等待漏洞修補期間，先測試並部署 eBPF shield；原文示範以 shield 阻擋針對執行中 Elasticsearch 的 Java4Shell 攻擊，且服務不中斷。</dd>
+      <dt>能否試用</dt><dd>已開源，主程式採 BSD 2-Clause，BPF 程式採 BSD 與 GPL 雙重授權；提供 VM quickstart 與 Isovalent 自助實作實驗室。 <a href="https://github.com/shirudo-dev/shirudo" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>原文展示的是受控測試中的單一 Java4Shell 案例，防護部署仍由營運人員核准；實際大規模部署成效原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://finance.technews.tw/2026/11/24/isambard-ai-powers-600-finance-native-models-to-challenge-big-tech/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 136">
+  <span class="fallback">科技新報</span>
+  <img src="https://img.technews.tw/wp-content/uploads/2026/01/02150732/artificial-intelligence-9899127_1280.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>英國團隊訓練逾 600 個模型，研究小型模型的金融預測能力</h3>
+    </a>
+    <div class="source">科技新報</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究團隊運用布里斯托超級運算中心訓練 600 多個模型，探討不同模型在金融預測任務上的表現。報導指出，部分小型、專門訓練的模型勝過大型模型，研究成果已開源。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究團隊訓練並評估 600 多個模型，研究金融專用的小型時間序列基礎模型，並採擴張視窗流程避免前視偏誤；研究指出小型領域模型在此類任務可能勝過較大的通用模型。</dd>
+      <dt>能做什麼</dt><dd>可用於量化研究或金融機構的市場預測實驗，並以超額報酬、方向準確率、夏普值與風險指標評估模型。</dd>
+      <dt>能否試用</dt><dd>內文表示已釋出 800 萬至 4,600 萬參數的預訓練金融模型與完整程式碼；授權原文未提及，相關連結為研究論文。 <a href="https://arxiv.org/abs/2511.18578" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>訓練研究使用超過 5 萬 GPU 小時，結果聚焦於金融資料與研究採用的評估流程；原文未提供可直接套用到特定市場或策略的成效保證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 84">
+  <span class="fallback">Google AI</span>
+  <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_pContext_Drive_1118.max-600x600.format-webp.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google Search AI Mode 可引用 Drive 與 Wallet 資料提供個人化回答</h3>
+    </a>
+    <div class="source">Google AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 將 Personal Intelligence 擴展至 Search 的 AI Mode，讓回答可參照使用者的 Drive 與 Wallet 資料，並整合至 Gemini。這讓搜尋回答能運用個人已有的文件與服務資訊，而不只依賴公開網頁。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Search AI Mode 的 Personal Intelligence 可在使用者選擇連結後，引用 Google Wallet、Drive 與 Gemini app 的個人脈絡，讓搜尋回答延續近期活動與資料。</dd>
+      <dt>能做什麼</dt><dd>可用於依消費紀錄整理財務目標、從 Drive 文件彙整專案資訊，或延續先前的旅行規劃與研究，不必重複提供背景。</dd>
+      <dt>能否試用</dt><dd>Wallet 已開始推出；Drive 與 Gemini app 支援預計在接下來幾週推出。使用者可在 Search Personalization 設定中選擇連結或關閉；API 原文未提及。</dd>
+      <dt>限制</dt><dd>須由使用者選擇連結相關 app，並仰賴個人資料脈絡；原文未提及其回答準確度的評測結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/23/architect-labs-frostbite-ai-designed-cpu-interaction-nets/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-1113454-2-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>AI 設計互動網路專用處理器，預先測試每瓦效能高出 4.59 倍</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Architect Labs 發表 Frostbite，這款處理器以硬體執行 interaction nets，並由 AI 代理協助從理論設計推進至 7 奈米 GDS。晶片尚未進入實際部署；目前的預先測試顯示，其每瓦效能為對照的順序執行核心的 4.59 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Frostbite 將 interaction nets 的計算模型直接做進 CPU 指令集與硬體，利用 tile mesh 執行程式圖中的可平行互動；團隊稱 AI agents 參與從 ISA 到晶片設計流程。</dd>
+      <dt>能做什麼</dt><dd>若硬體後續可取得，可能適合評估可表達為 interaction nets 的平行計算工作；目前可先了解其 Vine 語言與程式模型。</dd>
+      <dt>能否試用</dt><dd>晶片目前僅完成 pre-silicon 設計，FPGA playground 尚在規劃；相關連結提供 Vine 語言 GitHub 專案，原文未提及其授權。 <a href="https://github.com/VineLang/vine" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>4.59 倍每瓦效能是 pre-silicon、相對未具名 CPU 核心的自家結果；held-out 工作負載為 3.83 倍，個別工作負載差異大，實際晶片效能尚無法確認。</dd>
     </dl>
   </div>
 </details>
@@ -404,29 +404,29 @@
 <div class="section-title">快訊</div>
 <ul class="briefs">
   
-  <li><a href="https://technews.tw/2026/11/23/how-much-of-a-threat-is-anthropics-multi-chip-strategy-to-nvidia/" target="_blank" rel="noopener">
-    <b>Anthropic 據稱三天完成模型移植至 AMD 晶片</b>
-    <span class="source">科技新報</span>
-    <span class="text">報導稱 Anthropic 將模型移植至 AMD 晶片僅花三天，顯示其多晶片部署策略可能降低對單一 GPU 生態系的依賴。</span>
+  <li><a href="https://huggingface.co/blog/allenai/robotrack" target="_blank" rel="noopener">
+    <b>Hugging Face 發表 RoboTrack，追蹤真實機器人操作中的物件位置</b>
+    <span class="source">Hugging Face</span>
+    <span class="text">Hugging Face 推出 RoboTrack，聚焦真實機器人操作場景中的點追蹤。</span>
   </a></li>
   
-  <li><a href="https://www.wired.com/story/banks-are-cracking-down-on-ai-agents/" target="_blank" rel="noopener">
-    <b>美國大型銀行限制第三方 AI 代理登入客戶帳戶</b>
-    <span class="source">Wired</span>
-    <span class="text">多家銀行開始封鎖第三方機器人登入帳戶，並提醒使用者代理操作造成的損失可能由使用者自行承擔。</span>
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls/" target="_blank" rel="noopener">
+    <b>Amazon Bedrock 推出 Trusted Access API，集中管理模型供應商方案</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">Bedrock 的 Trusted Access API 公開預覽，提供單一入口探索、申請及加入模型供應商方案，首批涵蓋 Anthropic 的企業安全與資料控制方案。</span>
   </a></li>
   
-  <li><a href="https://www.inside.com.tw/article/42978-google-retires-nest-app-jan-2027-assistant-speakers-displays-aug-2027-gemini-for-home" target="_blank" rel="noopener">
-    <b>Google 將以 Gemini for Home 取代智慧音箱與螢幕上的 Google Assistant</b>
-    <span class="source">INSIDE</span>
-    <span class="text">Google 表示現有 Nest 硬體無須更換，智慧音箱與螢幕預計於 2027 年 8 月改用 Gemini for Home。</span>
+  <li><a href="https://www.ithome.com.tw/news/180749" target="_blank" rel="noopener">
+    <b>OpenAI 將電腦操作代理人方案擴展至醫療業</b>
+    <span class="source">iThome</span>
+    <span class="text">醫療業 ChatGPT 方案可使用電腦操作代理人，透過模擬人類操作介面自動執行醫護工作流程。</span>
   </a></li>
   
 </ul>
 
 
 <nav class="pager">
-  <span><a href="2026-11-22.html">← 2026-11-22</a></span>
+  <span><a href="2026-11-23.html">← 2026-11-23</a></span>
   <span></span>
 </nav>
 

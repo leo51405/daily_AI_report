@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-24</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-24 星期二</h1>
+  <div class="meta">從 96 則新聞中精選 12 則 · 更新於 13:58</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://the-decoder.com/gpt-6-2-astra-solved-a-math-theorem-no-other-ai-could-crack-then-invented-its-own-proof-strategy/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/gpt_lean_proof.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://the-decoder.com/gpt-6-2-astra-solved-a-math-theorem-no-other-ai-could-crack-then-invented-its-own-proof-strategy/" target="_blank" rel="noopener"><h2>GPT-6.2 Astra 首度產出可機器驗證的 Smoktunowicz 猜想證明</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 的 GPT-6.2 Astra 獨立產出 Smoktunowicz gap theorem 的 Lean 機器可驗證證明；報導指出，模型在數學函式庫缺少必要基礎時，改用自己的證明策略。在 Autoform-Hard 評測中，Astra 解出 56 題中的 49 題。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Vals AI 稱這是首個以 Lean 撰寫、可機器驗證的 Smoktunowicz gap theorem 證明，且 Astra 在該次執行中未獲人工協助；因 Mathlib 缺少原證明所需基礎，它改用「capacity」指標推導。</dd>
+      <dt>能做什麼</dt><dd>可用於探索 AI 自動形式化數學證明的能力，例如把數學定理轉成 Lean 證明，供機器檢查。</dd>
+      <dt>能否試用</dt><dd>原文未提及 Astra 是否對外開放、是否提供 API、模型權重或程式碼。</dd>
+      <dt>限制</dt><dd>成果來自 Autoform-Hard 的 56 題子集，證明耗時 94 分鐘、花費 21.58 美元；原文未提及其他數學任務上的表現。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">The Decoder · GPT-6.2 Astra solved a math theorem no other AI could crack, then invented its own proof strategy</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/openai-updates-chatgpt-to-handle-complex-everyday-questions-web-searches-and-images-more-reliably/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/openai_chatgpt_pattern.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>OpenAI 更新 ChatGPT 預設模型，影像理解與指令遵循測試提升</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">GPT-6.2 Sol 成為 ChatGPT 對話頁面的新預設模型，並開始全球推出。OpenAI 內部測試中，影像理解分數由 47.4 升至 71.7，複雜指令的正確處理率為 78.1%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>GPT-6.2 Sol 是針對聊天調校的版本，OpenAI 表示其影像理解、複雜指令遵循、網頁搜尋與安全表現較 GPT-6 提升。</dd>
+      <dt>能做什麼</dt><dd>可在 ChatGPT 中試用於需要理解圖片、處理複雜要求或搜尋網路資料的工作情境。</dd>
+      <dt>能否試用</dt><dd>正向全球推出，Plus、Pro、Business 與 Enterprise 用戶可使用；原文未提及 API 或模型權重。</dd>
+      <dt>限制</dt><dd>文中數據來自 OpenAI 內部測試，且只適用於 ChatGPT 聊天模式；Work 與 Codex 模型未更新，Enterprise 管理員可控制是否開放。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>Z.ai 推出 750B 參數 GLM-5.4，以 Loop Transformer 重複運算 28 層</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">GLM-5.4 是 Z.ai 首款採用 Loop Transformer 的旗艦模型，將 28 層重複運算，以增加每個 token 的計算深度，而不再堆疊更多參數。Z.ai 稱其能力可比肩 2 至 3 兆參數模型，但目前公布的基準測試僅來自較小的 30B 測試模型。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>GLM-5.4 採用 Loop Transformer，讓共享的 28 層區塊重複運算兩次，透過閘門控制中間結果，增加計算深度而不增加參數量。</dd>
+      <dt>能做什麼</dt><dd>可透過 GLM Coding Plan、ZCode 或 Z.ai Chat 試用於程式開發，以及產生影片、遊戲或 CAD 模型等「Generalized Coding」任務。</dd>
+      <dt>能否試用</dt><dd>已可透過 GLM Coding Plan、ZCode 與 Z.ai Chat 使用；API 尚待推出，權重預計完成安全測試後釋出，授權原文未提及。</dd>
+      <dt>限制</dt><dd>750B 版本尚無公開基準分數或獨立評測；文中量化增益來自額外使用約 10% 訓練算力的 30B 測試，且模型可能陷入冗長推理。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180741" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1124-claude_ship-960-2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Anthropic 推出 Claude Ship，讓代理人審查、修正並核准 GitHub PR</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Claude Ship 將程式碼審查、PR 修正與核准政策串進交付流程；核准代理可依據團隊政策自動處理例行變更。Code Review 已正式推出，PR Steward 與 Claude Approvals 則向 Team、Enterprise 用戶公開測試。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Claude Ship 把 AI 程式代理的工作延伸到 GitHub PR 交付流程，整合程式碼審查、依意見修正與依企業政策核准變更。</dd>
+      <dt>能做什麼</dt><dd>可用於 GitHub 儲存庫的 PR 流程，讓代理人分類審查問題、修復測試失敗或合併衝突，並將例行變更交由政策核准。</dd>
+      <dt>能否試用</dt><dd>目前開放 Claude Team 與 Enterprise 用戶測試；依 token 使用量計費，原文未提及程式碼或模型權重釋出。</dd>
+      <dt>限制</dt><dd>目前僅支援 GitHub；Anthropic 提供的 PR 數量與撤銷率改善數據來自自家 Claude Code 團隊，且建議企業先以觀察模式驗證判斷能力。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/23/meta-tlx-triton-low-level-extensions/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  
+</div>
+
+      <h3>Meta 推出 Triton 低階擴充功能，增加 GPU 硬體控制能力</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Meta 的 TLX（Triton Low-Level Extensions）讓 Python Triton kernel 能控制 warp-group、barrier、TMA 與 GPU cluster 等功能。Meta 表示，已將其用於廣告與 LLM 工作負載，支援 NVIDIA Hopper、Blackwell 及 AMD MI350。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>TLX 是 Triton 擴充功能，讓 Python kernel 能控制 warp groups、barriers、TMA 與 clusters，在保留 Triton 編程方式的同時增加 GPU 硬體協調能力。</dd>
+      <dt>能做什麼</dt><dd>適合 GPU kernel 工程師在 Triton 中撰寫並調校 GEMM、注意力或廣告推論等 kernel，避免為了這類控制完全改用 CUDA。</dd>
+      <dt>能否試用</dt><dd>已開源，採 MIT 授權；可從 Meta 的 Triton fork 取得，也可透過 PyPI 套件 triton-utlx 作為上游 Triton 外掛使用。</dd>
+      <dt>限制</dt><dd>支援範圍為 NVIDIA Hopper、Blackwell 與 AMD MI300、MI350 系列；效能數據由 Meta 自行回報，B200 dense attention forward 約為 FlashAttention-4 的 87%，尚無獨立評測。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://openai.com/index/introducing-shirudo" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 14">
+  <span class="fallback">OpenAI</span>
+  
+</div>
+
+      <h3>OpenAI 與 Cisco 開源 Shirudo，協助 Linux 系統在修補期間維持防護</h3>
+    </a>
+    <div class="source">OpenAI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Shirudo 是用於 Linux 的開源執行環境，目標是在系統部署修補程式期間保護正在運作的服務。這項合作聚焦於基礎設施防護，讓團隊能在修補作業尚未完成時降低系統暴露風險。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Shirudo 使用 eBPF 在執行中的 Linux 系統載入可驗證的臨時防護，讓團隊能在永久修補程式與重啟前，針對易受攻擊的程式路徑設置防護。</dd>
+      <dt>能做什麼</dt><dd>可用於 Linux 服務等待漏洞修補期間，先測試並部署 eBPF shield；原文示範以 shield 阻擋針對執行中 Elasticsearch 的 Java4Shell 攻擊，且服務不中斷。</dd>
+      <dt>能否試用</dt><dd>已開源，主程式採 BSD 2-Clause，BPF 程式採 BSD 與 GPL 雙重授權；提供 VM quickstart 與 Isovalent 自助實作實驗室。 <a href="https://github.com/shirudo-dev/shirudo" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>原文展示的是受控測試中的單一 Java4Shell 案例，防護部署仍由營運人員核准；實際大規模部署成效原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://finance.technews.tw/2026/11/24/isambard-ai-powers-600-finance-native-models-to-challenge-big-tech/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 136">
+  <span class="fallback">科技新報</span>
+  <img src="https://img.technews.tw/wp-content/uploads/2026/01/02150732/artificial-intelligence-9899127_1280.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>英國團隊訓練逾 600 個模型，研究小型模型的金融預測能力</h3>
+    </a>
+    <div class="source">科技新報</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究團隊運用布里斯托超級運算中心訓練 600 多個模型，探討不同模型在金融預測任務上的表現。報導指出，部分小型、專門訓練的模型勝過大型模型，研究成果已開源。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究團隊訓練並評估 600 多個模型，研究金融專用的小型時間序列基礎模型，並採擴張視窗流程避免前視偏誤；研究指出小型領域模型在此類任務可能勝過較大的通用模型。</dd>
+      <dt>能做什麼</dt><dd>可用於量化研究或金融機構的市場預測實驗，並以超額報酬、方向準確率、夏普值與風險指標評估模型。</dd>
+      <dt>能否試用</dt><dd>內文表示已釋出 800 萬至 4,600 萬參數的預訓練金融模型與完整程式碼；授權原文未提及，相關連結為研究論文。 <a href="https://arxiv.org/abs/2511.18578" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>訓練研究使用超過 5 萬 GPU 小時，結果聚焦於金融資料與研究採用的評估流程；原文未提供可直接套用到特定市場或策略的成效保證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 84">
+  <span class="fallback">Google AI</span>
+  <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Blog_pContext_Drive_1118.max-600x600.format-webp.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google Search AI Mode 可引用 Drive 與 Wallet 資料提供個人化回答</h3>
+    </a>
+    <div class="source">Google AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 將 Personal Intelligence 擴展至 Search 的 AI Mode，讓回答可參照使用者的 Drive 與 Wallet 資料，並整合至 Gemini。這讓搜尋回答能運用個人已有的文件與服務資訊，而不只依賴公開網頁。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Search AI Mode 的 Personal Intelligence 可在使用者選擇連結後，引用 Google Wallet、Drive 與 Gemini app 的個人脈絡，讓搜尋回答延續近期活動與資料。</dd>
+      <dt>能做什麼</dt><dd>可用於依消費紀錄整理財務目標、從 Drive 文件彙整專案資訊，或延續先前的旅行規劃與研究，不必重複提供背景。</dd>
+      <dt>能否試用</dt><dd>Wallet 已開始推出；Drive 與 Gemini app 支援預計在接下來幾週推出。使用者可在 Search Personalization 設定中選擇連結或關閉；API 原文未提及。</dd>
+      <dt>限制</dt><dd>須由使用者選擇連結相關 app，並仰賴個人資料脈絡；原文未提及其回答準確度的評測結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/23/architect-labs-frostbite-ai-designed-cpu-interaction-nets/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-1113454-2-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>AI 設計互動網路專用處理器，預先測試每瓦效能高出 4.59 倍</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Architect Labs 發表 Frostbite，這款處理器以硬體執行 interaction nets，並由 AI 代理協助從理論設計推進至 7 奈米 GDS。晶片尚未進入實際部署；目前的預先測試顯示，其每瓦效能為對照的順序執行核心的 4.59 倍。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Frostbite 將 interaction nets 的計算模型直接做進 CPU 指令集與硬體，利用 tile mesh 執行程式圖中的可平行互動；團隊稱 AI agents 參與從 ISA 到晶片設計流程。</dd>
+      <dt>能做什麼</dt><dd>若硬體後續可取得，可能適合評估可表達為 interaction nets 的平行計算工作；目前可先了解其 Vine 語言與程式模型。</dd>
+      <dt>能否試用</dt><dd>晶片目前僅完成 pre-silicon 設計，FPGA playground 尚在規劃；相關連結提供 Vine 語言 GitHub 專案，原文未提及其授權。 <a href="https://github.com/VineLang/vine" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>4.59 倍每瓦效能是 pre-silicon、相對未具名 CPU 核心的自家結果；held-out 工作負載為 3.83 倍，個別工作負載差異大，實際晶片效能尚無法確認。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://huggingface.co/blog/allenai/robotrack" target="_blank" rel="noopener">
+    <b>Hugging Face 發表 RoboTrack，追蹤真實機器人操作中的物件位置</b>
+    <span class="source">Hugging Face</span>
+    <span class="text">Hugging Face 推出 RoboTrack，聚焦真實機器人操作場景中的點追蹤。</span>
+  </a></li>
+  
+  <li><a href="https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls/" target="_blank" rel="noopener">
+    <b>Amazon Bedrock 推出 Trusted Access API，集中管理模型供應商方案</b>
+    <span class="source">AWS Machine Learning</span>
+    <span class="text">Bedrock 的 Trusted Access API 公開預覽，提供單一入口探索、申請及加入模型供應商方案，首批涵蓋 Anthropic 的企業安全與資料控制方案。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180749" target="_blank" rel="noopener">
+    <b>OpenAI 將電腦操作代理人方案擴展至醫療業</b>
+    <span class="source">iThome</span>
+    <span class="text">醫療業 ChatGPT 方案可使用電腦操作代理人，透過模擬人類操作介面自動執行醫護工作流程。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-23.html">← 2026-11-23</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
