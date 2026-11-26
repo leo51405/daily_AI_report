@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-26</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-26 星期四</h1>
+  <div class="meta">從 105 則新聞中精選 15 則 · 更新於 12:08</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-4-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/" target="_blank" rel="noopener"><h2>Laminar 開源非同步強化學習框架，Qwen3-Coder 在 SWE-bench Verified 達 52.2%</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">香港大學與 ByteDance Seed 研究者開源 Laminar，將 rollout、訓練與權重同步拆開執行，提升強化學習後訓練流程的非同步程度。研究者表示，使用該框架訓練的 Qwen3-Coder-30B-A3B 在 SWE-bench Verified 得分 52.2%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Laminar 將 rollout、經驗緩衝、訓練與權重傳輸拆成獨立的非同步流程，並支援每條軌跡固定使用同一版 policy，避免更新權重時中斷軌跡及重做 prefill。</dd>
+      <dt>能做什麼</dt><dd>適合在多節點 GPU 叢集上訓練需要長時間工具互動的 coding agent，降低 rollout 等待與 GPU 閒置；論文在 SWE-bench Verified 報告 52.2% 成績。</dd>
+      <dt>能否試用</dt><dd>已開源於 GitHub，採 Apache-2.0 授權；使用 verl、Uni-Agent、vLLM，訓練支援 Megatron-LM 或 FSDP2。 <a href="https://github.com/verl-project/laminar" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>專案發布時仍早期，原文稱僅 1 次提交、推論後端僅列 vLLM，逐步非同步 checkpointing 尚在進行；測試使用 H800，而基準比較使用 H100，硬體不同。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">MarkTechPost · ByteDance Researchers Open-Sources Laminar, an Async Reinforcement Learning RL Post-Training Framework</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/prismml-squeezes-an-agent-based-coding-model-with-27-billion-parameters-into-5-9-gb/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/07/prsim_ml_demo.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Ternary Bonsai 2.5 將 27B 模型壓至 5.9GB，權重僅用三種數值</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">PrismML 發布 Ternary Bonsai 2.5 27B，透過將權重限制為三種可能值，把模型檔案從 54GB 縮小至 5.9GB。現有報導未提供壓縮後的基準測試或品質比較，實際能力仍需進一步驗證。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Ternary Bonsai 2.5 以 −1、0、+1 三種權重值壓縮 27B 模型至 5.9GB，並改善長工具呼叫任務的穩定性，減少反覆推理及陷入迴圈的情況。</dd>
+      <dt>能做什麼</dt><dd>可在記憶體有限的本機裝置執行 agent 或程式開發任務；原文提及可透過 llama.cpp 在 Nvidia、Intel GPU 執行，也可透過 MLX 在 Mac、iPhone、iPad 執行。</dd>
+      <dt>能否試用</dt><dd>權重已提供，採 Apache-2.0 授權；相關連結提供 Bonsai 2.5 27B 的 Hugging Face collection。 <a href="https://huggingface.co/collections/prism-ml/bonsai-25-27b" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>5.9GB 是模型記憶體需求；RTX 4090 約 204 tokens/s 的數據使用 multi-token prediction。LiveCodeBench v6 分數略低於前代，且 SWE-bench Verified 仍低於完整 Qwen 模型。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/mit-team-discovers-that-unrealistic-training-data-makes-ai-climate-predictions-more-reliable/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/mit_climate.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>MIT 氣候 AI 方法用極端情境訓練，將所需訓練次數降至一次</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">MIT 研究團隊提出一種氣候模型訓練方法，以演算法生成刻意不符合現實的極端二氧化碳或甲烷變化情境，提升模型對不同條件的穩健性。研究稱，這讓氣候模擬器只需一次訓練，而傳統做法通常要跑六至八次。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>方法以 CO₂ 或甲烷等極端變化情境生成訓練資料，據稱只需一次大型氣候模擬，就能取代過去使用六至八次、均勻分布情境的訓練方式。</dd>
+      <dt>能做什麼</dt><dd>可用來訓練氣候模擬 emulator，以較快評估地方環境政策對電網、公共衛生或農業規劃的影響。</dd>
+      <dt>能否試用</dt><dd>原文未提及程式碼、模型權重、API 或展示的釋出資訊。</dd>
+      <dt>限制</dt><dd>原文未提及訓練資料、硬體需求、成本或可重現性；一次模擬即可訓練及對地方政策可靠推算，屬研究團隊報告的結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/openai-wants-companies-to-trust-it-with-sensitive-work-by-promising-not-to-look-at-their-data/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>OpenAI 測試 Private Inference，讓企業查詢模型時平台無法讀取資料</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 正測試 Private Inference，讓企業以敏感資料向其高階模型發出查詢，同時限制 OpenAI 存取查詢內容。報導未交代實作機制與適用模型範圍，這項功能目前仍在測試階段。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Private Inference 在隔離且可獨立驗證安全性的硬體上處理企業模型查詢，目標是讓 OpenAI 無法讀取查詢資料；另有 Private Safety Processing，在不儲存客戶資料的前提下掃描濫用情形。</dd>
+      <dt>能做什麼</dt><dd>適合處理企業不希望模型服務平台讀取的敏感查詢資料，例如內部文件或業務資訊。</dd>
+      <dt>能否試用</dt><dd>OpenAI 正與首批企業客戶試行；原文未提及公開 API、申請方式或一般開放時間。</dd>
+      <dt>限制</dt><dd>目前以企業客戶為目標，且 OpenAI 正擴充所需運算容量；原文未提及價格、硬體規格或支援模型範圍。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180723" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1125-semantic_google.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Google 預覽 AI 代理語意政策檢查，在工具操作執行前攔截違規行為</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google 推出 Semantic Governance Policies 預覽版，利用大型語言模型檢查代理即將執行的工具操作，判斷是否符合使用者要求與企業政策，並可在執行前阻擋不合規操作。此機制旨在降低提示詞注入等情況誘使代理濫用合法權限的風險。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>在 AI 代理執行工具操作前，以 LLM 判斷操作是否違反企業政策或偏離使用者原意，補足單靠身分與存取權限無法判斷個別操作是否合規的缺口。</dd>
+      <dt>能做什麼</dt><dd>可在寄送郵件、刪除檔案等工具呼叫前攔截違規操作，例如阻止外傳未公開財務資料，或阻止代理執行文件中惡意指令要求的刪檔操作。</dd>
+      <dt>能否試用</dt><dd>已推出預覽版，整合於 Gemini Enterprise Agent Platform；原文稱支援 Gemini、Claude 及採用 OpenAI 相容 API 的模型。</dd>
+      <dt>限制</dt><dd>LLM 政策判斷可能出錯，Google 建議先用 dry run 測試；目前不支援模型串流回應，且不能取代既有存取權限管理及其他安全措施。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180797" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_245_-_humanitys_first_exam_hfe_leade_-_www.kaggle.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>DeepMind 推出 HFE 評測，檢驗模型能否穩定完成日常簡單任務</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Google DeepMind 在 Kaggle 推出 Humanity’s First Exam（HFE），用來評估大型語言模型完成日常簡單任務的可靠性，而不只看單次答對與否。報導未列出各模型成績，但指出這項評測聚焦頂尖模型仍可能不穩定的基本任務。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>HFE 不只測單題答對率，也用題目變化與重複作答衡量可靠性，檢驗模型能否在同一解題邏輯的不同版本中持續答對。</dd>
+      <dt>能做什麼</dt><dd>可用來評估模型在日常文字與視覺任務上的穩定性，例如辨識顏色、位置、物件數量，或比較模型改版前後的可靠度。</dd>
+      <dt>能否試用</dt><dd>已在 Kaggle 推出，原文未提供相關連結；初步結果涵蓋 18 款模型。</dd>
+      <dt>限制</dt><dd>題庫共 544 題、涵蓋 20 類能力；初步結果顯示約四分之三錯誤與視覺感知有關，延長推理時間對視覺任務幫助有限。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180800" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/ying_mu_xie_qu_hua_mian_2026-11-25_174645.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>臺大團隊揭露三代 Transformer 學習晶片，第三代採 16 奈米製程</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">臺大團隊公布三代 Transformer 學習處理器，透過減少不必要的運算與簡化流程，目標是加速模型訓練、微調和推論。第三代著重改善生成式 AI 推論時的資料搬移效率，已於今年 10 月以 16 奈米製程下線；報導未提供效能或能耗數據。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>臺大團隊三代晶片分別從注意力運算、簡化訓練流程及減少推論資料搬移著手；第三代採 16 奈米製程，並壓縮模型權重與 KV Cache 以降低資料傳輸負擔。</dd>
+      <dt>能做什麼</dt><dd>研究方向是讓生成式 AI 在手機、穿戴式裝置等資源受限的終端執行；原文提及前兩代晶片展示支援 Gemma-3-4B 等級模型。</dd>
+      <dt>能否試用</dt><dd>原文提及晶片設計與展示，其中第三代已於 10 月下線；未提及晶片或設計工具的公開取得方式。</dd>
+      <dt>限制</dt><dd>原文未提及商用供應、價格或第三代實際模型效能；第一、二代的能效與效率比較是相較於發表時的學術文獻處理器。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.31424" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
+</div>
+
+      <h3>ContextLure 揭示間接提示詞注入可利用無害對話歷史</h3>
+    </a>
+    <div class="source">arXiv cs.AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">這篇研究提出 ContextLure 攻擊情境：代理在長期、看似正常的對話中累積任務結果、使用者顧慮與操作限制，可能讓攻擊者利用這些脈絡注入惡意指令。研究聚焦於代理持續保留對話歷史後新增的攻擊面，提醒防護不能只檢查當前輸入。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>ContextLure 研究攻擊者如何從先前無害對話中挑選使用者偏好或系統限制，再將這些線索改寫成緊急或高優先級理由，構造後續間接提示詞注入。</dd>
+      <dt>能做什麼</dt><dd>可供代理系統的紅隊測試，檢查長期對話中累積的任務結果、偏好與限制，是否會被攻擊者用來誘導未授權操作。</dd>
+      <dt>能否試用</dt><dd>原文提供 arXiv 論文連結並介紹此框架；未提及程式碼、資料集或可直接試用的工具釋出。 <a href="https://arxiv.org/abs/2611.31424" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>報告的攻擊成功率為 AgentDojo 67.4%、InjecAgent 87.3%；原文未提及其他環境的結果或防禦方法。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.31262" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>RegioZH 以 2,607 題評測不同華語地區詞彙理解能力</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究者推出 RegioZH 多選題基準，收錄 2,607 題，涵蓋中國大陸、臺灣、香港、新加坡等地區的詞彙推理。這項評測試圖拆解「中文能力」的概括性評分，找出模型對不同地區用語的理解落差。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>RegioZH 以 2,607 道選擇題評估中國大陸、臺灣、香港、新加坡與馬來西亞的區域詞彙推理，納入俚語、語碼混用、禮貌慣例及社會文化表達。</dd>
+      <dt>能做什麼</dt><dd>可用於檢查華語模型是否理解特定地區用語，並比較模型在不同華語社群的表現，避免以整體中文分數掩蓋區域落差。</dd>
+      <dt>能否試用</dt><dd>原文介紹此基準並提供 arXiv 論文連結；未提及題庫、程式碼或評測工具的釋出方式。 <a href="https://arxiv.org/abs/2611.31262" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>論文摘要報告 11 款模型的零樣本結果，臺灣與新加坡平均準確率相差 29.4 個百分點；評測涵蓋五個地區，原文未提及其他語區或實際使用成本。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://arxiv.org/abs/2611.31256" target="_blank" rel="noopener">
+    <b>研究提出直接最佳化推測解碼的接受 token 長度</b>
+    <span class="source">arXiv cs.CL</span>
+    <span class="text">一篇新研究提出以 on-policy 預期接受長度為目標訓練草稿模型，讓推測解碼的最佳化目標更直接對應實際加速效果。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.31301" target="_blank" rel="noopener">
+    <b>MOZAIC 基準拆分音訊與影像線索評測影音深偽偵測</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">研究者提出 MOZAIC 配對基準，分別檢驗偵測器依賴人臉影像、聲音或編碼痕跡來辨識影音深偽。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.31522" target="_blank" rel="noopener">
+    <b>研究以「四個時鐘」分析 GUI 代理為何跟不上介面變化</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">這篇研究將 GUI 代理失敗拆成環境變化、觀察與行動等不同時間點，指出延遲本身不足以解釋操作失效。</span>
+  </a></li>
+  
+  <li><a href="https://the-decoder.com/ai-agents-now-control-part-of-deepminds-compute-for-gemini-experiments-but-recursive-self-improvement-remains-distant/" target="_blank" rel="noopener">
+    <b>DeepMind 讓 AI 代理自行執行部分 Gemini 實驗</b>
+    <span class="source">The Decoder</span>
+    <span class="text">DeepMind 研究主管表示，AI 代理已能自行執行部分 Gemini 相關實驗，但團隊認為距離遞迴自我改進仍很遙遠。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180804" target="_blank" rel="noopener">
+    <b>Claude 桌面版測試將生成物件轉成可分享的桌面應用程式</b>
+    <span class="source">iThome</span>
+    <span class="text">Anthropic 開始測試一項 Claude Mac 與 Windows 功能，可將模型生成的物件轉成有獨立圖示與視窗的桌面應用程式，並分享給他人。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/43003-chatgpt-dot-plus-test-business-standard-always-on-agent-ios-imessage" target="_blank" rel="noopener">
+    <b>OpenAI 開放少數 Plus 用戶測試可在閒置時持續工作的 dot 代理</b>
+    <span class="source">INSIDE</span>
+    <span class="text">ChatGPT dot 開始向少數 Plus 與 Business Standard 用戶測試，能在使用者未聊天時持續處理任務，並支援 iOS 小工具、捷徑及自訂指令。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-25.html">← 2026-11-25</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>

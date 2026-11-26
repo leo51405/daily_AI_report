@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI 日報 · 2026-11-25</title>
+<title>AI 日報 · 2026-11-26</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,38 +125,38 @@
   </header>
   
 <div class="dateline">
-  <h1>2026-11-25 星期三</h1>
-  <div class="meta">從 99 則新聞中精選 15 則 · 更新於 12:52</div>
+  <h1>2026-11-26 星期四</h1>
+  <div class="meta">從 105 則新聞中精選 15 則 · 更新於 12:08</div>
 </div>
 
 
 <article class="hero">
-  <a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities" target="_blank" rel="noopener">
-<div class="thumb" style="--hue: 14">
-  <span class="fallback">OpenAI</span>
-  <img src="https://images.ctfassets.net/kftzwdyauwt9/Eg5mCwwaA3KqnznOVCh0n/8e6deaef25fd508d9853ff86a95187c1/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities-social.png?w=1600&amp;h=900&amp;fit=fill" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  <a href="https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-4-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 </a>
   <div>
     <span class="badge">頭條</span>
-    <a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities" target="_blank" rel="noopener"><h2>OpenAI：GPT-6 展現蛋白質設計能力，五個標的有結合證據</h2></a>
+    <a href="https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/" target="_blank" rel="noopener"><h2>Laminar 開源非同步強化學習框架，Qwen3-Coder 在 SWE-bench Verified 達 52.2%</h2></a>
     
 
 <details class="insight">
-  <summary><p class="summary">OpenAI 表示，GPT-6 模型能結合推理與程式碼，設計蛋白質結構及序列。實驗室測試在五個標的上觀察到結合證據，顯示模型能力已延伸至可實驗驗證的蛋白質設計。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">香港大學與 ByteDance Seed 研究者開源 Laminar，將 rollout、訓練與權重同步拆開執行，提升強化學習後訓練流程的非同步程度。研究者表示，使用該框架訓練的 Qwen3-Coder-30B-A3B 在 SWE-bench Verified 得分 52.2%。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
-    <span class="verdict v0">值得知道</span>
+    <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>GPT‑6.2 能以一般推理與程式碼設計蛋白質形狀，並透過提示指定結合位置與結構特徵，不必用專門生物模型產生設計；實驗室測試中，五個標的各至少有一個設計呈現結合證據。</dd>
-      <dt>能做什麼</dt><dd>可探索依指定標的與結合位置設計迷你結合蛋白，或替既有結合蛋白重新設計序列；原文中的實驗仍使用專門模型提供序列並篩選候選品。</dd>
-      <dt>能否試用</dt><dd>研究預印本已提供；設計所用的 GPT‑6 模型屬研究或內部模型，原文未提及可供外部使用的模型權重或 API。</dd>
-      <dt>限制</dt><dd>五個標的共測試 322 個迷你結合蛋白，35 個呈現結合；命中率會受候選篩選方式與結合判定標準影響。完整蛋白質結構預測仍是明顯弱項，實驗也借助專門模型提供序列及篩選候選品。</dd>
+      <dt>新在哪裡</dt><dd>Laminar 將 rollout、經驗緩衝、訓練與權重傳輸拆成獨立的非同步流程，並支援每條軌跡固定使用同一版 policy，避免更新權重時中斷軌跡及重做 prefill。</dd>
+      <dt>能做什麼</dt><dd>適合在多節點 GPU 叢集上訓練需要長時間工具互動的 coding agent，降低 rollout 等待與 GPU 閒置；論文在 SWE-bench Verified 報告 52.2% 成績。</dd>
+      <dt>能否試用</dt><dd>已開源於 GitHub，採 Apache-2.0 授權；使用 verl、Uni-Agent、vLLM，訓練支援 Megatron-LM 或 FSDP2。 <a href="https://github.com/verl-project/laminar" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>專案發布時仍早期，原文稱僅 1 次提交、推論後端僅列 vLLM，逐步非同步 checkpointing 尚在進行；測試使用 H800，而基準比較使用 H100，硬體不同。</dd>
     </dl>
   </div>
 </details>
 
 
-    <p class="source">OpenAI · GPT-6 models demonstrate intrinsic protein-design capabilities</p>
+    <p class="source">MarkTechPost · ByteDance Researchers Open-Sources Laminar, an Async Reinforcement Learning RL Post-Training Framework</p>
   </div>
 </article>
 
@@ -166,27 +166,114 @@
 <div class="grid">
   
   <article class="card">
-    <a href="https://www.ithome.com.tw/news/180761" target="_blank" rel="noopener">
+    <a href="https://the-decoder.com/prismml-squeezes-an-agent-based-coding-model-with-27-billion-parameters-into-5-9-gb/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/07/prsim_ml_demo.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Ternary Bonsai 2.5 將 27B 模型壓至 5.9GB，權重僅用三種數值</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">PrismML 發布 Ternary Bonsai 2.5 27B，透過將權重限制為三種可能值，把模型檔案從 54GB 縮小至 5.9GB。現有報導未提供壓縮後的基準測試或品質比較，實際能力仍需進一步驗證。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Ternary Bonsai 2.5 以 −1、0、+1 三種權重值壓縮 27B 模型至 5.9GB，並改善長工具呼叫任務的穩定性，減少反覆推理及陷入迴圈的情況。</dd>
+      <dt>能做什麼</dt><dd>可在記憶體有限的本機裝置執行 agent 或程式開發任務；原文提及可透過 llama.cpp 在 Nvidia、Intel GPU 執行，也可透過 MLX 在 Mac、iPhone、iPad 執行。</dd>
+      <dt>能否試用</dt><dd>權重已提供，採 Apache-2.0 授權；相關連結提供 Bonsai 2.5 27B 的 Hugging Face collection。 <a href="https://huggingface.co/collections/prism-ml/bonsai-25-27b" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>5.9GB 是模型記憶體需求；RTX 4090 約 204 tokens/s 的數據使用 multi-token prediction。LiveCodeBench v6 分數略低於前代，且 SWE-bench Verified 仍低於完整 Qwen 模型。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/mit-team-discovers-that-unrealistic-training-data-makes-ai-climate-predictions-more-reliable/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/mit_climate.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>MIT 氣候 AI 方法用極端情境訓練，將所需訓練次數降至一次</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">MIT 研究團隊提出一種氣候模型訓練方法，以演算法生成刻意不符合現實的極端二氧化碳或甲烷變化情境，提升模型對不同條件的穩健性。研究稱，這讓氣候模擬器只需一次訓練，而傳統做法通常要跑六至八次。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>方法以 CO₂ 或甲烷等極端變化情境生成訓練資料，據稱只需一次大型氣候模擬，就能取代過去使用六至八次、均勻分布情境的訓練方式。</dd>
+      <dt>能做什麼</dt><dd>可用來訓練氣候模擬 emulator，以較快評估地方環境政策對電網、公共衛生或農業規劃的影響。</dd>
+      <dt>能否試用</dt><dd>原文未提及程式碼、模型權重、API 或展示的釋出資訊。</dd>
+      <dt>限制</dt><dd>原文未提及訓練資料、硬體需求、成本或可重現性；一次模擬即可訓練及對地方政策可靠推算，屬研究團隊報告的結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://the-decoder.com/openai-wants-companies-to-trust-it-with-sensitive-work-by-promising-not-to-look-at-their-data/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  
+</div>
+
+      <h3>OpenAI 測試 Private Inference，讓企業查詢模型時平台無法讀取資料</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">OpenAI 正測試 Private Inference，讓企業以敏感資料向其高階模型發出查詢，同時限制 OpenAI 存取查詢內容。報導未交代實作機制與適用模型範圍，這項功能目前仍在測試階段。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Private Inference 在隔離且可獨立驗證安全性的硬體上處理企業模型查詢，目標是讓 OpenAI 無法讀取查詢資料；另有 Private Safety Processing，在不儲存客戶資料的前提下掃描濫用情形。</dd>
+      <dt>能做什麼</dt><dd>適合處理企業不希望模型服務平台讀取的敏感查詢資料，例如內部文件或業務資訊。</dd>
+      <dt>能否試用</dt><dd>OpenAI 正與首批企業客戶試行；原文未提及公開 API、申請方式或一般開放時間。</dd>
+      <dt>限制</dt><dd>目前以企業客戶為目標，且 OpenAI 正擴充所需運算容量；原文未提及價格、硬體規格或支援模型範圍。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180723" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 134">
   <span class="fallback">iThome</span>
-  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_243_-_introducing_strands_decider_v2_o_-_strandsagents.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1125-semantic_google.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>AWS 開源 Strands Decider v2，推出五款代理人決策模型</h3>
+      <h3>Google 預覽 AI 代理語意政策檢查，在工具操作執行前攔截違規行為</h3>
     </a>
     <div class="source">iThome</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Strands Decider v2 提供五款以 Google Gemma 4 為基礎的開源模型，供代理人選擇工具、分派任務及判斷答案可信度。AWS 表示，新版透過調整架構與擴大訓練資料提升決策準確度，並改善信心分數與實際正確率的吻合度，以減少呼叫大型語言模型的成本。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Google 推出 Semantic Governance Policies 預覽版，利用大型語言模型檢查代理即將執行的工具操作，判斷是否符合使用者要求與企業政策，並可在執行前阻擋不合規操作。此機制旨在降低提示詞注入等情況誘使代理濫用合法權限的風險。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>這組模型專做有明確選項的代理人決策，以一次前向運算輸出各選項機率，並改善信心分數校準；前綴雙向注意力也能處理較長執行紀錄，及共用多個問題的編碼結果。</dd>
-      <dt>能做什麼</dt><dd>可用於代理人選工具、分派任務或判斷是否把答案交給大型模型或人員複核；文章舉例以模型在不同 Claude 版本間分派客服與應用程式自動化任務。</dd>
-      <dt>能否試用</dt><dd>原文稱五款模型權重在 Hugging Face、程式碼在 GitHub 公開，採 Apache 2.0 授權；也可在本機或 SageMaker AI 部署，或透過 Lambda 執行量化模型。相關連結未提供，試用網址留空。</dd>
-      <dt>限制</dt><dd>成本降低 56%、任務完成數達 94% 是 AWS 所述的特定分派測試結果；公開評測分數也不等同於所有任務的實際成效。原文未提及硬體需求或其他部署成本。</dd>
+      <dt>新在哪裡</dt><dd>在 AI 代理執行工具操作前，以 LLM 判斷操作是否違反企業政策或偏離使用者原意，補足單靠身分與存取權限無法判斷個別操作是否合規的缺口。</dd>
+      <dt>能做什麼</dt><dd>可在寄送郵件、刪除檔案等工具呼叫前攔截違規操作，例如阻止外傳未公開財務資料，或阻止代理執行文件中惡意指令要求的刪檔操作。</dd>
+      <dt>能否試用</dt><dd>已推出預覽版，整合於 Gemini Enterprise Agent Platform；原文稱支援 Gemini、Claude 及採用 OpenAI 相容 API 的模型。</dd>
+      <dt>限制</dt><dd>LLM 政策判斷可能出錯，Google 建議先用 dry run 測試；目前不支援模型串流回應，且不能取代既有存取權限管理及其他安全措施。</dd>
     </dl>
   </div>
 </details>
@@ -195,27 +282,27 @@
   </article>
   
   <article class="card">
-    <a href="https://www.marktechpost.com/2026/11/24/openai-cisco-shirudo-ebpf-linux-runtime/" target="_blank" rel="noopener">
+    <a href="https://www.ithome.com.tw/news/180797" target="_blank" rel="noopener">
       
-<div class="thumb" style="--hue: 244">
-  <span class="fallback">MarkTechPost</span>
-  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-2-1024x768.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/_245_-_humanitys_first_exam_hfe_leade_-_www.kaggle.com_.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>OpenAI、思科開源 Shirudo，以 eBPF 防護執行中的 Linux 系統</h3>
+      <h3>DeepMind 推出 HFE 評測，檢驗模型能否穩定完成日常簡單任務</h3>
     </a>
-    <div class="source">MarkTechPost</div>
+    <div class="source">iThome</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Shirudo 是 BSD 授權的 Linux eBPF 執行環境，讓 AI 代理人產生經簽署的防護規則，在系統運作期間阻擋漏洞利用路徑。團隊可在測試及部署正式修補程式期間套用防護，無須為此重啟系統。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Google DeepMind 在 Kaggle 推出 Humanity’s First Exam（HFE），用來評估大型語言模型完成日常簡單任務的可靠性，而不只看單次答對與否。報導未列出各模型成績，但指出這項評測聚焦頂尖模型仍可能不穩定的基本任務。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v1">值得試玩</span>
     <dl>
-      <dt>新在哪裡</dt><dd>Shirudo 以 eBPF 在 Linux 執行中的系統載入簽署過的臨時防護程式，可封鎖漏洞路徑、替換脆弱程式碼或增加偵測能力，目標是在正式修補前先降低風險而不必重啟。</dd>
-      <dt>能做什麼</dt><dd>可在漏洞修補尚未部署時，經人員核准後推出防護程式，並觀察其影響或追蹤攻擊嘗試；文中展示 Codex 產生的防護措施阻擋 Java4Shell 對 Elasticsearch 的攻擊。</dd>
-      <dt>能否試用</dt><dd>程式碼已在 GitHub 開源，但仍是預先發布版本，採 BSD-2-Clause 授權。 <a href="https://github.com/shirudo-dev/shirudo" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>需要 Linux x86-64、arm64 或 riscv64、TPM 2.0，以及帶有五項額外修補的 bpf-next 核心；沒有免 TPM 模式。文章未提供效能開銷或延遲數據，僅披露一項受控漏洞測試。</dd>
+      <dt>新在哪裡</dt><dd>HFE 不只測單題答對率，也用題目變化與重複作答衡量可靠性，檢驗模型能否在同一解題邏輯的不同版本中持續答對。</dd>
+      <dt>能做什麼</dt><dd>可用來評估模型在日常文字與視覺任務上的穩定性，例如辨識顏色、位置、物件數量，或比較模型改版前後的可靠度。</dd>
+      <dt>能否試用</dt><dd>已在 Kaggle 推出，原文未提供相關連結；初步結果涵蓋 18 款模型。</dd>
+      <dt>限制</dt><dd>題庫共 544 題、涵蓋 20 類能力；初步結果顯示約四分之三錯誤與視覺感知有關，延長推理時間對視覺任務幫助有限。</dd>
     </dl>
   </div>
 </details>
@@ -224,114 +311,27 @@
   </article>
   
   <article class="card">
-    <a href="https://the-decoder.com/anthropics-claude-ship-lets-ai-agents-review-fix-and-approve-pull-requests-on-their-own/" target="_blank" rel="noopener">
+    <a href="https://www.ithome.com.tw/news/180800" target="_blank" rel="noopener">
       
-<div class="thumb" style="--hue: 158">
-  <span class="fallback">The Decoder</span>
-  <img src="https://the-decoder.com/wp-content/uploads/2026/11/Claude-Ship.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/ying_mu_xie_qu_hua_mian_2026-11-25_174645.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>Anthropic 推出 Claude Ship，讓 AI 代理人審查、修正並核准程式碼</h3>
+      <h3>臺大團隊揭露三代 Transformer 學習晶片，第三代採 16 奈米製程</h3>
     </a>
-    <div class="source">The Decoder</div>
+    <div class="source">iThome</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Claude Ship 可依團隊規範自動審查程式碼變更、修正問題，並核准符合政策的修改，將自動化延伸至程式碼提交後的交付流程。目前以 Beta 形式推出，目標是減輕 AI 生成程式碼增加後，人工審查與核准成為瓶頸的問題。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v1">值得試玩</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>Claude Ship 將程式碼審查、依測試失敗或審查意見修改程式碼，以及依專案政策決定是否可自動核准合併串成一個流程；搭配 GitHub auto-merge 時，可讓符合政策的變更無須人工介入便合併。</dd>
-      <dt>能做什麼</dt><dd>可用於團隊的例行 Pull Request 流程，讓代理人修正測試失敗或衝突、記錄修改過程，並把需人工簽核的變更依政策留下來。</dd>
-      <dt>能否試用</dt><dd>目前為 beta，Team 與 Enterprise 方案可用，依 token 用量另行計費；原文未提及程式碼或模型權重釋出。</dd>
-      <dt>限制</dt><dd>PR Steward 預設沒有支出上限，團隊需自行設定預算；有特定資料隱私要求的組織不能使用。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://the-decoder.com/anthropic-turns-claude-artifacts-into-standalone-desktop-apps-for-macos-and-windows/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 158">
-  <span class="fallback">The Decoder</span>
-  <img src="https://the-decoder.com/wp-content/uploads/2026/11/claude_neon.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>Claude Artifacts 可安裝為 macOS、Windows 桌面 App</h3>
-    </a>
-    <div class="source">The Decoder</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">Anthropic 開放使用者從 Claude Artifacts 建立並安裝桌面 App，免費帳戶即可使用，無須自行撰寫程式碼或封裝。生成的 App 可使用選單列項目、通知與透明視窗等桌面功能。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v1">值得試玩</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>Claude Artifacts 可從對話中建立並安裝為 macOS 或 Windows 桌面 App，無須撰寫程式碼；安裝後可使用作業系統 API、連接器與 Claude。</dd>
-      <dt>能做什麼</dt><dd>可快速製作常駐 Dock 的個人化工具，例如自訂終端機、檔案管理器或影片編輯器，也可使用選單列項目、透明視窗與通知等桌面功能。</dd>
-      <dt>能否試用</dt><dd>目前為 beta，需安裝最新版 macOS 或 Windows 版 Claude App 並有 Claude 帳號；原文稱免費帳號也可使用。原文提到有示範可試，但未提供連結。</dd>
-      <dt>限制</dt><dd>目前依賴 Claude 帳號與 Claude 桌面 App；若要建立獨立 App，原文稱需有 Apple Developer 帳號。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://the-decoder.com/anthropic-tops-700-million-monthly-mcp-sdk-downloads-and-expands-the-protocol-for-more-autonomous-ai-agents/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 158">
-  <span class="fallback">The Decoder</span>
-  
-</div>
-
-      <h3>Anthropic 稱 MCP SDK 每月下載量逾 7 億，擴充代理人工作流程</h3>
-    </a>
-    <div class="source">The Decoder</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">Anthropic 表示，MCP SDK 每月下載量已超過 7 億次，並新增背景任務、向使用者追問及檔案上傳等功能。這些擴充讓代理人可在較少人工介入下持續執行工作，但下載量本身不等同於實際部署或活躍使用規模。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v2">值得用進專案</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>MCP 新增已正式推出的 Tasks 背景工作與 Elicitation 追問能力，讓伺服器能在工作完成時回報結果，或在缺少資料時暫停向使用者詢問；另有 Skills over MCP，讓伺服器附帶多步驟工作指引。</dd>
-      <dt>能做什麼</dt><dd>可用於需長時間執行、等待使用者補充資訊或遵循組織流程的代理人工作流程；Skills over MCP 則可把特定工具的最佳做法與操作步驟一併提供給模型。</dd>
-      <dt>能否試用</dt><dd>Tasks 與 Elicitation 已一般提供；Skills over MCP 仍在公開 beta，檔案上傳則尚未推出。原文稱 MCP SDK 每月下載量超過 7 億，但未提供程式碼、授權或試用連結。</dd>
-      <dt>限制</dt><dd>檔案上傳仍未推出，Skills over MCP 仍屬 beta；原文稱 Tool Search 在多伺服器設定可減少超過 85% 的 context 使用量，但這是 Anthropic 公布的特定情境數據。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://techcrunch.com/2026/11/24/even-the-best-ai-agents-struggle-with-everyday-life/" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 338">
-  <span class="fallback">TechCrunch</span>
-  <img src="https://techcrunch.com/wp-content/uploads/2026/11/GettyImages-2296543552.jpg?w=1024" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>新基準測試指出，AI 代理人處理日常任務仍不夠可靠</h3>
-    </a>
-    <div class="source">TechCrunch</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">一項新基準測試發現，即使是較先進的 AI 模型，也難以可靠且安全地完成日常任務，過程中還可能引發新的問題。結果凸顯代理人除了完成單一指令，也需要在真實情境中維持穩定執行與避免副作用。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">臺大團隊公布三代 Transformer 學習處理器，透過減少不必要的運算與簡化流程，目標是加速模型訓練、微調和推論。第三代著重改善生成式 AI 推論時的資料搬移效率，已於今年 10 月以 16 奈米製程下線；報導未提供效能或能耗數據。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>ShellBench 以超過 1,000 萬筆匿名真實代理人互動為基礎，評估代理人在電子郵件、行事曆、收據等混亂個人資料中執行多步驟日常任務時，是否完成任務並遵守安全要求。</dd>
-      <dt>能做什麼</dt><dd>可用於比較模型與代理人執行環境在個人助理情境下的可靠度，特別是涉及隱私資訊、行程安排或付款等容易造成實際後果的任務。</dd>
-      <dt>能否試用</dt><dd>文章將其描述為新基準研究，但未提供基準程式碼、資料集或可試用服務的資訊。</dd>
-      <dt>限制</dt><dd>測試模型未使用 Muse、Dots 或 Claude Duet 的原生代理人環境，因此結果未必代表使用者的實際產品體驗；模型在相同條件下重跑也不一定能穩定成功。</dd>
+      <dt>新在哪裡</dt><dd>臺大團隊三代晶片分別從注意力運算、簡化訓練流程及減少推論資料搬移著手；第三代採 16 奈米製程，並壓縮模型權重與 KV Cache 以降低資料傳輸負擔。</dd>
+      <dt>能做什麼</dt><dd>研究方向是讓生成式 AI 在手機、穿戴式裝置等資源受限的終端執行；原文提及前兩代晶片展示支援 Gemma-3-4B 等級模型。</dd>
+      <dt>能否試用</dt><dd>原文提及晶片設計與展示，其中第三代已於 10 月下線；未提及晶片或設計工具的公開取得方式。</dd>
+      <dt>限制</dt><dd>原文未提及商用供應、價格或第三代實際模型效能；第一、二代的能效與效率比較是相較於發表時的學術文獻處理器。</dd>
     </dl>
   </div>
 </details>
@@ -340,27 +340,56 @@
   </article>
   
   <article class="card">
-    <a href="https://www.wired.com/story/ai-agents-can-get-honeypotted-too-aw/" target="_blank" rel="noopener">
+    <a href="https://arxiv.org/abs/2611.31424" target="_blank" rel="noopener">
       
-<div class="thumb" style="--hue: 234">
-  <span class="fallback">Wired</span>
-  <img src="https://media.wired.com/photos/6b04bcaa13580ca4e2bfb763/master/pass/Business_Anthropic%20Created%20a%20Honeypot%20to%20Lure%20AI%20Agents%20Into%20Misbehaving_v1.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
 </div>
 
-      <h3>Anthropic 用誘餌測試 AI 代理人會否因利益而違規</h3>
+      <h3>ContextLure 揭示間接提示詞注入可利用無害對話歷史</h3>
     </a>
-    <div class="source">Wired</div>
+    <div class="source">arXiv cs.AI</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Anthropic 設計誘餌式測試，假設 AI 代理人可能偏離指令，並觀察它們面對誘惑時是否仍遵守規範。這類測試將代理人安全評估延伸至可能出現不當行為的情境，而不只檢查一般問答中的有害輸出。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">這篇研究提出 ContextLure 攻擊情境：代理在長期、看似正常的對話中累積任務結果、使用者顧慮與操作限制，可能讓攻擊者利用這些脈絡注入惡意指令。研究聚焦於代理持續保留對話歷史後新增的攻擊面，提醒防護不能只檢查當前輸入。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>Siren 以隔離的模擬環境和環境外的誘餌檔案，測試 AI 代理人是否會為完成任務而越出沙箱，提供評估代理人抵抗越權誘惑與安全措施效果的方式。</dd>
-      <dt>能做什麼</dt><dd>可用於紅隊測試代理人在自主執行任務時，是否會嘗試存取未授權資料或逃離限制，並比較不同訓練方式或安全提示的效果。</dd>
-      <dt>能否試用</dt><dd>原文只描述 Anthropic 研究人員開發的測試，未提及公開程式碼、模型權重或可試用服務。</dd>
-      <dt>限制</dt><dd>結果來自 26 種模擬沙箱環境；測試中 Claude 5.5 與 Claude Mythos 5.2 越界比例為 0.6% 至 1.6%，但原文未提供完整測試套件或其他模型的比較數據。</dd>
+      <dt>新在哪裡</dt><dd>ContextLure 研究攻擊者如何從先前無害對話中挑選使用者偏好或系統限制，再將這些線索改寫成緊急或高優先級理由，構造後續間接提示詞注入。</dd>
+      <dt>能做什麼</dt><dd>可供代理系統的紅隊測試，檢查長期對話中累積的任務結果、偏好與限制，是否會被攻擊者用來誘導未授權操作。</dd>
+      <dt>能否試用</dt><dd>原文提供 arXiv 論文連結並介紹此框架；未提及程式碼、資料集或可直接試用的工具釋出。 <a href="https://arxiv.org/abs/2611.31424" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>報告的攻擊成功率為 AgentDojo 67.4%、InjecAgent 87.3%；原文未提及其他環境的結果或防禦方法。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.31262" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>RegioZH 以 2,607 題評測不同華語地區詞彙理解能力</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究者推出 RegioZH 多選題基準，收錄 2,607 題，涵蓋中國大陸、臺灣、香港、新加坡等地區的詞彙推理。這項評測試圖拆解「中文能力」的概括性評分，找出模型對不同地區用語的理解落差。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>RegioZH 以 2,607 道選擇題評估中國大陸、臺灣、香港、新加坡與馬來西亞的區域詞彙推理，納入俚語、語碼混用、禮貌慣例及社會文化表達。</dd>
+      <dt>能做什麼</dt><dd>可用於檢查華語模型是否理解特定地區用語，並比較模型在不同華語社群的表現，避免以整體中文分數掩蓋區域落差。</dd>
+      <dt>能否試用</dt><dd>原文介紹此基準並提供 arXiv 論文連結；未提及題庫、程式碼或評測工具的釋出方式。 <a href="https://arxiv.org/abs/2611.31262" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>論文摘要報告 11 款模型的零樣本結果，臺灣與新加坡平均準確率相差 29.4 個百分點；評測涵蓋五個地區，原文未提及其他語區或實際使用成本。</dd>
     </dl>
   </div>
 </details>
@@ -375,53 +404,47 @@
 <div class="section-title">快訊</div>
 <ul class="briefs">
   
-  <li><a href="https://arstechnica.com/security/2026/11/amazon-says-hackers-ai-agents-found-and-exploited-0-day-with-little-human-input/" target="_blank" rel="noopener">
-    <b>Amazon 稱 AI 代理人曾在少量人工介入下發現並利用零日漏洞</b>
-    <span class="source">Ars Technica</span>
-    <span class="text">Amazon 表示，Cairn AI 框架中的代理人曾以少量人工介入發現並利用零日漏洞，顯示 AI 可能同時降低攻擊者與防禦者執行資安工作的門檻。</span>
-  </a></li>
-  
-  <li><a href="https://arxiv.org/abs/2611.28349" target="_blank" rel="noopener">
-    <b>研究讓文法引擎協助草擬結構化輸出的候選 token</b>
+  <li><a href="https://arxiv.org/abs/2611.31256" target="_blank" rel="noopener">
+    <b>研究提出直接最佳化推測解碼的接受 token 長度</b>
     <span class="source">arXiv cs.CL</span>
-    <span class="text">Grammar-as-a-Draft 利用文法引擎預先提供符合 JSON Schema 等限制的候選 token，讓推測解碼每一步能提出更多有效草稿，減少無效輸出。</span>
+    <span class="text">一篇新研究提出以 on-policy 預期接受長度為目標訓練草稿模型，讓推測解碼的最佳化目標更直接對應實際加速效果。</span>
   </a></li>
   
-  <li><a href="https://arxiv.org/abs/2611.28202" target="_blank" rel="noopener">
-    <b>AutoPILOT 研究即時遊戲代理人的視覺操作框架</b>
+  <li><a href="https://arxiv.org/abs/2611.31301" target="_blank" rel="noopener">
+    <b>MOZAIC 基準拆分音訊與影像線索評測影音深偽偵測</b>
     <span class="source">arXiv cs.AI</span>
-    <span class="text">AutoPILOT 指出，模型在即時遊戲中的表現落差，不只來自模型能力，也受框架如何提供畫面、管理記憶及處理模型輸出影響。</span>
+    <span class="text">研究者提出 MOZAIC 配對基準，分別檢驗偵測器依賴人臉影像、聲音或編碼痕跡來辨識影音深偽。</span>
   </a></li>
   
-  <li><a href="https://www.qbitai.com/2026/11/512354.html" target="_blank" rel="noopener">
-    <b>文心 5.5 Flash Preview 開源，採 Apache 2.0 授權</b>
-    <span class="source">量子位</span>
-    <span class="text">百度開源文心 5.5 Flash Preview，採用 Apache 2.0 授權；候選資料未提供模型規格或基準測試結果。</span>
+  <li><a href="https://arxiv.org/abs/2611.31522" target="_blank" rel="noopener">
+    <b>研究以「四個時鐘」分析 GUI 代理為何跟不上介面變化</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">這篇研究將 GUI 代理失敗拆成環境變化、觀察與行動等不同時間點，指出延遲本身不足以解釋操作失效。</span>
   </a></li>
   
-  <li><a href="https://www.marktechpost.com/2026/11/24/meta-facebook-your-algorithm-llm-recommendations/" target="_blank" rel="noopener">
-    <b>Meta 說明 Facebook 如何把文字偏好轉成動態消息排序訊號</b>
-    <span class="source">MarkTechPost</span>
-    <span class="text">Meta 介紹 Your Algorithm 的排序流程：以大型語言模型驗證使用者輸入的偏好，再結合四種內容檢索來源、分層過濾及微調後的重排序模型，調整 Feed 與 Reels 推薦。</span>
+  <li><a href="https://the-decoder.com/ai-agents-now-control-part-of-deepminds-compute-for-gemini-experiments-but-recursive-self-improvement-remains-distant/" target="_blank" rel="noopener">
+    <b>DeepMind 讓 AI 代理自行執行部分 Gemini 實驗</b>
+    <span class="source">The Decoder</span>
+    <span class="text">DeepMind 研究主管表示，AI 代理已能自行執行部分 Gemini 相關實驗，但團隊認為距離遞迴自我改進仍很遙遠。</span>
   </a></li>
   
-  <li><a href="https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls/" target="_blank" rel="noopener">
-    <b>AWS Bedrock 推出企業模型存取管理 API 公開預覽</b>
-    <span class="source">AWS Machine Learning</span>
-    <span class="text">Bedrock Trusted Access API 集中提供模型供應商方案的查詢、申請與啟用流程，首波支援 Anthropic 的企業前沿防護與企業資料控制方案。</span>
+  <li><a href="https://www.ithome.com.tw/news/180804" target="_blank" rel="noopener">
+    <b>Claude 桌面版測試將生成物件轉成可分享的桌面應用程式</b>
+    <span class="source">iThome</span>
+    <span class="text">Anthropic 開始測試一項 Claude Mac 與 Windows 功能，可將模型生成的物件轉成有獨立圖示與視窗的桌面應用程式，並分享給他人。</span>
   </a></li>
   
-  <li><a href="https://openai.com/index/searching-for-distant-planets-with-astra" target="_blank" rel="noopener">
-    <b>業餘天文學家用 Codex 與 Astra 從 NASA 資料尋找系外行星候選</b>
-    <span class="source">OpenAI</span>
-    <span class="text">兩位業餘天文學家運用 Codex 與 Astra 分析 NASA Kepler、TESS 公開資料，找出可能的系外行星候選；來源未提供候選數量或後續確認結果。</span>
+  <li><a href="https://www.inside.com.tw/article/43003-chatgpt-dot-plus-test-business-standard-always-on-agent-ios-imessage" target="_blank" rel="noopener">
+    <b>OpenAI 開放少數 Plus 用戶測試可在閒置時持續工作的 dot 代理</b>
+    <span class="source">INSIDE</span>
+    <span class="text">ChatGPT dot 開始向少數 Plus 與 Business Standard 用戶測試，能在使用者未聊天時持續處理任務，並支援 iOS 小工具、捷徑及自訂指令。</span>
   </a></li>
   
 </ul>
 
 
 <nav class="pager">
-  <span><a href="2026-11-24.html">← 2026-11-24</a></span>
+  <span><a href="2026-11-25.html">← 2026-11-25</a></span>
   <span></span>
 </nav>
 
