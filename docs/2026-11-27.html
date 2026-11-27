@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-27</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-27 星期五</h1>
+  <div class="meta">從 92 則新聞中精選 12 則 · 更新於 12:12</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-5-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/" target="_blank" rel="noopener"><h2>騰訊開源 DFly2：重用稀疏 KV 快取，64K 推論吞吐量最高提升 81%</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">DFly2 是為稀疏注意力大型語言模型設計的推測解碼草稿模型；它重用目標模型的 KV 快取與 top-k 索引，因此不需額外草稿 KV 記憶體。騰訊表示，在 64K 情境長度下，服務吞吐量最高可提升 81%，並已開源。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>DFly2 是為原生稀疏 LLM 設計的推測解碼草稿模型，重用目標模型的 KV 快取與索引，並省去自己的 KV 快取；每個草稿 token 最多讀取約 2K 個 key，長上下文下可降低記憶體負擔。</dd>
+      <dt>能做什麼</dt><dd>可在支援稀疏注意力的模型服務中測試推測解碼，特別是長上下文或代理人工作負載，以記憶體換取更多併發請求或更高吞吐量。</dd>
+      <dt>能否試用</dt><dd>Tencent 已開源 DFly2，並隨 Hy4 flash 提供；相關連結有 AngelSpec 程式碼與 Hugging Face 模型頁，授權原文未提及。 <a href="https://github.com/Tencent/AngelSpec" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>適用對象是原生稀疏 LLM；吞吐量數據是在 NVIDIA H20、vLLM、TP8 等特定設定下測得，DeepSeek-V4.1-Flash SWE 64K 的最高提升為 81%，但 Hy4 flash 一般任務在溫度 0 時僅比 DSpark 高 3.9%。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">MarkTechPost · Tencent Open-Sources DFly2: Speculative Decoding That Reuses the Target’s Sparse KV Cache</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://www.marktechpost.com/2026/11/26/sakana-ai-namazu-small-30b-nemotron-3-nano/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 244">
+  <span class="fallback">MarkTechPost</span>
+  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-1-1-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>Sakana AI 推出 30B-A3B 推理模型 Namazu Small，基準平均分高於 120B 模型</h3>
+    </a>
+    <div class="source">MarkTechPost</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Sakana Namazu Small 建基於 NVIDIA Nemotron 3 Nano，採 30B-A3B 架構。依報導所列的 25 項基準測試平均分，它取得 60.1，高於 120B Nemotron 3 Super 的 56.2。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Namazu Small 以 Nemotron 3 Nano 預訓練模型為基礎，經 Sakana AI 持續預訓練與後訓練，成為 30B、3B 活躍參數的推理模型；其自報 25 項基準平均分高於 120B 的 Nemotron 3 Super。</dd>
+      <dt>能做什麼</dt><dd>目標用途包括網路搜尋研究、長文件問答與日常對話，可留意其在網路研究和長文件依據回答上的表現。</dd>
+      <dt>能否試用</dt><dd>模型權重尚未釋出；原文稱地端部署細節預計於 2026 年 12 月公布，授權與 Namazu Small 試用位置原文未提及。</dd>
+      <dt>限制</dt><dd>基準分數由 Sakana 自行回報，且只在 25 項測試中有整體比較；SimpleQA Verified 為 6.8，低於 Nano 與 Super，硬體需求與上下文長度原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180835" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1127-artex-960-v2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>微軟揭露 ARTEX：多個駭客組織以 AI 代理自動化滲透攻擊</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">微軟分析指出，開源 AI 滲透測試框架 ARTEX 會以專門代理串接攻擊工作，已有至少六個駭客組織採用，包括與中國、北韓相關的組織。報告稱，部分案例能在數分鐘內取得目標的特權存取並建立持續性存取機制。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>ARTEX 的新意不在新的攻擊技術，而是以多代理人自動規畫、執行並調整偵察、漏洞利用、憑證竊取、權限提升與橫向移動，將攻擊流程加速到機器速度。</dd>
+      <dt>能做什麼</dt><dd>企業資安團隊可把報導中的攻擊方式與偵測建議納入威脅建模，留意短時間內密集且持續變化的攻擊、憑證濫用及橫向移動。</dd>
+      <dt>能否試用</dt><dd>原始碼曾以開源形式發布，後來已移除；報導稱仍有衍生版本，ThreatBook 也提供商業版 ARTEX Pro，但取得方式與授權原文未提及。</dd>
+      <dt>限制</dt><dd>報導指出 ARTEX 未引入新攻擊技術，主要提升攻擊速度與調整能力；原始碼已移除，且攻擊者可變更 IP 等網路特徵，原文未提供可供驗證的程式碼或評測。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.qbitai.com/2026/11/513053.html" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 288">
+  <span class="fallback">量子位</span>
+  
+</div>
+
+      <h3>20 個 AI 代理協作調校 Quickwit，ClickBench 查詢總耗時降低 31%</h3>
+    </a>
+    <div class="source">量子位</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">一組 20 個 AI 代理在四天內執行 350 次實驗，為 Quickwit 搜尋引擎調校效能，並超越當時公開的 ClickBench 最佳成績。報導指出，查詢總耗時降低 31%，個別情境最高降低 87%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>報導僅稱 20 個 AI 代理協作調校 Quickwit，查詢總耗時降低 31%、最高降低 87%；代理如何分工、採用何種調校方法原文未提及。</dd>
+      <dt>能做什麼</dt><dd>可能適合參考於搜尋引擎效能調校，但具體工程情境、工作負載與調校項目原文未提及。</dd>
+      <dt>能否試用</dt><dd>程式碼、模型、API、展示與授權原文未提及。</dd>
+      <dt>限制</dt><dd>可用資訊只有查詢耗時降幅，測試資料、基準設定、硬體、成本與結果是否可重現原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
+</div>
+
+      <h3>CA-RAG 讓檢索對齊長文生成的結構要求</h3>
+    </a>
+    <div class="source">arXiv cs.AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">這項研究指出，傳統 RAG 多以語意相關性挑選證據，未必能支援長篇回答必須遵守的明確結構要求。CA-RAG 將結構義務納入檢索對齊，目標是讓生成內容在符合相關性的同時，也能完整支撐指定章節或要點。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>CA-RAG 在檢索前把本體導出的結構約束與以政策為依據的知識圖譜關係加入分節查詢，讓檢索不只追求語意相關，也補足長文生成必須遵守的結構要求。</dd>
+      <dt>能做什麼</dt><dd>可研究用於合規敏感的長篇生成，例如需要逐節涵蓋明確義務、且答案必須有證據支持的 RAG 流程。</dd>
+      <dt>能否試用</dt><dd>論文已公開於 arXiv；程式碼、模型或 API 是否釋出原文未提及。 <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>檢索評估使用人工標註證據；在 k=6 時指標有所提升，生成實驗只在若干模型與領域設定中改善合規性與可靠性，原文未提供其完整適用範圍。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33174" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>MGMem 提出可追溯的長期代理記憶框架</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">MGMem 針對需跨數千輪互動取用記憶的代理，提出具確定性且保留來源脈絡的記憶框架。研究聚焦於避免只靠生成式模型改寫歷史紀錄成摘要或事實，讓記憶的建立與回溯更可追蹤。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>MGMem 以確定性的辨識式解析流程取代生成式摘要或知識圖譜索引，不需生成式索引呼叫，並透過關聯圖與三階段解析器找回原始對話片段，保留可追溯來源。</dd>
+      <dt>能做什麼</dt><dd>可用於需要跨數千輪對話回想資訊的長期代理人，尤其是希望降低記憶建置成本、提升重現性，並能回查原始對話的系統。</dd>
+      <dt>能否試用</dt><dd>論文提供 GitHub 程式碼連結；授權、模型權重與 API 原文未提及。 <a href="https://github.com/junhong-h/MGMem" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>目前摘要所述評估為英文多工作階段對話問答：在 LoCoMo 勝過同協定基線，在完整 LongMemEval-S 整體具競爭力；其他語言與正式環境表現原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33195" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>以經驗驗證回饋大型語言模型，改善材料性質預測</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">這項研究把材料預測視為反覆驗證的流程：以實驗或計算結果確認預測，再將驗證經驗用於後續推論。作者將此做法用於大型語言模型，嘗試改善傳統單一任務模型訓練後難以持續更新的限制；候選摘要未提供效能數字。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>MatRecall 讓大型語言模型把經驗驗證過的預測連同證據、結果與錯誤存成情節記憶，再於後續任務取用，不必重新訓練模型。</dd>
+      <dt>能做什麼</dt><dd>可研究用於材料探索的迭代流程，讓實驗或計算結果回饋後續預測，並測試跨相關材料任務的經驗轉移。</dd>
+      <dt>能否試用</dt><dd>arXiv 論文已公開；程式碼、模型權重或 API 釋出情況原文未提及。 <a href="https://arxiv.org/abs/2611.33195" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>結果是在包含 22 項材料任務的 MatMemBench 上測得：相對無記憶模型的中位數表現提升 62%，並在 11 項任務超越專用模型；其他領域與實驗室實際成效原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33165" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
+</div>
+
+      <h3>AutoformBench 評測進階數學 Lean 形式化，不只測定理證明</h3>
+    </a>
+    <div class="source">arXiv cs.AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">AutoformBench 將進階數學形式化視為完整工作流程，而非只檢查模型能否證明單一定理；評測也涵蓋建立定義與中間引理等步驟。這讓基準更貼近將數學結果轉成機器可驗證 Lean 證明的實際需求。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>AutoformBench 評估的不只是 Lean 定理證明，還要求代理把非形式化證明轉成 Lean，並自行建立缺少的定義、中間引理與支援基礎設施。</dd>
+      <dt>能做什麼</dt><dd>可用來比較具 Lean 能力的模型或代理，評估其在既有數學函式庫不足以直接證明時，能否補齊形式化開發所需內容。</dd>
+      <dt>能否試用</dt><dd>研究提供 341 項 Lean 4 任務的資料與程式碼，GitHub 連結已列出；授權原文未提及。 <a href="https://github.com/facebookresearch/autoformbench" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>基準由 24 個進階數學來源建立，且由熟悉 Lean 的數學家形式化與審核；論文指出成功與建構缺少的形式化基礎設施能力相關，實際正式環境效能原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.ithome.com.tw/news/180843" target="_blank" rel="noopener">
+    <b>近 4,200 個 AI 自主攻擊框架暴露於公開網路，臺灣發現 10 個</b>
+    <span class="source">iThome</span>
+    <span class="text">iThome 報導，公開網路上發現近 4,200 個可串接 LLM 代理執行偵察與漏洞探測的自主攻擊框架，臺灣也有 10 個。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180804" target="_blank" rel="noopener">
+    <b>Claude 桌面版測試將生成物件轉成獨立應用程式</b>
+    <span class="source">iThome</span>
+    <span class="text">Anthropic 開始測試將 Claude 生成的物件轉成可在 Mac、Windows 執行並分享的桌面應用程式。</span>
+  </a></li>
+  
+  <li><a href="https://huggingface.co/blog/ggml-org/llamacpp-amd-bench" target="_blank" rel="noopener">
+    <b>Hugging Face 推出 llama.cpp 的 AMD 效能基準儀表板</b>
+    <span class="source">Hugging Face</span>
+    <span class="text">新儀表板用於比較 llama.cpp 在 AMD Ryzen 與 Radeon 硬體上的推論表現。</span>
+  </a></li>
+  
+  <li><a href="https://www.inside.com.tw/article/43019-what-is-t3-code-open-source-coding-agent-control-plane-claude-code-codex-ios-android" target="_blank" rel="noopener">
+    <b>開源 T3 Code 可用手機接手電腦上的 coding agent 工作</b>
+    <span class="source">INSIDE</span>
+    <span class="text">T3 Code 提供跨桌面、網頁與手機的控制介面，可讓使用者接手在自有電腦執行的 Claude Code、Codex 等 coding agent。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-26.html">← 2026-11-26</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
