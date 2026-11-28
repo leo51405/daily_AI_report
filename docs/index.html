@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI 日報 · 2026-11-27</title>
+<title>AI 日報 · 2026-11-28</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,38 +125,38 @@
   </header>
   
 <div class="dateline">
-  <h1>2026-11-27 星期五</h1>
-  <div class="meta">從 92 則新聞中精選 12 則 · 更新於 12:12</div>
+  <h1>2026-11-28 星期六</h1>
+  <div class="meta">從 82 則新聞中精選 13 則 · 更新於 11:53</div>
 </div>
 
 
 <article class="hero">
-  <a href="https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/" target="_blank" rel="noopener">
-<div class="thumb" style="--hue: 244">
-  <span class="fallback">MarkTechPost</span>
-  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-5-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+  <a href="https://www.qbitai.com/2026/11/513163.html" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 288">
+  <span class="fallback">量子位</span>
+  
 </div>
 </a>
   <div>
     <span class="badge">頭條</span>
-    <a href="https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/" target="_blank" rel="noopener"><h2>騰訊開源 DFly2：重用稀疏 KV 快取，64K 推論吞吐量最高提升 81%</h2></a>
+    <a href="https://www.qbitai.com/2026/11/513163.html" target="_blank" rel="noopener"><h2>20 個 AI Agent 四天實驗 350 次，刷新 ClickBench 公開成績</h2></a>
     
 
 <details class="insight">
-  <summary><p class="summary">DFly2 是為稀疏注意力大型語言模型設計的推測解碼草稿模型；它重用目標模型的 KV 快取與 top-k 索引，因此不需額外草稿 KV 記憶體。騰訊表示，在 64K 情境長度下，服務吞吐量最高可提升 81%，並已開源。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">一組由 20 個 AI Agent 協作的系統，在四天內進行 350 次實驗，超越 ClickBench 既有最佳公開成績。套用到 Quickwit 後，查詢總耗時降低 31%，單項最高降低 87%。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
-    <span class="verdict v1">值得試玩</span>
+    <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>DFly2 是為原生稀疏 LLM 設計的推測解碼草稿模型，重用目標模型的 KV 快取與索引，並省去自己的 KV 快取；每個草稿 token 最多讀取約 2K 個 key，長上下文下可降低記憶體負擔。</dd>
-      <dt>能做什麼</dt><dd>可在支援稀疏注意力的模型服務中測試推測解碼，特別是長上下文或代理人工作負載，以記憶體換取更多併發請求或更高吞吐量。</dd>
-      <dt>能否試用</dt><dd>Tencent 已開源 DFly2，並隨 Hy4 flash 提供；相關連結有 AngelSpec 程式碼與 Hugging Face 模型頁，授權原文未提及。 <a href="https://github.com/Tencent/AngelSpec" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>適用對象是原生稀疏 LLM；吞吐量數據是在 NVIDIA H20、vLLM、TP8 等特定設定下測得，DeepSeek-V4.1-Flash SWE 64K 的最高提升為 81%，但 Hy4 flash 一般任務在溫度 0 時僅比 DSpark 高 3.9%。</dd>
+      <dt>新在哪裡</dt><dd>把多個 Agent 分成調研、審查與驗證角色，讓它們自行提出效能假設、設計實驗並反覆修正，而非只依照人類指定的程式碼任務寫程式。</dd>
+      <dt>能做什麼</dt><dd>可用於資料庫、搜尋引擎或分散式系統的效能調校，例如自動剖析瓶頸、測試替代方案，並在正確性與效能約束下篩選改動。</dd>
+      <dt>能否試用</dt><dd>TabbyML 描述了這套多 Agent 系統與 Quickwit 實驗；原文未提及系統、程式碼或模型權重已公開，也未提及 API 或授權。</dd>
+      <dt>限制</dt><dd>ClickBench 結果來自 1 億筆資料與 40 條熱查詢，索引效能改善則是階段性內部測試；原文未提及外部獨立驗證或系統可供使用。</dd>
     </dl>
   </div>
 </details>
 
 
-    <p class="source">MarkTechPost · Tencent Open-Sources DFly2: Speculative Decoding That Reuses the Target’s Sparse KV Cache</p>
+    <p class="source">量子位 · 20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩</p>
   </div>
 </article>
 
@@ -166,143 +166,27 @@
 <div class="grid">
   
   <article class="card">
-    <a href="https://www.marktechpost.com/2026/11/26/sakana-ai-namazu-small-30b-nemotron-3-nano/" target="_blank" rel="noopener">
+    <a href="https://the-decoder.com/three-studies-from-meta-and-ami-labs-back-yann-lecuns-bet-on-jepa-world-models-over-large-language-models/" target="_blank" rel="noopener">
       
-<div class="thumb" style="--hue: 244">
-  <span class="fallback">MarkTechPost</span>
-  <img src="https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-1-1-scaled.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/lecun_wireframe.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
 </div>
 
-      <h3>Sakana AI 推出 30B-A3B 推理模型 Namazu Small，基準平均分高於 120B 模型</h3>
+      <h3>三項新研究推進 JEPA 世界模型：涵蓋機器人規劃與訓練效率</h3>
     </a>
-    <div class="source">MarkTechPost</div>
+    <div class="source">The Decoder</div>
     
 
 <details class="insight">
-  <summary><p class="summary">Sakana Namazu Small 建基於 NVIDIA Nemotron 3 Nano，採 30B-A3B 架構。依報導所列的 25 項基準測試平均分，它取得 60.1，高於 120B Nemotron 3 Super 的 56.2。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">Meta 與 AMI Labs 的三項研究延續 JEPA 路線，讓模型透過內部世界表徵掌握因果與環境狀態，而非只依賴語言生成。研究涵蓋機器人規劃、更有效率的訓練及錯誤修正，展示世界模型在多個方向的進展。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>Namazu Small 以 Nemotron 3 Nano 預訓練模型為基礎，經 Sakana AI 持續預訓練與後訓練，成為 30B、3B 活躍參數的推理模型；其自報 25 項基準平均分高於 120B 的 Nemotron 3 Super。</dd>
-      <dt>能做什麼</dt><dd>目標用途包括網路搜尋研究、長文件問答與日常對話，可留意其在網路研究和長文件依據回答上的表現。</dd>
-      <dt>能否試用</dt><dd>模型權重尚未釋出；原文稱地端部署細節預計於 2026 年 12 月公布，授權與 Namazu Small 試用位置原文未提及。</dd>
-      <dt>限制</dt><dd>基準分數由 Sakana 自行回報，且只在 25 項測試中有整體比較；SimpleQA Verified 為 6.8，低於 Nano 與 Super，硬體需求與上下文長度原文未提及。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://www.ithome.com.tw/news/180835" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 134">
-  <span class="fallback">iThome</span>
-  <img src="https://www.ithome.com.tw/sites/default/files/field/image/1127-artex-960-v2.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-</div>
-
-      <h3>微軟揭露 ARTEX：多個駭客組織以 AI 代理自動化滲透攻擊</h3>
-    </a>
-    <div class="source">iThome</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">微軟分析指出，開源 AI 滲透測試框架 ARTEX 會以專門代理串接攻擊工作，已有至少六個駭客組織採用，包括與中國、北韓相關的組織。報告稱，部分案例能在數分鐘內取得目標的特權存取並建立持續性存取機制。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>ARTEX 的新意不在新的攻擊技術，而是以多代理人自動規畫、執行並調整偵察、漏洞利用、憑證竊取、權限提升與橫向移動，將攻擊流程加速到機器速度。</dd>
-      <dt>能做什麼</dt><dd>企業資安團隊可把報導中的攻擊方式與偵測建議納入威脅建模，留意短時間內密集且持續變化的攻擊、憑證濫用及橫向移動。</dd>
-      <dt>能否試用</dt><dd>原始碼曾以開源形式發布，後來已移除；報導稱仍有衍生版本，ThreatBook 也提供商業版 ARTEX Pro，但取得方式與授權原文未提及。</dd>
-      <dt>限制</dt><dd>報導指出 ARTEX 未引入新攻擊技術，主要提升攻擊速度與調整能力；原始碼已移除，且攻擊者可變更 IP 等網路特徵，原文未提供可供驗證的程式碼或評測。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://www.qbitai.com/2026/11/513053.html" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 288">
-  <span class="fallback">量子位</span>
-  
-</div>
-
-      <h3>20 個 AI 代理協作調校 Quickwit，ClickBench 查詢總耗時降低 31%</h3>
-    </a>
-    <div class="source">量子位</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">一組 20 個 AI 代理在四天內執行 350 次實驗，為 Quickwit 搜尋引擎調校效能，並超越當時公開的 ClickBench 最佳成績。報導指出，查詢總耗時降低 31%，個別情境最高降低 87%。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>報導僅稱 20 個 AI 代理協作調校 Quickwit，查詢總耗時降低 31%、最高降低 87%；代理如何分工、採用何種調校方法原文未提及。</dd>
-      <dt>能做什麼</dt><dd>可能適合參考於搜尋引擎效能調校，但具體工程情境、工作負載與調校項目原文未提及。</dd>
-      <dt>能否試用</dt><dd>程式碼、模型、API、展示與授權原文未提及。</dd>
-      <dt>限制</dt><dd>可用資訊只有查詢耗時降幅，測試資料、基準設定、硬體、成本與結果是否可重現原文未提及。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 317">
-  <span class="fallback">arXiv cs.AI</span>
-  
-</div>
-
-      <h3>CA-RAG 讓檢索對齊長文生成的結構要求</h3>
-    </a>
-    <div class="source">arXiv cs.AI</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">這項研究指出，傳統 RAG 多以語意相關性挑選證據，未必能支援長篇回答必須遵守的明確結構要求。CA-RAG 將結構義務納入檢索對齊，目標是讓生成內容在符合相關性的同時，也能完整支撐指定章節或要點。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v0">值得知道</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>CA-RAG 在檢索前把本體導出的結構約束與以政策為依據的知識圖譜關係加入分節查詢，讓檢索不只追求語意相關，也補足長文生成必須遵守的結構要求。</dd>
-      <dt>能做什麼</dt><dd>可研究用於合規敏感的長篇生成，例如需要逐節涵蓋明確義務、且答案必須有證據支持的 RAG 流程。</dd>
-      <dt>能否試用</dt><dd>論文已公開於 arXiv；程式碼、模型或 API 是否釋出原文未提及。 <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>檢索評估使用人工標註證據；在 k=6 時指標有所提升，生成實驗只在若干模型與領域設定中改善合規性與可靠性，原文未提供其完整適用範圍。</dd>
-    </dl>
-  </div>
-</details>
-
-
-  </article>
-  
-  <article class="card">
-    <a href="https://arxiv.org/abs/2611.33174" target="_blank" rel="noopener">
-      
-<div class="thumb" style="--hue: 152">
-  <span class="fallback">arXiv cs.CL</span>
-  
-</div>
-
-      <h3>MGMem 提出可追溯的長期代理記憶框架</h3>
-    </a>
-    <div class="source">arXiv cs.CL</div>
-    
-
-<details class="insight">
-  <summary><p class="summary">MGMem 針對需跨數千輪互動取用記憶的代理，提出具確定性且保留來源脈絡的記憶框架。研究聚焦於避免只靠生成式模型改寫歷史紀錄成摘要或事實，讓記憶的建立與回溯更可追蹤。</p><span class="more">工程師解讀</span></summary>
-  <div class="panel">
-    <span class="verdict v1">值得試玩</span>
-    <dl>
-      <dt>新在哪裡</dt><dd>MGMem 以確定性的辨識式解析流程取代生成式摘要或知識圖譜索引，不需生成式索引呼叫，並透過關聯圖與三階段解析器找回原始對話片段，保留可追溯來源。</dd>
-      <dt>能做什麼</dt><dd>可用於需要跨數千輪對話回想資訊的長期代理人，尤其是希望降低記憶建置成本、提升重現性，並能回查原始對話的系統。</dd>
-      <dt>能否試用</dt><dd>論文提供 GitHub 程式碼連結；授權、模型權重與 API 原文未提及。 <a href="https://github.com/junhong-h/MGMem" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>目前摘要所述評估為英文多工作階段對話問答：在 LoCoMo 勝過同協定基線，在完整 LongMemEval-S 整體具競爭力；其他語言與正式環境表現原文未提及。</dd>
+      <dt>新在哪裡</dt><dd>文章指出 JEPA 將重點放在建模因果與預先規劃行動，而非只靠語言模型，並稱三項新研究展現了相關進展；各研究新增的具體能力，原文未提及。</dd>
+      <dt>能做什麼</dt><dd>目標應用是機器人、工業場景與穿戴裝置等需要在實體世界運作的系統；具體工程情境原文未提及。</dd>
+      <dt>能否試用</dt><dd>原文未提及研究程式碼、模型權重、API 或展示的取得方式；文章頁面標示為 The Decoder+ 內容。</dd>
+      <dt>限制</dt><dd>文章僅概述三項研究並提到物理定律仍構成限制，具體測試結果與限制原文未提及。</dd>
     </dl>
   </div>
 </details>
@@ -318,20 +202,20 @@
   
 </div>
 
-      <h3>以經驗驗證回饋大型語言模型，改善材料性質預測</h3>
+      <h3>經驗驗證回饋改善 LLM 材料性質預測</h3>
     </a>
     <div class="source">arXiv cs.CL</div>
     
 
 <details class="insight">
-  <summary><p class="summary">這項研究把材料預測視為反覆驗證的流程：以實驗或計算結果確認預測，再將驗證經驗用於後續推論。作者將此做法用於大型語言模型，嘗試改善傳統單一任務模型訓練後難以持續更新的限制；候選摘要未提供效能數字。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">研究將材料實驗或計算驗證的結果回饋給大型語言模型，用於改善後續材料性質預測。這種做法把預測、驗證與更新串成迭代流程，讓模型能利用已確認的經驗，而不只依賴固定訓練資料。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
     <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>MatRecall 讓大型語言模型把經驗驗證過的預測連同證據、結果與錯誤存成情節記憶，再於後續任務取用，不必重新訓練模型。</dd>
-      <dt>能做什麼</dt><dd>可研究用於材料探索的迭代流程，讓實驗或計算結果回饋後續預測，並測試跨相關材料任務的經驗轉移。</dd>
-      <dt>能否試用</dt><dd>arXiv 論文已公開；程式碼、模型權重或 API 釋出情況原文未提及。 <a href="https://arxiv.org/abs/2611.33195" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>結果是在包含 22 項材料任務的 MatMemBench 上測得：相對無記憶模型的中位數表現提升 62%，並在 11 項任務超越專用模型；其他領域與實驗室實際成效原文未提及。</dd>
+      <dt>新在哪裡</dt><dd>MatRecall 將經驗驗證過的預測、證據、結果與錯誤存成可回想的記憶，讓 LLM 能在不重新訓練下利用回饋，並測試跨任務遷移與記憶保留。</dd>
+      <dt>能做什麼</dt><dd>可用於材料性質預測與材料探索流程，讓模型把計算或實驗結果帶入後續相關任務，逐步改善預測。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33195" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>評估使用 22 項材料任務的序列基準；摘要報告中位數效能提升 62%，但未提及程式碼或獨立重現結果。</dd>
     </dl>
   </div>
 </details>
@@ -340,27 +224,143 @@
   </article>
   
   <article class="card">
-    <a href="https://arxiv.org/abs/2611.33165" target="_blank" rel="noopener">
+    <a href="https://www.qbitai.com/2026/11/513227.html" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 288">
+  <span class="fallback">量子位</span>
+  
+</div>
+
+      <h3>開源機器人模型加入跨任務空間記憶，可在端側運作</h3>
+    </a>
+    <div class="source">量子位</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">新開源模型主打跨任務空間記憶，讓機器人能保留並重用不同任務累積的環境資訊，也能更新地圖。模型可在機器人端側執行，降低空間感知與記憶功能對雲端的依賴。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>LingBot-Map 2.0 可在推理時重新計算歷史關鍵影格、修正並寫回模型內部的幾何記憶；LingBot-Navi 則能跨任務保留場景記憶，供後續導航重用。</dd>
+      <dt>能做什麼</dt><dd>可用於室內配送、巡檢等機器人場景，讓機器人在行進中校正地圖漂移，並在後續任務中沿用已記住的物件位置與路徑線索。</dd>
+      <dt>能否試用</dt><dd>兩個模型皆提供 GitHub 專案與 Hugging Face checkpoints，Navi 另提供資料集；原文未提及授權。 <a href="https://github.com/robbyant/lingbot-map-v2" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>成績主要來自指定資料集、自建評測及 Jetson Thor 模組測試；原文也指出複雜環境、長時間運作與跨機器人本體遷移仍待解決。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33468" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>Looped Language Model 學會利用重複運算深度</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究探討 Looped Language Model 如何內化不同循環深度帶來的偏好；這類模型重複使用同一個區塊，增加每個 token 的計算量，但不增加模型參數。成果指向以更少參數配置額外推理計算的可能性。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究讓同一個共享區塊反覆運算以增加每個 token 的計算深度，並提出用較深層生成結果進行「偏好回寫」，只更新共享區塊而不需參考標準答案。</dd>
+      <dt>能做什麼</dt><dd>可用於數學推理等需要增加單 token 計算量的語言模型研究，探索以相同參數量換取更高推理表現。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33468" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>研究以 OLMo-2-1B 改造並在六項數學推理基準測試；輸入注入與否會影響部分比較結果，原文未提及其他模型規模或實際部署驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">
       
 <div class="thumb" style="--hue: 317">
   <span class="fallback">arXiv cs.AI</span>
   
 </div>
 
-      <h3>AutoformBench 評測進階數學 Lean 形式化，不只測定理證明</h3>
+      <h3>CA-RAG 依長文結構要求檢索證據，改善生成內容的完整性</h3>
     </a>
     <div class="source">arXiv cs.AI</div>
     
 
 <details class="insight">
-  <summary><p class="summary">AutoformBench 將進階數學形式化視為完整工作流程，而非只檢查模型能否證明單一定理；評測也涵蓋建立定義與中間引理等步驟。這讓基準更貼近將數學結果轉成機器可驗證 Lean 證明的實際需求。</p><span class="more">工程師解讀</span></summary>
+  <summary><p class="summary">CA-RAG 指出，傳統 RAG 偏重語意相關性，未必能找到支撐長文各項結構要求的證據。新方法將明確的結構義務納入檢索對齊，目標是生成內容既有依據，也能符合指定格式與涵蓋要求。</p><span class="more">工程師解讀</span></summary>
   <div class="panel">
-    <span class="verdict v1">值得試玩</span>
+    <span class="verdict v0">值得知道</span>
     <dl>
-      <dt>新在哪裡</dt><dd>AutoformBench 評估的不只是 Lean 定理證明，還要求代理把非形式化證明轉成 Lean，並自行建立缺少的定義、中間引理與支援基礎設施。</dd>
-      <dt>能做什麼</dt><dd>可用來比較具 Lean 能力的模型或代理，評估其在既有數學函式庫不足以直接證明時，能否補齊形式化開發所需內容。</dd>
-      <dt>能否試用</dt><dd>研究提供 341 項 Lean 4 任務的資料與程式碼，GitHub 連結已列出；授權原文未提及。 <a href="https://github.com/facebookresearch/autoformbench" target="_blank" rel="noopener">前往 ↗</a></dd>
-      <dt>限制</dt><dd>基準由 24 個進階數學來源建立，且由熟悉 Lean 的數學家形式化與審核；論文指出成功與建構缺少的形式化基礎設施能力相關，實際正式環境效能原文未提及。</dd>
+      <dt>新在哪裡</dt><dd>CA-RAG 在檢索前加入由本體結構導出的章節約束與政策知識圖譜關係，讓證據不只語意相關，也能涵蓋長文生成必須遵守的結構要求。</dd>
+      <dt>能做什麼</dt><dd>可用於合規文件、政策說明或其他長篇生成流程，減少檢索到的內容漏掉必要章節或條款證據。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>檢索評估使用人工標註證據，生成結果只在若干模型與領域設定中改善；原文未提及更大規模或獨立驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33402" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
+</div>
+
+      <h3>Partial Routing 依子任務難度分派模型，降低 Agent 工作流成本</h3>
+    </a>
+    <div class="source">arXiv cs.AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Partial Routing 以執行軌跡調整任務內部的模型委派，讓簡單子任務交給較便宜的模型、困難部分再交由能力較強的模型處理。相較於整個 Agent 任務只選一種模型，這種細粒度路由可望兼顧成本與能力。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Partial Routing 不是替整個任務選一個模型，而是由較強的主模型依子任務難度與過往品質、成本資料，決定是否委派部分工作給較便宜的模型，且不需訓練模型。</dd>
+      <dt>能做什麼</dt><dd>可用於包含簡單與困難步驟的 Agent 工作流，例如讓便宜模型處理重複或較容易的子任務，將較難部分留給主模型以控制成本。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33402" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>結果是在 ViBench 與 Terminal-Bench 4.0 的保留任務上測得，成本與效能受模型組合及委派比例影響；原文未提及生產環境驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180843" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/shadowserver_ai_frame.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>近 4,200 個自主攻擊框架暴露於公開網路，台灣也發現 10 個</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">報導指出，近 4,200 個可串接 LLM Agent 的自主攻擊框架暴露在公開網路，其中台灣發現 10 個。這類工具可自動化網路偵察、漏洞探測與憑證蒐集，擴大了攻擊者可用的自動化能力。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>報導呈現 AI 自主攻擊框架的公開暴露規模與蜜罐觀察，指出這類工具可串接 LLM Agent，自動執行偵察、漏洞探測與憑證蒐集；原文未提及新的攻擊技術或防禦方法。</dd>
+      <dt>能做什麼</dt><dd>可供資安團隊用於風險盤點與威脅監控，例如檢查自家是否暴露相關框架，並關注憑證檔案搜尋、漏洞探測及異常流量。</dd>
+      <dt>能否試用</dt><dd>這是 Shadowserver 的調查報導；原文未提及可取得的工具、程式碼、模型或 API。</dd>
+      <dt>限制</dt><dd>約 4,200 個公開暴露 IP 不代表已遭入侵或正在發動攻擊；蜜罐流量觀察涵蓋 11 月 9 日至 23 日，且原文未提及完整偵測方法。</dd>
     </dl>
   </div>
 </details>
@@ -375,35 +375,41 @@
 <div class="section-title">快訊</div>
 <ul class="briefs">
   
-  <li><a href="https://www.ithome.com.tw/news/180843" target="_blank" rel="noopener">
-    <b>近 4,200 個 AI 自主攻擊框架暴露於公開網路，臺灣發現 10 個</b>
+  <li><a href="https://www.wired.com/story/a-new-breed-of-chip-runs-ai-models-using-waves-of-light/" target="_blank" rel="noopener">
+    <b>Q.ANT 嘗試以光運算降低 AI 推論能耗</b>
+    <span class="source">Wired</span>
+    <span class="text">德國 Q.ANT 開發以光波執行 AI 模型運算的晶片，目標是降低高負載計算所需能耗。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.33174" target="_blank" rel="noopener">
+    <b>MGMem 提出可追溯的長期 Agent 記憶框架</b>
+    <span class="source">arXiv cs.CL</span>
+    <span class="text">MGMem 主打確定性與來源可追溯的記憶管理，目標是在長期互動中保留並於適當時機取回有用資訊。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.33165" target="_blank" rel="noopener">
+    <b>AutoformBench 評測進階數學 Lean 形式化能力</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">新基準聚焦進階數學形式化，不只測試定理證明，也納入建立定義與中間引理等實際工作。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180835" target="_blank" rel="noopener">
+    <b>微軟稱多個駭客組織已將 ARTEX 納入工具庫</b>
     <span class="source">iThome</span>
-    <span class="text">iThome 報導，公開網路上發現近 4,200 個可串接 LLM 代理執行偵察與漏洞探測的自主攻擊框架，臺灣也有 10 個。</span>
+    <span class="text">微軟分析指出，至少六個駭客組織使用 AI 自主滲透測試框架 ARTEX，部分案例可在數分鐘內取得特權存取並建立持續性存取。</span>
   </a></li>
   
-  <li><a href="https://www.ithome.com.tw/news/180804" target="_blank" rel="noopener">
-    <b>Claude 桌面版測試將生成物件轉成獨立應用程式</b>
-    <span class="source">iThome</span>
-    <span class="text">Anthropic 開始測試將 Claude 生成的物件轉成可在 Mac、Windows 執行並分享的桌面應用程式。</span>
-  </a></li>
-  
-  <li><a href="https://huggingface.co/blog/ggml-org/llamacpp-amd-bench" target="_blank" rel="noopener">
-    <b>Hugging Face 推出 llama.cpp 的 AMD 效能基準儀表板</b>
-    <span class="source">Hugging Face</span>
-    <span class="text">新儀表板用於比較 llama.cpp 在 AMD Ryzen 與 Radeon 硬體上的推論表現。</span>
-  </a></li>
-  
-  <li><a href="https://www.inside.com.tw/article/43019-what-is-t3-code-open-source-coding-agent-control-plane-claude-code-codex-ios-android" target="_blank" rel="noopener">
-    <b>開源 T3 Code 可用手機接手電腦上的 coding agent 工作</b>
-    <span class="source">INSIDE</span>
-    <span class="text">T3 Code 提供跨桌面、網頁與手機的控制介面，可讓使用者接手在自有電腦執行的 Claude Code、Codex 等 coding agent。</span>
+  <li><a href="https://www.qbitai.com/2026/11/513211.html" target="_blank" rel="noopener">
+    <b>LingBot-Map 2.0 加入自我修正的串流 3D 重建</b>
+    <span class="source">量子位</span>
+    <span class="text">螞蟻靈波發布 LingBot-Map 2.0，讓模型在串流三維重建過程中自行修正空間記憶與地圖。</span>
   </a></li>
   
 </ul>
 
 
 <nav class="pager">
-  <span><a href="2026-11-26.html">← 2026-11-26</a></span>
+  <span><a href="2026-11-27.html">← 2026-11-27</a></span>
   <span></span>
 </nav>
 

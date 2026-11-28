@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 日報 · 2026-11-28</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e5484d'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --text: #18181b; --muted: #6b6b73;
+    --line: #e5e2db; --accent: #e5484d; --accent-soft: #fdecec; --thumb-l: 88%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113; --card: #1b1b1f; --text: #ededf0; --muted: #9a9aa3;
+      --line: #2c2c33; --accent: #ff6369; --accent-soft: #3a1c1e; --thumb-l: 26%;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.7 "Noto Sans TC", system-ui, sans-serif;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .brand { font: 900 24px/1 "Noto Serif TC", serif; letter-spacing: .04em; }
+  .brand span { color: var(--accent); }
+  nav.top a { color: var(--muted); font-size: 14px; margin-left: 20px; }
+  nav.top a:hover { color: var(--accent); }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 700; letter-spacing: .08em; margin: 44px 0 16px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  /* 縮圖：底層是依來源配色的替代圖，圖片載入失敗時移除 img 即露出 */
+  .thumb {
+    position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 16 / 9;
+    background: hsl(var(--hue) 45% var(--thumb-l));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb .fallback { font: 900 clamp(16px, 2.4vw, 26px)/1.2 "Noto Serif TC", serif; color: hsl(var(--hue) 40% 45%); padding: 0 12px; text-align: center; }
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  a:hover .thumb img { transform: scale(1.03); }
+
+  footer { color: var(--muted); font-size: 13px; text-align: center; margin-top: 56px; }
+</style>
+
+<style>
+  .dateline { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; margin: 28px 0 20px; }
+  .dateline h1 { font: 900 clamp(26px, 5vw, 36px)/1.2 "Noto Serif TC", serif; margin: 0; }
+  .dateline .meta { color: var(--muted); font-size: 14px; }
+
+  .badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--accent); }
+  .source { color: var(--muted); font-size: 13px; }
+  .why { font-size: 14px; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 10px; margin: 12px 0 0; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .hero .thumb { border-radius: 14px; }
+  .hero h2 { font: 900 clamp(24px, 3.2vw, 34px)/1.35 "Noto Serif TC", serif; margin: 8px 0 12px; }
+  .hero a:hover h2 { color: var(--accent); }
+  .hero p.summary { font-size: 17px; margin: 0; }
+
+  details.insight summary { list-style: none; cursor: pointer; }
+  details.insight summary::-webkit-details-marker { display: none; }
+  details.insight summary:hover p.summary { color: var(--accent); }
+  .more { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .more::after { content: " ▾"; }
+  details[open] .more::after { content: " ▴"; }
+  .panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .panel dl { margin: 8px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 12px; }
+  .panel dt { color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .panel dd { margin: 0; }
+  .panel a { color: var(--accent); }
+  .verdict { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .verdict.v0 { background: var(--line); color: var(--muted); }
+  .verdict.v1 { background: #dbeafe; color: #1d4ed8; }
+  .verdict.v2 { background: #dcfce7; color: #15803d; }
+  @media (prefers-color-scheme: dark) {
+    .verdict.v1 { background: #1e3a5f; color: #93c5fd; }
+    .verdict.v2 { background: #14532d; color: #86efac; }
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; align-items: start; }
+  .card h3 { font-size: 18px; line-height: 1.5; margin: 12px 0 4px; }
+  .card a:hover h3 { color: var(--accent); }
+  .card p.summary { font-size: 15px; margin: 8px 0 0; }
+
+  ul.briefs { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  ul.briefs li { border-bottom: 1px solid var(--line); }
+  ul.briefs li:last-child { border-bottom: 0; }
+  ul.briefs a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 18px; }
+  ul.briefs a:hover b { color: var(--accent); }
+  ul.briefs b { font-weight: 500; }
+  ul.briefs span.text { grid-column: 1; color: var(--muted); font-size: 14px; }
+  ul.briefs .source { grid-column: 2; grid-row: 1; white-space: nowrap; }
+
+  nav.pager { display: flex; justify-content: space-between; margin-top: 36px; font-size: 15px; }
+  nav.pager a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 16px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+    ul.briefs a { grid-template-columns: 1fr; }
+    ul.briefs .source { grid-column: 1; grid-row: auto; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">AI <span>日報</span></a>
+    <nav class="top"><a href="index.html">最新</a><a href="archive.html">歷史日報</a></nav>
+  </header>
+  
+<div class="dateline">
+  <h1>2026-11-28 星期六</h1>
+  <div class="meta">從 82 則新聞中精選 13 則 · 更新於 11:53</div>
+</div>
+
+
+<article class="hero">
+  <a href="https://www.qbitai.com/2026/11/513163.html" target="_blank" rel="noopener">
+<div class="thumb" style="--hue: 288">
+  <span class="fallback">量子位</span>
+  
+</div>
+</a>
+  <div>
+    <span class="badge">頭條</span>
+    <a href="https://www.qbitai.com/2026/11/513163.html" target="_blank" rel="noopener"><h2>20 個 AI Agent 四天實驗 350 次，刷新 ClickBench 公開成績</h2></a>
+    
+
+<details class="insight">
+  <summary><p class="summary">一組由 20 個 AI Agent 協作的系統，在四天內進行 350 次實驗，超越 ClickBench 既有最佳公開成績。套用到 Quickwit 後，查詢總耗時降低 31%，單項最高降低 87%。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>把多個 Agent 分成調研、審查與驗證角色，讓它們自行提出效能假設、設計實驗並反覆修正，而非只依照人類指定的程式碼任務寫程式。</dd>
+      <dt>能做什麼</dt><dd>可用於資料庫、搜尋引擎或分散式系統的效能調校，例如自動剖析瓶頸、測試替代方案，並在正確性與效能約束下篩選改動。</dd>
+      <dt>能否試用</dt><dd>TabbyML 描述了這套多 Agent 系統與 Quickwit 實驗；原文未提及系統、程式碼或模型權重已公開，也未提及 API 或授權。</dd>
+      <dt>限制</dt><dd>ClickBench 結果來自 1 億筆資料與 40 條熱查詢，索引效能改善則是階段性內部測試；原文未提及外部獨立驗證或系統可供使用。</dd>
+    </dl>
+  </div>
+</details>
+
+
+    <p class="source">量子位 · 20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩</p>
+  </div>
+</article>
+
+
+
+<div class="section-title">重要新聞</div>
+<div class="grid">
+  
+  <article class="card">
+    <a href="https://the-decoder.com/three-studies-from-meta-and-ami-labs-back-yann-lecuns-bet-on-jepa-world-models-over-large-language-models/" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 158">
+  <span class="fallback">The Decoder</span>
+  <img src="https://the-decoder.com/wp-content/uploads/2026/11/lecun_wireframe.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>三項新研究推進 JEPA 世界模型：涵蓋機器人規劃與訓練效率</h3>
+    </a>
+    <div class="source">The Decoder</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Meta 與 AMI Labs 的三項研究延續 JEPA 路線，讓模型透過內部世界表徵掌握因果與環境狀態，而非只依賴語言生成。研究涵蓋機器人規劃、更有效率的訓練及錯誤修正，展示世界模型在多個方向的進展。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>文章指出 JEPA 將重點放在建模因果與預先規劃行動，而非只靠語言模型，並稱三項新研究展現了相關進展；各研究新增的具體能力，原文未提及。</dd>
+      <dt>能做什麼</dt><dd>目標應用是機器人、工業場景與穿戴裝置等需要在實體世界運作的系統；具體工程情境原文未提及。</dd>
+      <dt>能否試用</dt><dd>原文未提及研究程式碼、模型權重、API 或展示的取得方式；文章頁面標示為 The Decoder+ 內容。</dd>
+      <dt>限制</dt><dd>文章僅概述三項研究並提到物理定律仍構成限制，具體測試結果與限制原文未提及。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33195" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>經驗驗證回饋改善 LLM 材料性質預測</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究將材料實驗或計算驗證的結果回饋給大型語言模型，用於改善後續材料性質預測。這種做法把預測、驗證與更新串成迭代流程，讓模型能利用已確認的經驗，而不只依賴固定訓練資料。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>MatRecall 將經驗驗證過的預測、證據、結果與錯誤存成可回想的記憶，讓 LLM 能在不重新訓練下利用回饋，並測試跨任務遷移與記憶保留。</dd>
+      <dt>能做什麼</dt><dd>可用於材料性質預測與材料探索流程，讓模型把計算或實驗結果帶入後續相關任務，逐步改善預測。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33195" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>評估使用 22 項材料任務的序列基準；摘要報告中位數效能提升 62%，但未提及程式碼或獨立重現結果。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.qbitai.com/2026/11/513227.html" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 288">
+  <span class="fallback">量子位</span>
+  
+</div>
+
+      <h3>開源機器人模型加入跨任務空間記憶，可在端側運作</h3>
+    </a>
+    <div class="source">量子位</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">新開源模型主打跨任務空間記憶，讓機器人能保留並重用不同任務累積的環境資訊，也能更新地圖。模型可在機器人端側執行，降低空間感知與記憶功能對雲端的依賴。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v1">值得試玩</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>LingBot-Map 2.0 可在推理時重新計算歷史關鍵影格、修正並寫回模型內部的幾何記憶；LingBot-Navi 則能跨任務保留場景記憶，供後續導航重用。</dd>
+      <dt>能做什麼</dt><dd>可用於室內配送、巡檢等機器人場景，讓機器人在行進中校正地圖漂移，並在後續任務中沿用已記住的物件位置與路徑線索。</dd>
+      <dt>能否試用</dt><dd>兩個模型皆提供 GitHub 專案與 Hugging Face checkpoints，Navi 另提供資料集；原文未提及授權。 <a href="https://github.com/robbyant/lingbot-map-v2" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>成績主要來自指定資料集、自建評測及 Jetson Thor 模組測試；原文也指出複雜環境、長時間運作與跨機器人本體遷移仍待解決。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33468" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 152">
+  <span class="fallback">arXiv cs.CL</span>
+  
+</div>
+
+      <h3>Looped Language Model 學會利用重複運算深度</h3>
+    </a>
+    <div class="source">arXiv cs.CL</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">研究探討 Looped Language Model 如何內化不同循環深度帶來的偏好；這類模型重複使用同一個區塊，增加每個 token 的計算量，但不增加模型參數。成果指向以更少參數配置額外推理計算的可能性。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>研究讓同一個共享區塊反覆運算以增加每個 token 的計算深度，並提出用較深層生成結果進行「偏好回寫」，只更新共享區塊而不需參考標準答案。</dd>
+      <dt>能做什麼</dt><dd>可用於數學推理等需要增加單 token 計算量的語言模型研究，探索以相同參數量換取更高推理表現。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33468" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>研究以 OLMo-2-1B 改造並在六項數學推理基準測試；輸入注入與否會影響部分比較結果，原文未提及其他模型規模或實際部署驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
+</div>
+
+      <h3>CA-RAG 依長文結構要求檢索證據，改善生成內容的完整性</h3>
+    </a>
+    <div class="source">arXiv cs.AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">CA-RAG 指出，傳統 RAG 偏重語意相關性，未必能找到支撐長文各項結構要求的證據。新方法將明確的結構義務納入檢索對齊，目標是生成內容既有依據，也能符合指定格式與涵蓋要求。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>CA-RAG 在檢索前加入由本體結構導出的章節約束與政策知識圖譜關係，讓證據不只語意相關，也能涵蓋長文生成必須遵守的結構要求。</dd>
+      <dt>能做什麼</dt><dd>可用於合規文件、政策說明或其他長篇生成流程，減少檢索到的內容漏掉必要章節或條款證據。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33497" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>檢索評估使用人工標註證據，生成結果只在若干模型與領域設定中改善；原文未提及更大規模或獨立驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://arxiv.org/abs/2611.33402" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 317">
+  <span class="fallback">arXiv cs.AI</span>
+  
+</div>
+
+      <h3>Partial Routing 依子任務難度分派模型，降低 Agent 工作流成本</h3>
+    </a>
+    <div class="source">arXiv cs.AI</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">Partial Routing 以執行軌跡調整任務內部的模型委派，讓簡單子任務交給較便宜的模型、困難部分再交由能力較強的模型處理。相較於整個 Agent 任務只選一種模型，這種細粒度路由可望兼顧成本與能力。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>Partial Routing 不是替整個任務選一個模型，而是由較強的主模型依子任務難度與過往品質、成本資料，決定是否委派部分工作給較便宜的模型，且不需訓練模型。</dd>
+      <dt>能做什麼</dt><dd>可用於包含簡單與困難步驟的 Agent 工作流，例如讓便宜模型處理重複或較容易的子任務，將較難部分留給主模型以控制成本。</dd>
+      <dt>能否試用</dt><dd>論文可由 arXiv 取得；原文未提及程式碼、模型權重或 API 已公開，也未提及授權。 <a href="https://arxiv.org/abs/2611.33402" target="_blank" rel="noopener">前往 ↗</a></dd>
+      <dt>限制</dt><dd>結果是在 ViBench 與 Terminal-Bench 4.0 的保留任務上測得，成本與效能受模型組合及委派比例影響；原文未提及生產環境驗證。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+  <article class="card">
+    <a href="https://www.ithome.com.tw/news/180843" target="_blank" rel="noopener">
+      
+<div class="thumb" style="--hue: 134">
+  <span class="fallback">iThome</span>
+  <img src="https://www.ithome.com.tw/sites/default/files/field/image/shadowserver_ai_frame.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+</div>
+
+      <h3>近 4,200 個自主攻擊框架暴露於公開網路，台灣也發現 10 個</h3>
+    </a>
+    <div class="source">iThome</div>
+    
+
+<details class="insight">
+  <summary><p class="summary">報導指出，近 4,200 個可串接 LLM Agent 的自主攻擊框架暴露在公開網路，其中台灣發現 10 個。這類工具可自動化網路偵察、漏洞探測與憑證蒐集，擴大了攻擊者可用的自動化能力。</p><span class="more">工程師解讀</span></summary>
+  <div class="panel">
+    <span class="verdict v0">值得知道</span>
+    <dl>
+      <dt>新在哪裡</dt><dd>報導呈現 AI 自主攻擊框架的公開暴露規模與蜜罐觀察，指出這類工具可串接 LLM Agent，自動執行偵察、漏洞探測與憑證蒐集；原文未提及新的攻擊技術或防禦方法。</dd>
+      <dt>能做什麼</dt><dd>可供資安團隊用於風險盤點與威脅監控，例如檢查自家是否暴露相關框架，並關注憑證檔案搜尋、漏洞探測及異常流量。</dd>
+      <dt>能否試用</dt><dd>這是 Shadowserver 的調查報導；原文未提及可取得的工具、程式碼、模型或 API。</dd>
+      <dt>限制</dt><dd>約 4,200 個公開暴露 IP 不代表已遭入侵或正在發動攻擊；蜜罐流量觀察涵蓋 11 月 9 日至 23 日，且原文未提及完整偵測方法。</dd>
+    </dl>
+  </div>
+</details>
+
+
+  </article>
+  
+</div>
+
+
+
+<div class="section-title">快訊</div>
+<ul class="briefs">
+  
+  <li><a href="https://www.wired.com/story/a-new-breed-of-chip-runs-ai-models-using-waves-of-light/" target="_blank" rel="noopener">
+    <b>Q.ANT 嘗試以光運算降低 AI 推論能耗</b>
+    <span class="source">Wired</span>
+    <span class="text">德國 Q.ANT 開發以光波執行 AI 模型運算的晶片，目標是降低高負載計算所需能耗。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.33174" target="_blank" rel="noopener">
+    <b>MGMem 提出可追溯的長期 Agent 記憶框架</b>
+    <span class="source">arXiv cs.CL</span>
+    <span class="text">MGMem 主打確定性與來源可追溯的記憶管理，目標是在長期互動中保留並於適當時機取回有用資訊。</span>
+  </a></li>
+  
+  <li><a href="https://arxiv.org/abs/2611.33165" target="_blank" rel="noopener">
+    <b>AutoformBench 評測進階數學 Lean 形式化能力</b>
+    <span class="source">arXiv cs.AI</span>
+    <span class="text">新基準聚焦進階數學形式化，不只測試定理證明，也納入建立定義與中間引理等實際工作。</span>
+  </a></li>
+  
+  <li><a href="https://www.ithome.com.tw/news/180835" target="_blank" rel="noopener">
+    <b>微軟稱多個駭客組織已將 ARTEX 納入工具庫</b>
+    <span class="source">iThome</span>
+    <span class="text">微軟分析指出，至少六個駭客組織使用 AI 自主滲透測試框架 ARTEX，部分案例可在數分鐘內取得特權存取並建立持續性存取。</span>
+  </a></li>
+  
+  <li><a href="https://www.qbitai.com/2026/11/513211.html" target="_blank" rel="noopener">
+    <b>LingBot-Map 2.0 加入自我修正的串流 3D 重建</b>
+    <span class="source">量子位</span>
+    <span class="text">螞蟻靈波發布 LingBot-Map 2.0，讓模型在串流三維重建過程中自行修正空間記憶與地圖。</span>
+  </a></li>
+  
+</ul>
+
+
+<nav class="pager">
+  <span><a href="2026-11-27.html">← 2026-11-27</a></span>
+  <span></span>
+</nav>
+
+  <footer>每日台灣時間早上自動彙整 · 摘要由 AI 產生，細節請以原文為準</footer>
+</div>
+</body>
+</html>
